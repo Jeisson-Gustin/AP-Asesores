@@ -39,15 +39,12 @@ h3{font-size:1rem;font-weight:600}
 p{margin:0}
 .num{font-family:var(--dato);font-variant-numeric:tabular-nums}
 
-/* ---- cabecera ---- */
 .cabecera{display:flex;flex-wrap:wrap;gap:18px 24px;align-items:flex-end;
   justify-content:space-between;border-bottom:2px solid var(--tinta);padding-bottom:16px}
 .marca{max-width:60ch}
 .eyebrow{font:600 .7rem/1.4 var(--texto);letter-spacing:.14em;text-transform:uppercase;
   color:var(--acento);margin-bottom:7px}
 .lead{color:var(--suave);margin-top:9px;font-size:.95rem;max-width:62ch}
-
-/* ---- conmutador de vista ---- */
 .vista{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
 .vista-etiqueta{font:600 .68rem/1 var(--texto);letter-spacing:.1em;text-transform:uppercase;color:var(--tenue)}
 .conmutador{display:flex;border:1px solid var(--linea-fuerte);border-radius:9px;overflow:hidden;background:var(--tarjeta)}
@@ -57,7 +54,6 @@ p{margin:0}
 .conmutador button[aria-pressed="true"]{background:var(--tinta);color:var(--papel)}
 .conmutador button:focus-visible{outline:2px solid var(--acento);outline-offset:-2px}
 
-/* ---- disposición principal ---- */
 .trabajo{display:grid;grid-template-columns:minmax(0,1fr) 336px;gap:26px;align-items:start;margin-top:26px}
 .trabajo>*{min-width:0}
 @media(max-width:900px){.trabajo{grid-template-columns:1fr}}
@@ -67,16 +63,14 @@ p{margin:0}
 .bloque-cab{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;margin-bottom:6px}
 .bloque-nota{color:var(--suave);font-size:.87rem;margin-bottom:16px;max-width:66ch}
 
-/* ---- selector de base ---- */
 .bases{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
 .base{appearance:none;cursor:pointer;background:var(--papel);border:1px solid var(--linea-fuerte);
   border-radius:99px;padding:8px 14px;font:500 .84rem/1 var(--texto);color:var(--tinta)}
 .base[aria-pressed="true"]{background:var(--acento-suave);border-color:var(--acento);color:var(--acento);font-weight:600}
 .base:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
 
-/* ---- tabla de recursos ---- */
 .marco{overflow-x:auto;max-width:100%;margin:0 -20px;padding:0 20px}
-table{border-collapse:collapse;width:100%;min-width:600px;font-size:.87rem}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.87rem}
 th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--linea);vertical-align:middle}
 thead th{font:600 .67rem/1.3 var(--texto);letter-spacing:.07em;text-transform:uppercase;
   color:var(--tenue);border-bottom:1px solid var(--linea-fuerte);position:sticky;top:0;background:var(--tarjeta)}
@@ -90,14 +84,11 @@ input[type=number]{width:62px;padding:5px 7px;border:1px solid var(--linea-fuert
   background:var(--papel);color:var(--tinta);font:500 .85rem/1.2 var(--dato);text-align:right}
 input[type=number]:focus-visible{outline:2px solid var(--acento);outline-offset:-1px;border-color:var(--acento)}
 tfoot td{font-weight:600;border-top:1px solid var(--linea-fuerte);border-bottom:0;padding-top:12px}
-
-/* barra de mezcla humano/máquina */
 .mezcla{display:flex;height:7px;border-radius:99px;overflow:hidden;background:var(--linea);min-width:54px}
 .mezcla i{display:block;height:100%}
 .mezcla .h{background:var(--humano)}
 .mezcla .m{background:var(--maquina)}
 
-/* ---- panel de resultado ---- */
 .panel{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);
   background:var(--tarjeta);border:1px solid var(--linea-fuerte);border-radius:13px;overflow:hidden}
 .panel-cima{background:var(--tinta);color:var(--papel);padding:17px 19px}
@@ -112,7 +103,6 @@ tfoot td{font-weight:600;border-top:1px solid var(--linea-fuerte);border-bottom:
 .fila.resta dd{color:var(--acento)}
 dl{margin:0}
 
-/* control de descuento */
 .control{margin:15px 0 4px}
 .control-cab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px}
 .control-cab label{font:600 .74rem/1 var(--texto);letter-spacing:.06em;text-transform:uppercase;color:var(--tenue)}
@@ -120,7 +110,25 @@ dl{margin:0}
 input[type=range]{width:100%;accent-color:var(--acento);margin:0}
 input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3px}
 
-/* medidor de margen */
+.rango{margin-top:14px;border-top:1px solid var(--linea);padding-top:13px}
+.rango-cab{font:600 .74rem/1 var(--texto);letter-spacing:.06em;text-transform:uppercase;
+  color:var(--tenue);margin-bottom:9px}
+.topes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tope{appearance:none;cursor:pointer;text-align:left;border:1px solid var(--linea-fuerte);
+  border-radius:9px;padding:9px 11px;background:var(--papel);color:var(--tinta);font:inherit}
+.tope:hover{border-color:var(--acento)}
+.tope:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
+.tope small{display:block;font:600 .66rem/1.3 var(--texto);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--tenue);margin-bottom:3px}
+.tope b{font:600 .84rem/1.2 var(--dato);font-variant-numeric:tabular-nums;display:block}
+.tope.min b{color:var(--alerta)}
+.tope.max b{color:var(--acento)}
+.aguja{position:relative;height:6px;border-radius:99px;
+  background:linear-gradient(90deg,var(--alerta),var(--acento));margin-top:10px;opacity:.55}
+.aguja i{position:absolute;top:-4px;width:3px;height:14px;border-radius:2px;background:var(--tinta);
+  transform:translateX(-50%);transition:left .18s ease}
+.aguja-pie{display:flex;justify-content:space-between;font-size:.72rem;color:var(--tenue);margin-top:5px}
+
 .medidor{margin-top:15px;border-top:1px solid var(--linea);padding-top:14px}
 .medidor-cab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:9px}
 .medidor-cab span:first-child{font:600 .74rem/1 var(--texto);letter-spacing:.06em;text-transform:uppercase;color:var(--tenue)}
@@ -132,13 +140,20 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
 .aviso.ok{background:var(--acento-suave);border:1px solid var(--acento-borde);color:var(--acento)}
 .aviso.cuidado{background:var(--alerta-suave);border:1px solid var(--alerta-borde);color:var(--alerta)}
 .aviso.mal{background:var(--critico-suave);border:1px solid var(--critico-borde);color:var(--critico)}
-.solo-interno[hidden]{display:none!important}
+[hidden]{display:none!important}
 
-/* ---- detalle de recurso ---- */
 .detalle{border:1px solid var(--acento-borde);background:var(--acento-suave);border-radius:11px;padding:16px;margin-top:16px}
 .detalle-cab{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between}
 .detalle h3{color:var(--acento)}
 .detalle p{font-size:.86rem;color:var(--suave);margin-top:7px;max-width:70ch}
+.precios-recurso{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.chip{font:600 .73rem/1 var(--texto);padding:6px 10px;border-radius:99px;
+  border:1px solid var(--linea-fuerte);background:var(--tarjeta);color:var(--suave)}
+.chip b{font-family:var(--dato);color:var(--tinta)}
+.chip.min{border-color:var(--alerta-borde)}
+.chip.min b{color:var(--alerta)}
+.chip.max{border-color:var(--acento-borde)}
+.chip.max b{color:var(--acento)}
 .fases{list-style:none;margin:13px 0 0;padding:0;display:flex;flex-direction:column;gap:1px;
   background:var(--linea);border:1px solid var(--linea);border-radius:9px;overflow:hidden}
 .fases li{background:var(--tarjeta);padding:9px 12px;display:grid;
@@ -153,12 +168,12 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
 .criterios{margin:13px 0 0;padding-left:1.15em;font-size:.83rem;color:var(--suave)}
 .criterios li{margin:4px 0}
 
-/* ---- retorno ---- */
 .campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:13px;margin-bottom:18px}
 .campo{display:flex;flex-direction:column;gap:5px}
 .campo label{font:600 .72rem/1.3 var(--texto);letter-spacing:.05em;text-transform:uppercase;color:var(--tenue)}
 .campo input{width:100%;padding:8px 10px;border:1px solid var(--linea-fuerte);border-radius:8px;
   background:var(--papel);color:var(--tinta);font:500 .92rem/1.3 var(--dato);text-align:right}
+.campo input.txt{text-align:left;font-family:var(--texto)}
 .campo input:focus-visible{outline:2px solid var(--acento);outline-offset:-1px;border-color:var(--acento)}
 .campo .pista-txt{font-size:.71rem;color:var(--tenue);line-height:1.35}
 .resultados{display:grid;grid-template-columns:repeat(auto-fit,minmax(152px,1fr));gap:1px;
@@ -171,6 +186,19 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
 .destacado strong{color:var(--acento)}
 .cautela{border-left:3px solid var(--alerta);background:var(--alerta-suave);color:var(--alerta);
   padding:12px 15px;border-radius:0 9px 9px 0;margin-top:14px;font-size:.84rem;line-height:1.5}
+
+.acciones{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
+.btn{appearance:none;cursor:pointer;border:1px solid transparent;border-radius:9px;
+  padding:11px 18px;font:600 .88rem/1 var(--texto)}
+.btn.principal{background:var(--acento);color:#fff;border-color:var(--acento)}
+.btn.principal:hover{filter:brightness(1.08)}
+.btn.secundario{background:var(--papel);color:var(--tinta);border-color:var(--linea-fuerte)}
+.btn.secundario:hover{border-color:var(--acento);color:var(--acento)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
+.estado-msj{font-size:.83rem;color:var(--suave)}
+.estado-msj.err{color:var(--critico)}
+.estado-msj.bien{color:var(--acento)}
 
 .pie{margin-top:40px;border-top:1px solid var(--linea);padding-top:15px;color:var(--tenue);font-size:.8rem;line-height:1.6}
 .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.76rem;color:var(--suave);margin-top:10px}
@@ -185,7 +213,7 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
   <div class="marca">
     <p class="eyebrow">Desarrollos AP · modelo 2026</p>
     <h1>Cotizador de cursos universitarios</h1>
-    <p class="lead">Cada precio sale de las horas reales de producción de cada recurso, con el desglose de qué hace la IA y qué revisa un profesional. Cambie las cantidades y el descuento: el margen se recalcula en vivo.</p>
+    <p class="lead">Cada precio sale de las horas reales de producción de cada recurso, con el desglose de qué hace la IA y qué revisa un profesional. Cambie cantidades, tarifas y descuento: el margen se recalcula en vivo.</p>
   </div>
   <div class="vista">
     <span class="vista-etiqueta">Vista</span>
@@ -228,6 +256,60 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
         <span><i class="punto" style="background:var(--maquina)"></i> Generación asistida por IA y producción técnica</span>
       </div>
       <div id="detalle"></div>
+    </section>
+
+    <section class="bloque solo-interno" id="bloqueTarifas">
+      <div class="bloque-cab"><h2>Tarifas y márgenes</h2></div>
+      <p class="bloque-nota">Estos valores gobiernan todo el modelo. Al cambiarlos se recalculan el costo, el precio mínimo y el precio máximo de cada recurso y de la cotización completa.</p>
+      <div class="campos" id="camposTarifas"></div>
+      <div class="campos">
+        <div class="campo">
+          <label for="pOverhead">Overhead operativo (%)</label>
+          <input type="number" id="pOverhead" min="0" max="60" step="1">
+          <span class="pista-txt">Costos fijos repartidos por proyecto</span>
+        </div>
+        <div class="campo">
+          <label for="pMult">Multiplicador de precio máximo</label>
+          <input type="number" id="pMult" min="1" max="6" step="0.05">
+          <span class="pista-txt">Precio máximo = costo total × este factor</span>
+        </div>
+        <div class="campo">
+          <label for="pPisoPct">Margen mínimo (%)</label>
+          <input type="number" id="pPisoPct" min="0" max="80" step="1">
+          <span class="pista-txt">Define el precio mínimo cobrable</span>
+        </div>
+      </div>
+      <div class="acciones">
+        <button type="button" class="btn secundario" id="btnRestaurar">Restaurar valores del modelo</button>
+        <span class="estado-msj" id="msjTarifas"></span>
+      </div>
+    </section>
+
+    <section class="bloque">
+      <div class="bloque-cab"><h2>Generar la cotización</h2></div>
+      <p class="bloque-nota">Produce un PDF con los componentes seleccionados, listo para enviar a la institución. El reporte no incluye costos, márgenes ni tarifas internas.</p>
+      <div class="campos">
+        <div class="campo">
+          <label for="qInst">Institución</label>
+          <input type="text" id="qInst" class="txt" value="Universidad Santiago de Cali">
+        </div>
+        <div class="campo">
+          <label for="qCurso">Curso o proyecto</label>
+          <input type="text" id="qCurso" class="txt" value="Razonamiento Cuantitativo (CN111)">
+        </div>
+        <div class="campo">
+          <label for="qNum">Número de cotización</label>
+          <input type="text" id="qNum" class="txt" value="AP-2026-003">
+        </div>
+        <div class="campo">
+          <label for="qDias">Validez (días)</label>
+          <input type="number" id="qDias" value="30" min="1" max="365" step="1">
+        </div>
+      </div>
+      <div class="acciones">
+        <button type="button" class="btn principal" id="btnPdf">Descargar cotización en PDF</button>
+        <span class="estado-msj" id="msjPdf"></span>
+      </div>
     </section>
 
     <section class="bloque">
@@ -301,6 +383,20 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
         <input type="range" id="desc" min="0" max="60" step="0.1" value="0">
       </div>
 
+      <div class="rango solo-interno">
+        <div class="rango-cab">Rango cobrable</div>
+        <div class="topes">
+          <button type="button" class="tope min" id="btnMin">
+            <small>Mínimo</small><b id="pMin">—</b>
+          </button>
+          <button type="button" class="tope max" id="btnMax">
+            <small>Máximo</small><b id="pMax">—</b>
+          </button>
+        </div>
+        <div class="aguja"><i id="aguja"></i></div>
+        <div class="aguja-pie"><span>piso de rentabilidad</span><span>precio de lista</span></div>
+      </div>
+
       <div class="solo-interno" id="interno">
         <div class="medidor">
           <div class="medidor-cab">
@@ -309,13 +405,12 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
           </div>
           <div class="pista">
             <div class="relleno" id="mgBarra" style="width:0%"></div>
-            <div class="marca-piso" id="mgPiso" style="left:25%"></div>
+            <div class="marca-piso" id="mgPiso" style="left:41.7%"></div>
           </div>
-          <div class="medidor-pie"><span>0 %</span><span>piso 25 %</span><span>60 %</span></div>
+          <div class="medidor-pie"><span>0 %</span><span id="mgPisoEt">piso 25 %</span><span>60 %</span></div>
         </div>
         <dl style="margin-top:12px">
           <div class="fila"><dt>Costo de producción</dt><dd id="pCosto">—</dd></div>
-          <div class="fila"><dt>Precio piso</dt><dd id="pPiso">—</dd></div>
           <div class="fila"><dt>Horas de socio</dt><dd id="pSocio">—</dd></div>
           <div class="fila"><dt>Descuento máximo</dt><dd id="pDmax">—</dd></div>
         </dl>
@@ -326,22 +421,254 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
 </div>
 
 <p class="pie">
-  Valores en pesos colombianos de 2026, sin IVA salvo donde se indique. Las horas de cada recurso salen del procedimiento documentado en las siete skills del modelo instruccional de Desarrollos AP. No incluye hosting, licencias de Moodle ni honorarios docentes. Validez de las cotizaciones: 30 días.
+  Valores en pesos colombianos de 2026, sin IVA salvo donde se indique. Las horas de cada recurso salen del procedimiento documentado en las siete skills del modelo instruccional de Desarrollos AP. No incluye hosting, licencias de Moodle ni honorarios docentes.
 </p>
 
 </div>
 
-<script id="datos" type="application/json">{"recursos":{"guia_html":{"nombre":"Guía de aprendizaje en HTML","categoria":"contenido","unidad":"guía","descripcion":"Documento HTML autocontenido con 8 secciones obligatorias: encabezado, objetivo, competencias, contenidos clave, desarrollo conceptual, síntesis, conexión con la semana siguiente y referencias. Cada concepto lleva definición formal, notación, un ejemplo mecánico, un ejemplo aplicado a contexto real y un error frecuente señalado.","horas":5.7,"horasCriterio":4.4,"pctCriterio":0.772,"costo":485650,"piso":647533,"lista":1068430,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Mapa concepto → ejemplo mecánico → ejemplo aplicado → error frecuente, a partir de la parcelación oficial y del diseño curricular."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":false,"detalle":"Redacción del borrador y del código HTML base conducida con la especificación del mapa conceptual."},{"fase":"Revisión científica","rol":"Dirección pedagógica y revisión científica","horas":2.0,"criterio":true,"detalle":"Verificación de cada definición y notación; resolución completa de los 8 a 10 ejemplos de la guía; validación de los errores frecuentes señalados."},{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Progresión de lo concreto a lo abstracto, pertinencia del contexto para el perfil del estudiante, conexión con la semana anterior y la siguiente."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":0.8,"criterio":false,"detalle":"Ajuste de maquetación, MathJax, tabla de contenidos navegable y comportamiento responsive."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.4,"criterio":true,"detalle":"Validación W3C, render dentro de Moodle y prueba en móvil."}],"criterios":["Todo concepto tiene definición, ejemplo mecánico y ejemplo aplicado","Notación matemática correcta y consistente en toda la guía","Al menos un error frecuente por concepto, con su corrección","HTML valida sin errores y no rompe el estilo de Moodle"]},"guia_repaso":{"nombre":"Guía de repaso y síntesis de parcial","categoria":"contenido","unidad":"guía","descripcion":"Guía de cierre de parcial: integra los conceptos de las semanas del parcial en un mapa único, con ejercicios tipo examen resueltos y señalamiento de los errores más frecuentes del periodo.","horas":3.5,"horasCriterio":2.7,"pctCriterio":0.771,"costo":301400,"piso":401867,"lista":663080,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Selección de los nodos conceptuales que deben quedar consolidados antes del examen."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Borrador de síntesis y de ejercicios integradores."},{"fase":"Revisión científica","rol":"Dirección pedagógica y revisión científica","horas":1.2,"criterio":true,"detalle":"Resolución de los ejercicios tipo examen y verificación de coherencia con lo enseñado."},{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Verificación de que integra y no introduce contenido nuevo."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":0.4,"criterio":false,"detalle":"Maquetación y publicación."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.2,"criterio":true,"detalle":"Render en Moodle."}],"criterios":["No introduce contenido nuevo: integra lo trabajado","Los ejercicios tipo examen están resueltos paso a paso"]},"video_interactivo_h5p":{"nombre":"Video interactivo H5P","categoria":"interactivo","unidad":"video","descripcion":"H5P Interactive Video de 8 a 15 minutos con pausas cada 2 o 3 minutos. Cada pausa incrusta una pregunta (selección múltiple, verdadero/falso o completar) con retroalimentación inmediata por opción y resumen final que reporta calificación a Moodle.","horas":5.0,"horasCriterio":2.5,"pctCriterio":0.5,"costo":339900,"piso":453200,"lista":747780,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Guion, storyboard y decisión de dónde pausar: los puntos de corte se ubican donde la evidencia dice que el estudiante pierde el hilo."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.3,"criterio":false,"detalle":"Redacción de los ítems incrustados y de la retroalimentación por opción."},{"fase":"Revisión científica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Verificación del contenido del video y validación de cada pregunta incrustada y su retroalimentación."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":2.2,"criterio":false,"detalle":"Preparación del video base (curaduría o edición), montaje en Lumi/H5P Hub y configuración de pausas, umbral y resumen."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.7,"criterio":true,"detalle":"Validación del empaquetado, recorrido completo de todas las pausas y verificación del reporte de calificaciones en Moodle."}],"criterios":["Pausas cada 2 a 3 minutos, ninguna sección larga sin interacción","Retroalimentación inmediata y específica por opción","h5p.json en raíz y librerías presentes en el Moodle destino","El intento queda registrado en el libro de calificaciones"]},"produccion_video_original":{"nombre":"Producción de video original (complemento)","categoria":"interactivo","unidad":"video","descripcion":"Grabación y posproducción de un video de clase propio de 8 a 15 minutos: guion a cámara o screencast, edición, rotulación, audio y exportación optimizada para LMS.","horas":4.0,"horasCriterio":1.0,"pctCriterio":0.25,"costo":239250,"piso":319000,"lista":526350,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Guion a cámara y definición de apoyos visuales."},{"fase":"Producción técnica","rol":"Diseño gráfico y multimedia","horas":3.0,"criterio":false,"detalle":"Grabación, edición, rotulación, corrección de audio y exportación."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.5,"criterio":true,"detalle":"Verificación de peso, formato y reproducción dentro de Moodle."}],"criterios":["Duración entre 8 y 15 minutos","Peso inferior a 200 MB para no bloquear la carga en el LMS"]},"actividad_h5p":{"nombre":"Actividad H5P de refuerzo","categoria":"interactivo","unidad":"actividad","descripcion":"Question Set de 10 preguntas con variedad de formatos (selección múltiple, verdadero/falso, completar, arrastrar palabras), navegación por puntos, umbral del 70% y retroalimentación inmediata. Práctica de bajo riesgo, no evaluación.","horas":2.6,"horasCriterio":1.6,"pctCriterio":0.615,"costo":197450,"piso":263267,"lista":434390,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Especificación de los 10 ítems contra el objetivo de aprendizaje de la semana; se verifica que no dupliquen el quiz."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Generación de ítems y redacción de retroalimentación por opción."},{"fase":"Revisión científica","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Resolución de cada ítem y verificación de que los distractores son plausibles y no ambiguos."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":0.6,"criterio":false,"detalle":"Montaje H5P, configuración de navegación y umbral."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Prueba completa en Moodle."}],"criterios":["Al menos 3 formatos distintos en el set","No duplica el quiz de la semana: es práctica, no evaluación","Retroalimentación inmediata en cada ítem"]},"tarjetas_repaso_h5p":{"nombre":"Tarjetas de repaso (H5P Course Presentation)","categoria":"interactivo","unidad":"recurso","descripcion":"Presentación H5P interactiva de síntesis: mapa conceptual navegable y tarjetas de estudio con flip para preparación de parcial.","horas":2.0,"horasCriterio":0.8,"pctCriterio":0.4,"costo":127050,"piso":169400,"lista":279510,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Selección de los conceptos que deben quedar memorizados y de las relaciones del mapa."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.3,"criterio":false,"detalle":"Redacción de anverso y reverso de cada tarjeta."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":0.9,"criterio":false,"detalle":"Montaje de la presentación y de las tarjetas."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Prueba de navegación en Moodle y en móvil."}],"criterios":["Cada tarjeta es autocontenida y verificable","Navegación funcional en móvil"]},"quiz_moodle":{"nombre":"Quiz evaluativo Moodle (GIFT)","categoria":"evaluacion","unidad":"quiz","descripcion":"Banco de 12 a 20 ítems en formato GIFT con al menos 4 tipos de pregunta (selección múltiple conceptual y aplicada, numérica con tolerancia, verdadero/falso, completar o emparejar), retroalimentación general y retroalimentación específica por cada opción incorrecta. Calibrado a umbral 70%, 3 intentos, mejor intento, con aleatorización.","horas":4.0,"horasCriterio":3.0,"pctCriterio":0.75,"costo":321750,"piso":429000,"lista":707850,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Tabla de especificaciones: cobertura de 5 a 7 contenidos clave cruzada con niveles de Bloom y con la distribución porcentual por tipo de ítem."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Generación del banco en sintaxis GIFT según la tabla de especificaciones."},{"fase":"Revisión científica","rol":"Dirección pedagógica y revisión científica","horas":1.8,"criterio":true,"detalle":"Resolución de los 12 a 20 ítems uno por uno; verificación de que cada ítem tiene exactamente una respuesta correcta, de que los distractores son plausibles y de que las tolerancias numéricas son las adecuadas."},{"fase":"Revisión didáctica","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":true,"detalle":"Redacción de la retroalimentación que nombra el error específico, no un genérico 'incorrecto'."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":0.6,"criterio":false,"detalle":"Validación de sintaxis GIFT, escape de caracteres especiales, importación y calibración de intentos, tiempo y aleatorización."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.2,"criterio":true,"detalle":"Intento de prueba completo verificando puntuación y retroalimentación."}],"criterios":["Mínimo 4 tipos de pregunta representados","Ningún ítem con dos respuestas correctas ni con distractores descartables por trivialidad","Retroalimentación específica en cada opción incorrecta","Sintaxis GIFT válida y codificación UTF-8 sin BOM"]},"examen_parcial":{"nombre":"Examen parcial con banco ampliado","categoria":"evaluacion","unidad":"examen","descripcion":"Banco acumulativo de 40 a 60 ítems organizado en categorías por competencia, con aleatorización por categoría para que cada estudiante reciba una versión distinta de dificultad equivalente. Incluye configuración de seguridad y de ventana de aplicación.","horas":5.0,"horasCriterio":3.3,"pctCriterio":0.66,"costo":417450,"piso":556600,"lista":918390,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Tabla de especificaciones del parcial: ponderación por semana, por competencia y por nivel cognitivo."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.6,"criterio":false,"detalle":"Generación del banco ampliado respetando la ponderación definida."},{"fase":"Revisión científica","rol":"Dirección pedagógica y revisión científica","horas":2.5,"criterio":true,"detalle":"Resolución completa del banco de 40 a 60 ítems y verificación de equivalencia de dificultad entre las versiones que produce la aleatorización."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":1.1,"criterio":false,"detalle":"Categorización en el banco, configuración de selección aleatoria, seguridad, tiempo y ventana de aplicación."}],"criterios":["Las versiones aleatorias tienen dificultad equivalente","Cobertura proporcional a lo trabajado en el parcial","Configuración de seguridad y tiempo aplicada y probada"]},"taller_practico":{"nombre":"Taller práctico de alta demanda con rúbrica","categoria":"actividad","unidad":"taller","descripcion":"Actividad de alta demanda cognitiva: situación contextualizada real que exige plantear, modelar y argumentar, no solo calcular. De 3 a 5 subtareas explícitas, producto entregable verificable, 90 a 180 minutos de trabajo del estudiante, rúbrica visible de 4 criterios por 4 niveles y solucionario para el docente.","horas":3.8,"horasCriterio":2.8,"pctCriterio":0.737,"costo":316250,"piso":421667,"lista":695750,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Construcción de la situación problema con datos realistas del contexto profesional del programa; definición de las subtareas y del producto entregable."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Redacción del enunciado y de las instrucciones al estudiante."},{"fase":"Revisión científica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Elaboración del solucionario completo: el taller se resuelve entero para verificar que es resoluble, que los datos son consistentes y que el tiempo estimado es real."},{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Rúbrica de 4 criterios por 4 niveles con descriptores observables; verificación de que exige al menos tres niveles cognitivos."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":0.6,"criterio":false,"detalle":"Maquetación del enunciado y configuración del Assignment con rúbrica, plazos y tipo de entrega."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Prueba de entrega y de visualización de la rúbrica antes del envío."}],"criterios":["Exige plantear, modelar y argumentar, no solo calcular","La rúbrica es visible para el estudiante ANTES de la entrega","Existe solucionario y el taller fue resuelto completo antes de publicarse","El tiempo estimado se verificó resolviéndolo"]},"workshop_coevaluacion":{"nombre":"Workshop con coevaluación (proyecto integrador)","categoria":"actividad","unidad":"workshop","descripcion":"Proyecto integrador de cierre de parcial configurado como Workshop de Moodle en 4 fases: configuración, entrega, evaluación entre pares anónima (cada estudiante evalúa 3 trabajos) y calificación final ponderada 70% docente y 30% coevaluación.","horas":4.0,"horasCriterio":2.0,"pctCriterio":0.5,"costo":302500,"piso":403333,"lista":665500,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":1.2,"criterio":true,"detalle":"Diseño del proyecto integrador que articula las competencias del parcial completo."},{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Rúbrica de coevaluación redactada para que la use un estudiante, no un experto; instructivo de evaluación entre pares."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":false,"detalle":"Ejemplos ancla de trabajos en distintos niveles de logro, para calibrar a los evaluadores."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":1.5,"criterio":false,"detalle":"Configuración de las 4 fases, distribución aleatoria anónima, ponderación y calendario."}],"criterios":["La rúbrica de coevaluación es usable por un estudiante","La distribución entre pares es anónima y aleatoria","Las 4 fases se probaron con usuarios de prueba"]},"foro_guiado":{"nombre":"Foro guiado","categoria":"actividad","unidad":"foro","descripcion":"Foro con consigna que obliga a tomar posición y argumentar, criterios de participación explícitos (1 aporte original y 2 respuestas a compañeros) y rúbrica simple de valoración.","horas":1.2,"horasCriterio":0.8,"pctCriterio":0.667,"costo":93500,"piso":124667,"lista":205700,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":0.6,"criterio":true,"detalle":"Consigna que no admite respuesta única ni copiable, con anclaje en el contenido de la semana."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Redacción de la consigna, criterios de participación y rúbrica simple."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.2,"criterio":true,"detalle":"Configuración y prueba en Moodle."}],"criterios":["La consigna no admite una única respuesta correcta copiable","Los criterios de participación son explícitos y evaluables"]},"scorm_diagnostico":{"nombre":"Paquete SCORM diagnóstico","categoria":"evaluacion","unidad":"paquete","descripcion":"Paquete SCORM 1.2 de diagnóstico de entrada de parcial: mide los prerrequisitos reales del estudiante y reporta a Moodle lesson_status, score.raw y suspend_data con el detalle de respuestas para análisis posterior del docente.","horas":5.5,"horasCriterio":3.7,"pctCriterio":0.673,"costo":396000,"piso":528000,"lista":871200,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Mapa de prerrequisitos del parcial: qué debe saber el estudiante ANTES de empezar, y qué decisión pedagógica se toma con cada resultado."},{"fase":"Revisión científica","rol":"Dirección pedagógica y revisión científica","horas":1.5,"criterio":true,"detalle":"Elaboración y verificación del banco de ítems diagnósticos y de la interpretación de cada rango de puntaje."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":1.8,"criterio":false,"detalle":"Desarrollo del paquete sobre el esqueleto base: imsmanifest, wrapper de LMSInitialize/Commit/Finish, motor de quiz y preguntas.json."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":1.2,"criterio":true,"detalle":"Validación del manifiesto, importación en Moodle y verificación de que las variables SCORM llegan correctamente al libro de calificaciones."}],"criterios":["imsmanifest.xml válido: el paquete importa sin error","lesson_status, score.raw y suspend_data se reportan correctamente","Cada rango de puntaje tiene una decisión pedagógica asociada"]},"encuesta_cierre":{"nombre":"Encuesta de cierre","categoria":"actividad","unidad":"encuesta","descripcion":"Encuesta de percepción de cierre de parcial o de curso, con ítems que permiten decidir ajustes concretos y no solo medir satisfacción.","horas":1.0,"horasCriterio":0.6,"pctCriterio":0.6,"costo":73700,"piso":98267,"lista":162140,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":0.4,"criterio":true,"detalle":"Ítems accionables: cada pregunta debe poder traducirse en un ajuste del curso."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Redacción de los ítems y escalas."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.2,"criterio":true,"detalle":"Configuración y prueba."}],"criterios":["Cada ítem se traduce en una decisión de ajuste del curso"]},"banner_curso":{"nombre":"Identidad visual y banner del curso","categoria":"soporte","unidad":"curso","descripcion":"Banner de cabecera (1200x450 px) y paleta de estilos coherente con la identidad de la institución, aplicada a todas las guías y recursos del curso.","horas":1.5,"horasCriterio":0.3,"pctCriterio":0.2,"costo":80850,"piso":107800,"lista":177870,"fases":[{"fase":"Producción técnica","rol":"Diseño gráfico y multimedia","horas":1.2,"criterio":false,"detalle":"Diseño del banner y definición de la paleta aplicable a las guías."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Verificación de contraste y de render en distintos anchos."}],"criterios":["Cumple la identidad visual de la institución","Contraste accesible y render correcto en móvil"]},"diseno_curricular":{"nombre":"Diseño curricular y arquitectura del curso","categoria":"arquitectura","unidad":"curso","descripcion":"Conversión de la parcelación oficial en arquitectura virtual implementable: mapeo de ejes temáticos a competencias específicas, objetivo con verbo observable por semana, evidencias verificables y verificación de progresión sin saltos cognitivos. Es el documento que sostiene la coherencia de todo el curso.","horas":10.0,"horasCriterio":9.0,"pctCriterio":0.9,"costo":951500,"piso":1268667,"lista":2093300,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":2.0,"criterio":true,"detalle":"Análisis de la parcelación oficial: ejes, sesiones, fechas, evaluaciones y competencias específicas del programa."},{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":5.5,"criterio":true,"detalle":"Mapeo eje → competencia → verbo observable; definición de objetivo y de 2 a 3 evidencias verificables por semana; verificación de progresión de lo conceptual a lo aplicado y de ascenso de complejidad entre parciales."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":1.0,"criterio":false,"detalle":"Redacción del documento maestro y de la tabla curricular."},{"fase":"Validación y QA","rol":"Dirección pedagógica y revisión científica","horas":1.5,"criterio":true,"detalle":"Checklist de coherencia: la semana N+1 usa conceptos consolidados, no hay saltos abruptos, cada parcial cierra con proyecto integrador."}],"criterios":["Cada semana tiene objetivo con verbo observable, no 'entender' ni 'conocer'","Cada semana tiene al menos 2 evidencias verificables","La progresión de competencias asciende entre parciales","Ninguna semana adelanta contenido de una posterior"]},"curaduria_recursos":{"nombre":"Curaduría de recursos existentes","categoria":"arquitectura","unidad":"curso","descripcion":"Inventario exhaustivo del material que la institución ya tiene, detección de duplicados y versiones obsoletas, decisión semana por semana de qué se usa y qué se archiva, con justificación escrita de cada exclusión. Ningún archivo queda huérfano.","horas":4.0,"horasCriterio":2.8,"pctCriterio":0.7,"costo":334950,"piso":446600,"lista":736890,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Criterios de inclusión y exclusión aplicados al caso concreto del curso."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":1.2,"criterio":false,"detalle":"Inventario, detección de duplicados por nombre base y por contenido, clasificación inicial."},{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":1.5,"criterio":true,"detalle":"Decisión semana por semana y justificación escrita de cada exclusión."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Verificación de cero archivos huérfanos."}],"criterios":["Cero archivos huérfanos: todo recurso queda en un parcial o en excluidos","Cada exclusión tiene justificación específica escrita","No hay duplicación física entre parciales"]},"config_moodle":{"nombre":"Arquitectura y configuración del curso en Moodle","categoria":"arquitectura","unidad":"curso","descripcion":"Montaje de la estructura del aula: secciones por parcial y semana, nomenclatura estandarizada, restricciones de acceso, libro de calificaciones con ponderaciones, finalización de actividad y matrícula de docentes.","horas":5.0,"horasCriterio":1.8,"pctCriterio":0.36,"costo":297000,"piso":396000,"lista":653400,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Esquema de ponderaciones del libro de calificaciones y reglas de restricción de acceso."},{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":3.2,"criterio":false,"detalle":"Creación de secciones, nomenclatura, carga de recursos, restricciones, finalización de actividad y matrículas."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":0.8,"criterio":true,"detalle":"Recorrido con usuario de prueba de rol estudiante y verificación del libro de calificaciones."}],"criterios":["El libro de calificaciones suma correctamente con usuario de prueba","Nomenclatura consistente en las 16 semanas","Las restricciones de acceso se comportan como se diseñaron"]},"control_calidad":{"nombre":"Auditoría de calidad final (5 niveles)","categoria":"arquitectura","unidad":"curso","descripcion":"Auditoría obligatoria antes de publicar: nivel estructural (completitud), pedagógico (objetivos, competencias, progresión), coherencia interna (el quiz evalúa lo que enseña la guía), técnico (GIFT, H5P, SCORM, HTML funcionan) y comunicación (instrucciones, rúbricas visibles, plazos). Un hallazgo crítico bloquea la publicación.","horas":6.0,"horasCriterio":5.0,"pctCriterio":0.833,"costo":407000,"piso":542667,"lista":895400,"fases":[{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":2.0,"criterio":true,"detalle":"Niveles 2 y 3: verificación pedagógica y de coherencia interna recurso por recurso."},{"fase":"Validación y QA","rol":"Producción técnica y montaje LMS","horas":3.0,"criterio":true,"detalle":"Niveles 1, 4 y 5: completitud, validación técnica de todos los archivos y revisión de instrucciones, rúbricas y plazos."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":1.0,"criterio":false,"detalle":"Consolidación del reporte de auditoría."}],"criterios":["100% del nivel estructural y del nivel técnico cumplido","Mínimo 90% pedagógico, 85% coherencia y 90% comunicación","Ningún hallazgo crítico abierto al momento de publicar"]},"capacitacion_docente":{"nombre":"Sesión de capacitación docente (2 horas)","categoria":"servicio","unidad":"sesión","descripcion":"Sesión de dos horas con los docentes que van a dictar el curso: recorrido del aula, criterio pedagógico detrás del diseño, manejo del libro de calificaciones, uso de las rúbricas y de los reportes de H5P y SCORM para intervenir a tiempo.","horas":3.5,"horasCriterio":3.0,"pctCriterio":0.857,"costo":327250,"piso":436333,"lista":719950,"fases":[{"fase":"Decisión pedagógica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Preparación de la sesión y del material de apoyo ajustado al perfil del grupo docente."},{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":2.0,"criterio":true,"detalle":"Ejecución de la sesión de 2 horas."},{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":false,"detalle":"Guía rápida de referencia para el docente y edición de la grabación."}],"criterios":["El docente sale sabiendo leer los reportes de H5P y SCORM para intervenir","Queda material de consulta y grabación"]},"soporte_mensual":{"nombre":"Soporte técnico-pedagógico (mes)","categoria":"servicio","unidad":"mes","descripcion":"Acompañamiento mensual durante la operación del curso: resolución de incidencias técnicas, ajustes menores de recursos, apoyo al docente en la interpretación de datos de desempeño y correcciones derivadas del uso real.","horas":2.5,"horasCriterio":1.0,"pctCriterio":0.4,"costo":173250,"piso":231000,"lista":381150,"fases":[{"fase":"Producción técnica","rol":"Producción técnica y montaje LMS","horas":1.5,"criterio":false,"detalle":"Atención de incidencias técnicas y ajustes menores en el aula."},{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Lectura de los datos de desempeño del grupo y recomendaciones de ajuste al docente."}],"criterios":["Incidencias críticas atendidas dentro del tiempo comprometido","Reporte mensual con recomendaciones accionables"]},"reporte_desempeno":{"nombre":"Reporte analítico de desempeño del curso","categoria":"servicio","unidad":"reporte","descripcion":"Análisis de los datos que deja el curso: ítems con mayor tasa de error, puntos de abandono en los videos, correlación entre actividades de refuerzo y resultado del parcial, y recomendaciones concretas de ajuste para el siguiente periodo.","horas":4.5,"horasCriterio":3.0,"pctCriterio":0.667,"costo":368500,"piso":491333,"lista":810700,"fases":[{"fase":"Generación asistida por IA","rol":"Diseño instruccional y redacción","horas":1.5,"criterio":false,"detalle":"Extracción y procesamiento de los datos del LMS."},{"fase":"Revisión didáctica","rol":"Dirección pedagógica y revisión científica","horas":2.5,"criterio":true,"detalle":"Interpretación pedagógica de los hallazgos y elaboración del plan de ajuste."},{"fase":"Validación y QA","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":true,"detalle":"Consolidación y verificación del informe."}],"criterios":["Cada hallazgo viene con evidencia y con una acción propuesta","Identifica los ítems y recursos que están fallando, no solo promedios"]}},"plantillas":{"curso_nuevo_13":{"nombre":"Curso nuevo completo · 13 semanas (modelo USC 4-4-5)","descripcion":"Curso construido íntegramente desde la parcelación oficial, sin material previo aprovechable. Cumple los 5 componentes obligatorios por semana del modelo instruccional.","semanas":13,"composicion":{"diseno_curricular":1,"guia_html":10,"guia_repaso":3,"video_interactivo_h5p":13,"actividad_h5p":13,"quiz_moodle":13,"taller_practico":13,"workshop_coevaluacion":3,"examen_parcial":3,"scorm_diagnostico":3,"foro_guiado":3,"tarjetas_repaso_h5p":3,"encuesta_cierre":3,"banner_curso":1,"config_moodle":1,"control_calidad":1,"capacitacion_docente":2,"soporte_mensual":6}},"curso_nuevo_16":{"nombre":"Curso nuevo completo · 16 semanas","descripcion":"Variante de 16 semanas para programas con calendario extendido.","semanas":16,"composicion":{"diseno_curricular":1,"guia_html":13,"guia_repaso":3,"video_interactivo_h5p":16,"actividad_h5p":16,"quiz_moodle":16,"taller_practico":15,"workshop_coevaluacion":3,"examen_parcial":3,"scorm_diagnostico":3,"foro_guiado":4,"tarjetas_repaso_h5p":3,"encuesta_cierre":3,"banner_curso":1,"config_moodle":1,"control_calidad":1,"capacitacion_docente":2,"soporte_mensual":6}},"piloto_parcial":{"nombre":"Piloto de un parcial · 4 semanas","descripcion":"Entrada de bajo riesgo para una institución nueva: un parcial completo y funcional que la universidad puede evaluar con estudiantes reales antes de comprometer el curso entero. Reemplaza al mal llamado 'Plan Básico' de $4.800.000.","semanas":4,"composicion":{"diseno_curricular":1,"guia_html":3,"guia_repaso":1,"video_interactivo_h5p":4,"actividad_h5p":4,"quiz_moodle":4,"taller_practico":4,"workshop_coevaluacion":1,"examen_parcial":1,"scorm_diagnostico":1,"foro_guiado":1,"encuesta_cierre":1,"banner_curso":1,"config_moodle":1,"control_calidad":1,"capacitacion_docente":1,"soporte_mensual":3}}},"propuestas":{"usc_razonamiento_cuantitativo":{"institucion":"Universidad Santiago de Cali","curso":"Razonamiento Cuantitativo (CN111)","contexto":"Aula existente con 147 recursos publicados. La propuesta reorganiza el curso en 16 semanas con ruta de trabajo homogénea, aprovecha el material que ya funciona y produce solo lo que falta.","nuevos":{"guia_html":2,"actividad_h5p":2,"scorm_diagnostico":2,"foro_guiado":1,"encuesta_cierre":1,"diseno_curricular":1,"curaduria_recursos":1,"config_moodle":1,"control_calidad":1,"banner_curso":1,"capacitacion_docente":2,"soporte_mensual":6},"adecuacion":{"guia_html":14,"video_interactivo_h5p":13,"actividad_h5p":30,"quiz_moodle":13,"taller_practico":15,"workshop_coevaluacion":1,"scorm_diagnostico":2,"foro_guiado":6,"examen_parcial":3,"encuesta_cierre":2},"plan":"primera_implementacion","total":25719336,"subtotal":39027824,"margen":0.3102,"piso":23653227,"todoNuevo":77470250},"usc_quimica_general":{"institucion":"Universidad Santiago de Cali","curso":"Química General","contexto":"Curso de ciencias básicas con componente experimental. Estructura equivalente a Razonamiento Cuantitativo, con material de partida más limitado y mayor exigencia de revisión científica disciplinar.","nuevos":{"diseno_curricular":1,"curaduria_recursos":1,"guia_html":8,"guia_repaso":3,"video_interactivo_h5p":8,"actividad_h5p":10,"quiz_moodle":8,"taller_practico":8,"workshop_coevaluacion":2,"examen_parcial":2,"scorm_diagnostico":3,"foro_guiado":3,"tarjetas_repaso_h5p":3,"encuesta_cierre":3,"banner_curso":1,"config_moodle":1,"control_calidad":1,"capacitacion_docente":2,"soporte_mensual":6},"adecuacion":{"guia_html":5,"video_interactivo_h5p":8,"actividad_h5p":6,"quiz_moodle":8,"taller_practico":7,"examen_parcial":1},"plan":"curso_unico","total":58251578,"subtotal":58251578,"margen":0.5455,"piso":35303987,"todoNuevo":73480880},"usc_paquete_ciencias_basicas":{"institucion":"Universidad Santiago de Cali","curso":"Paquete ciencias básicas: Razonamiento Cuantitativo + Química General","contexto":"Los dos cursos contratados juntos. El diseño curricular, la identidad visual, las plantillas y la capacitación docente se producen una sola vez y sirven a ambos.","nuevos":{"guia_html":10.0,"actividad_h5p":12.0,"scorm_diagnostico":5.0,"foro_guiado":4.0,"encuesta_cierre":4.0,"diseno_curricular":1.5,"curaduria_recursos":2.0,"config_moodle":1.7,"control_calidad":2.0,"banner_curso":1.0,"capacitacion_docente":2.0,"soporte_mensual":12.0,"guia_repaso":3.0,"video_interactivo_h5p":8.0,"quiz_moodle":8.0,"taller_practico":8.0,"workshop_coevaluacion":2.0,"examen_parcial":2.0,"tarjetas_repaso_h5p":3.0},"adecuacion":{"guia_html":19.0,"video_interactivo_h5p":21.0,"actividad_h5p":36.0,"quiz_moodle":21.0,"taller_practico":22.0,"workshop_coevaluacion":1.0,"scorm_diagnostico":2.0,"foro_guiado":6.0,"examen_parcial":4.0,"encuesta_cierre":2.0},"plan":"paquete_usc_ciencias","total":73646790,"subtotal":94418962,"margen":0.4172,"piso":57223613,"todoNuevo":148090690}},"planes":{"piloto":{"nombre":"Piloto de parcial","cursos":"1 parcial","descuento":0.1,"razon":"Entrada de bajo riesgo para una institución nueva. El descuento es de acceso, no de volumen: se recupera en el contrato del curso completo."},"curso_unico":{"nombre":"Curso único","cursos":"1","descuento":0.0,"razon":"Precio de lista. Sin volumen no hay economía de escala que trasladar."},"semestral":{"nombre":"Plan semestral","cursos":"3 a 5","descuento":0.18,"razon":"El diseño curricular, la identidad visual, las plantillas y la capacitación docente se amortizan entre varios cursos del mismo programa."},"programa":{"nombre":"Plan programa","cursos":"6 a 10","descuento":0.28,"razon":"Digitalización del ciclo de ciencias básicas completo. Se estandariza una sola vez y se replica; la curva de aprendizaje del equipo con la institución ya está pagada."},"partner":{"nombre":"Partner estratégico","cursos":"10 o más, contrato plurianual","descuento":0.35,"razon":"Ingreso recurrente garantizado y planeación de capacidad a 12 meses. El descuento se compensa con ocupación asegurada y cero costo comercial de renovación."},"primera_implementacion":{"nombre":"Primera implementación USC","cursos":"1","descuento":0.341,"razon":"Descuento de acceso a una institución nueva, ya comprometido en la propuesta del 17 de septiembre de 2026 ($ 25.730.000 sin IVA). Se sostiene porque queda por encima del piso de rentabilidad y porque abre la puerta al paquete de ciencias básicas. Es irrepetible: las renovaciones y los cursos adicionales vuelven a la escala estándar de descuentos por volumen."},"paquete_usc_ciencias":{"nombre":"Paquete ciencias básicas USC","cursos":"2","descuento":0.22,"razon":"Plan semestral (18 %) más 4 puntos que honran el precio de primera implementación ya comprometido para Razonamiento Cuantitativo. Así la universidad no percibe que contratar el segundo curso encarece el primero."}},"params":{"factorAdecuacion":0.4,"iva":0.19,"pisoPct":0.25,"multiplicador":2.2,"overhead":0.1},"roles":{"socio":{"nombre":"Dirección pedagógica y revisión científica","tarifa":90000},"di":{"nombre":"Diseño instruccional y redacción","tarifa":55000},"prod":{"nombre":"Producción técnica y montaje LMS","tarifa":45000},"graf":{"nombre":"Diseño gráfico y multimedia","tarifa":50000}}}</script>
+<script id="datos" type="application/json">{"recursos":{"guia_html":{"nombre":"Guía de aprendizaje en HTML","categoria":"contenido","unidad":"guía","descripcion":"Documento HTML autocontenido con 8 secciones obligatorias: encabezado, objetivo, competencias, contenidos clave, desarrollo conceptual, síntesis, conexión con la semana siguiente y referencias. Cada concepto lleva definición formal, notación, un ejemplo mecánico, un ejemplo aplicado a contexto real y un error frecuente señalado.","entregable":"Archivo .html con CSS embebido, MathJax y tabla de contenidos navegable, validado en W3C y probado en Moodle.","horas":5.7,"horasCriterio":4.4,"pctCriterio":0.772,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Mapa concepto → ejemplo mecánico → ejemplo aplicado → error frecuente, a partir de la parcelación oficial y del diseño curricular."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":false,"detalle":"Redacción del borrador y del código HTML base conducida con la especificación del mapa conceptual."},{"fase":"Revisión científica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":2.0,"criterio":true,"detalle":"Verificación de cada definición y notación; resolución completa de los 8 a 10 ejemplos de la guía; validación de los errores frecuentes señalados."},{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Progresión de lo concreto a lo abstracto, pertinencia del contexto para el perfil del estudiante, conexión con la semana anterior y la siguiente."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.8,"criterio":false,"detalle":"Ajuste de maquetación, MathJax, tabla de contenidos navegable y comportamiento responsive."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.4,"criterio":true,"detalle":"Validación W3C, render dentro de Moodle y prueba en móvil."}],"criterios":["Todo concepto tiene definición, ejemplo mecánico y ejemplo aplicado","Notación matemática correcta y consistente en toda la guía","Al menos un error frecuente por concepto, con su corrección","HTML valida sin errores y no rompe el estilo de Moodle"]},"guia_repaso":{"nombre":"Guía de repaso y síntesis de parcial","categoria":"contenido","unidad":"guía","descripcion":"Guía de cierre de parcial: integra los conceptos de las semanas del parcial en un mapa único, con ejercicios tipo examen resueltos y señalamiento de los errores más frecuentes del periodo.","entregable":"Archivo .html con la misma estructura de la guía semanal, orientado a integración y no a contenido nuevo.","horas":3.5,"horasCriterio":2.7,"pctCriterio":0.771,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Selección de los nodos conceptuales que deben quedar consolidados antes del examen."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Borrador de síntesis y de ejercicios integradores."},{"fase":"Revisión científica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.2,"criterio":true,"detalle":"Resolución de los ejercicios tipo examen y verificación de coherencia con lo enseñado."},{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Verificación de que integra y no introduce contenido nuevo."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.4,"criterio":false,"detalle":"Maquetación y publicación."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.2,"criterio":true,"detalle":"Render en Moodle."}],"criterios":["No introduce contenido nuevo: integra lo trabajado","Los ejercicios tipo examen están resueltos paso a paso"]},"video_interactivo_h5p":{"nombre":"Video interactivo H5P","categoria":"interactivo","unidad":"video","descripcion":"H5P Interactive Video de 8 a 15 minutos con pausas cada 2 o 3 minutos. Cada pausa incrusta una pregunta (selección múltiple, verdadero/falso o completar) con retroalimentación inmediata por opción y resumen final que reporta calificación a Moodle.","entregable":"Archivo .h5p con h5p.json en raíz, librerías compatibles con el Moodle destino, probado de principio a fin incluyendo el registro en el libro de calificaciones.","horas":5.0,"horasCriterio":2.5,"pctCriterio":0.5,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Guion, storyboard y decisión de dónde pausar: los puntos de corte se ubican donde la evidencia dice que el estudiante pierde el hilo."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.3,"criterio":false,"detalle":"Redacción de los ítems incrustados y de la retroalimentación por opción."},{"fase":"Revisión científica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Verificación del contenido del video y validación de cada pregunta incrustada y su retroalimentación."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":2.2,"criterio":false,"detalle":"Preparación del video base (curaduría o edición), montaje en Lumi/H5P Hub y configuración de pausas, umbral y resumen."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.7,"criterio":true,"detalle":"Validación del empaquetado, recorrido completo de todas las pausas y verificación del reporte de calificaciones en Moodle."}],"criterios":["Pausas cada 2 a 3 minutos, ninguna sección larga sin interacción","Retroalimentación inmediata y específica por opción","h5p.json en raíz y librerías presentes en el Moodle destino","El intento queda registrado en el libro de calificaciones"]},"produccion_video_original":{"nombre":"Producción de video original (complemento)","categoria":"interactivo","unidad":"video","descripcion":"Grabación y posproducción de un video de clase propio de 8 a 15 minutos: guion a cámara o screencast, edición, rotulación, audio y exportación optimizada para LMS.","entregable":"Archivo .mp4 optimizado (menos de 200 MB) listo para servir como base del video interactivo.","horas":4.0,"horasCriterio":1.0,"pctCriterio":0.25,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Guion a cámara y definición de apoyos visuales."},{"fase":"Producción técnica","rolClave":"graf","rol":"Diseño gráfico y multimedia","horas":3.0,"criterio":false,"detalle":"Grabación, edición, rotulación, corrección de audio y exportación."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.5,"criterio":true,"detalle":"Verificación de peso, formato y reproducción dentro de Moodle."}],"criterios":["Duración entre 8 y 15 minutos","Peso inferior a 200 MB para no bloquear la carga en el LMS"]},"actividad_h5p":{"nombre":"Actividad H5P de refuerzo","categoria":"interactivo","unidad":"actividad","descripcion":"Question Set de 10 preguntas con variedad de formatos (selección múltiple, verdadero/falso, completar, arrastrar palabras), navegación por puntos, umbral del 70% y retroalimentación inmediata. Práctica de bajo riesgo, no evaluación.","entregable":"Archivo .h5p validado e importado en Moodle, con umbral configurado.","horas":2.6,"horasCriterio":1.6,"pctCriterio":0.615,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Especificación de los 10 ítems contra el objetivo de aprendizaje de la semana; se verifica que no dupliquen el quiz."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Generación de ítems y redacción de retroalimentación por opción."},{"fase":"Revisión científica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Resolución de cada ítem y verificación de que los distractores son plausibles y no ambiguos."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.6,"criterio":false,"detalle":"Montaje H5P, configuración de navegación y umbral."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Prueba completa en Moodle."}],"criterios":["Al menos 3 formatos distintos en el set","No duplica el quiz de la semana: es práctica, no evaluación","Retroalimentación inmediata en cada ítem"]},"tarjetas_repaso_h5p":{"nombre":"Tarjetas de repaso (H5P Course Presentation)","categoria":"interactivo","unidad":"recurso","descripcion":"Presentación H5P interactiva de síntesis: mapa conceptual navegable y tarjetas de estudio con flip para preparación de parcial.","entregable":"Archivo .h5p importado como recurso transversal del parcial.","horas":2.0,"horasCriterio":0.8,"pctCriterio":0.4,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Selección de los conceptos que deben quedar memorizados y de las relaciones del mapa."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.3,"criterio":false,"detalle":"Redacción de anverso y reverso de cada tarjeta."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.9,"criterio":false,"detalle":"Montaje de la presentación y de las tarjetas."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Prueba de navegación en Moodle y en móvil."}],"criterios":["Cada tarjeta es autocontenida y verificable","Navegación funcional en móvil"]},"quiz_moodle":{"nombre":"Quiz evaluativo Moodle (GIFT)","categoria":"evaluacion","unidad":"quiz","descripcion":"Banco de 12 a 20 ítems en formato GIFT con al menos 4 tipos de pregunta (selección múltiple conceptual y aplicada, numérica con tolerancia, verdadero/falso, completar o emparejar), retroalimentación general y retroalimentación específica por cada opción incorrecta. Calibrado a umbral 70%, 3 intentos, mejor intento, con aleatorización.","entregable":"Archivo .gift en UTF-8 sin BOM, validado sintácticamente e importado en el banco de preguntas de Moodle con la configuración aplicada.","horas":4.0,"horasCriterio":3.0,"pctCriterio":0.75,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Tabla de especificaciones: cobertura de 5 a 7 contenidos clave cruzada con niveles de Bloom y con la distribución porcentual por tipo de ítem."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Generación del banco en sintaxis GIFT según la tabla de especificaciones."},{"fase":"Revisión científica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.8,"criterio":true,"detalle":"Resolución de los 12 a 20 ítems uno por uno; verificación de que cada ítem tiene exactamente una respuesta correcta, de que los distractores son plausibles y de que las tolerancias numéricas son las adecuadas."},{"fase":"Revisión didáctica","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":true,"detalle":"Redacción de la retroalimentación que nombra el error específico, no un genérico 'incorrecto'."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.6,"criterio":false,"detalle":"Validación de sintaxis GIFT, escape de caracteres especiales, importación y calibración de intentos, tiempo y aleatorización."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.2,"criterio":true,"detalle":"Intento de prueba completo verificando puntuación y retroalimentación."}],"criterios":["Mínimo 4 tipos de pregunta representados","Ningún ítem con dos respuestas correctas ni con distractores descartables por trivialidad","Retroalimentación específica en cada opción incorrecta","Sintaxis GIFT válida y codificación UTF-8 sin BOM"]},"examen_parcial":{"nombre":"Examen parcial con banco ampliado","categoria":"evaluacion","unidad":"examen","descripcion":"Banco acumulativo de 40 a 60 ítems organizado en categorías por competencia, con aleatorización por categoría para que cada estudiante reciba una versión distinta de dificultad equivalente. Incluye configuración de seguridad y de ventana de aplicación.","entregable":"Banco categorizado importado en Moodle y cuestionario configurado con selección aleatoria por categoría.","horas":5.0,"horasCriterio":3.3,"pctCriterio":0.66,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Tabla de especificaciones del parcial: ponderación por semana, por competencia y por nivel cognitivo."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.6,"criterio":false,"detalle":"Generación del banco ampliado respetando la ponderación definida."},{"fase":"Revisión científica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":2.5,"criterio":true,"detalle":"Resolución completa del banco de 40 a 60 ítems y verificación de equivalencia de dificultad entre las versiones que produce la aleatorización."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":1.1,"criterio":false,"detalle":"Categorización en el banco, configuración de selección aleatoria, seguridad, tiempo y ventana de aplicación."}],"criterios":["Las versiones aleatorias tienen dificultad equivalente","Cobertura proporcional a lo trabajado en el parcial","Configuración de seguridad y tiempo aplicada y probada"]},"taller_practico":{"nombre":"Taller práctico de alta demanda con rúbrica","categoria":"actividad","unidad":"taller","descripcion":"Actividad de alta demanda cognitiva: situación contextualizada real que exige plantear, modelar y argumentar, no solo calcular. De 3 a 5 subtareas explícitas, producto entregable verificable, 90 a 180 minutos de trabajo del estudiante, rúbrica visible de 4 criterios por 4 niveles y solucionario para el docente.","entregable":"Enunciado en HTML, rúbrica configurada en Moodle como Assignment y solucionario en documento aparte para el docente.","horas":3.8,"horasCriterio":2.8,"pctCriterio":0.737,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Construcción de la situación problema con datos realistas del contexto profesional del programa; definición de las subtareas y del producto entregable."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Redacción del enunciado y de las instrucciones al estudiante."},{"fase":"Revisión científica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Elaboración del solucionario completo: el taller se resuelve entero para verificar que es resoluble, que los datos son consistentes y que el tiempo estimado es real."},{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.5,"criterio":true,"detalle":"Rúbrica de 4 criterios por 4 niveles con descriptores observables; verificación de que exige al menos tres niveles cognitivos."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.6,"criterio":false,"detalle":"Maquetación del enunciado y configuración del Assignment con rúbrica, plazos y tipo de entrega."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Prueba de entrega y de visualización de la rúbrica antes del envío."}],"criterios":["Exige plantear, modelar y argumentar, no solo calcular","La rúbrica es visible para el estudiante ANTES de la entrega","Existe solucionario y el taller fue resuelto completo antes de publicarse","El tiempo estimado se verificó resolviéndolo"]},"workshop_coevaluacion":{"nombre":"Workshop con coevaluación (proyecto integrador)","categoria":"actividad","unidad":"workshop","descripcion":"Proyecto integrador de cierre de parcial configurado como Workshop de Moodle en 4 fases: configuración, entrega, evaluación entre pares anónima (cada estudiante evalúa 3 trabajos) y calificación final ponderada 70% docente y 30% coevaluación.","entregable":"Workshop configurado con las 4 fases, rúbrica de coevaluación, ejemplos ancla y instructivo para el estudiante y para el docente.","horas":4.0,"horasCriterio":2.0,"pctCriterio":0.5,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.2,"criterio":true,"detalle":"Diseño del proyecto integrador que articula las competencias del parcial completo."},{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.8,"criterio":true,"detalle":"Rúbrica de coevaluación redactada para que la use un estudiante, no un experto; instructivo de evaluación entre pares."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":false,"detalle":"Ejemplos ancla de trabajos en distintos niveles de logro, para calibrar a los evaluadores."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":1.5,"criterio":false,"detalle":"Configuración de las 4 fases, distribución aleatoria anónima, ponderación y calendario."}],"criterios":["La rúbrica de coevaluación es usable por un estudiante","La distribución entre pares es anónima y aleatoria","Las 4 fases se probaron con usuarios de prueba"]},"foro_guiado":{"nombre":"Foro guiado","categoria":"actividad","unidad":"foro","descripcion":"Foro con consigna que obliga a tomar posición y argumentar, criterios de participación explícitos (1 aporte original y 2 respuestas a compañeros) y rúbrica simple de valoración.","entregable":"Foro configurado en Moodle con consigna, criterios y rúbrica.","horas":1.2,"horasCriterio":0.8,"pctCriterio":0.667,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.6,"criterio":true,"detalle":"Consigna que no admite respuesta única ni copiable, con anclaje en el contenido de la semana."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Redacción de la consigna, criterios de participación y rúbrica simple."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.2,"criterio":true,"detalle":"Configuración y prueba en Moodle."}],"criterios":["La consigna no admite una única respuesta correcta copiable","Los criterios de participación son explícitos y evaluables"]},"scorm_diagnostico":{"nombre":"Paquete SCORM diagnóstico","categoria":"evaluacion","unidad":"paquete","descripcion":"Paquete SCORM 1.2 de diagnóstico de entrada de parcial: mide los prerrequisitos reales del estudiante y reporta a Moodle lesson_status, score.raw y suspend_data con el detalle de respuestas para análisis posterior del docente.","entregable":"Archivo .zip con imsmanifest.xml válido, schemas, wrapper de la API SCORM y motor de quiz, importado y probado en Moodle.","horas":5.5,"horasCriterio":3.7,"pctCriterio":0.673,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Mapa de prerrequisitos del parcial: qué debe saber el estudiante ANTES de empezar, y qué decisión pedagógica se toma con cada resultado."},{"fase":"Revisión científica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.5,"criterio":true,"detalle":"Elaboración y verificación del banco de ítems diagnósticos y de la interpretación de cada rango de puntaje."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":1.8,"criterio":false,"detalle":"Desarrollo del paquete sobre el esqueleto base: imsmanifest, wrapper de LMSInitialize/Commit/Finish, motor de quiz y preguntas.json."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":1.2,"criterio":true,"detalle":"Validación del manifiesto, importación en Moodle y verificación de que las variables SCORM llegan correctamente al libro de calificaciones."}],"criterios":["imsmanifest.xml válido: el paquete importa sin error","lesson_status, score.raw y suspend_data se reportan correctamente","Cada rango de puntaje tiene una decisión pedagógica asociada"]},"encuesta_cierre":{"nombre":"Encuesta de cierre","categoria":"actividad","unidad":"encuesta","descripcion":"Encuesta de percepción de cierre de parcial o de curso, con ítems que permiten decidir ajustes concretos y no solo medir satisfacción.","entregable":"Encuesta configurada en Moodle, anónima, con reporte exportable.","horas":1.0,"horasCriterio":0.6,"pctCriterio":0.6,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":0.4,"criterio":true,"detalle":"Ítems accionables: cada pregunta debe poder traducirse en un ajuste del curso."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.4,"criterio":false,"detalle":"Redacción de los ítems y escalas."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.2,"criterio":true,"detalle":"Configuración y prueba."}],"criterios":["Cada ítem se traduce en una decisión de ajuste del curso"]},"banner_curso":{"nombre":"Identidad visual y banner del curso","categoria":"soporte","unidad":"curso","descripcion":"Banner de cabecera (1200x450 px) y paleta de estilos coherente con la identidad de la institución, aplicada a todas las guías y recursos del curso.","entregable":"Banner en PNG optimizado y hoja de estilos aplicada al curso.","horas":1.5,"horasCriterio":0.3,"pctCriterio":0.2,"fases":[{"fase":"Producción técnica","rolClave":"graf","rol":"Diseño gráfico y multimedia","horas":1.2,"criterio":false,"detalle":"Diseño del banner y definición de la paleta aplicable a las guías."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Verificación de contraste y de render en distintos anchos."}],"criterios":["Cumple la identidad visual de la institución","Contraste accesible y render correcto en móvil"]},"diseno_curricular":{"nombre":"Diseño curricular y arquitectura del curso","categoria":"arquitectura","unidad":"curso","descripcion":"Conversión de la parcelación oficial en arquitectura virtual implementable: mapeo de ejes temáticos a competencias específicas, objetivo con verbo observable por semana, evidencias verificables y verificación de progresión sin saltos cognitivos. Es el documento que sostiene la coherencia de todo el curso.","entregable":"Documento maestro en Word horizontal con la tabla semana por semana (eje, subtemas, objetivo, competencias, recursos, evidencia), bandas por parcial y recomendaciones de implementación.","horas":10.0,"horasCriterio":9.0,"pctCriterio":0.9,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":2.0,"criterio":true,"detalle":"Análisis de la parcelación oficial: ejes, sesiones, fechas, evaluaciones y competencias específicas del programa."},{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":5.5,"criterio":true,"detalle":"Mapeo eje → competencia → verbo observable; definición de objetivo y de 2 a 3 evidencias verificables por semana; verificación de progresión de lo conceptual a lo aplicado y de ascenso de complejidad entre parciales."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":1.0,"criterio":false,"detalle":"Redacción del documento maestro y de la tabla curricular."},{"fase":"Validación y QA","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.5,"criterio":true,"detalle":"Checklist de coherencia: la semana N+1 usa conceptos consolidados, no hay saltos abruptos, cada parcial cierra con proyecto integrador."}],"criterios":["Cada semana tiene objetivo con verbo observable, no 'entender' ni 'conocer'","Cada semana tiene al menos 2 evidencias verificables","La progresión de competencias asciende entre parciales","Ninguna semana adelanta contenido de una posterior"]},"curaduria_recursos":{"nombre":"Curaduría de recursos existentes","categoria":"arquitectura","unidad":"curso","descripcion":"Inventario exhaustivo del material que la institución ya tiene, detección de duplicados y versiones obsoletas, decisión semana por semana de qué se usa y qué se archiva, con justificación escrita de cada exclusión. Ningún archivo queda huérfano.","entregable":"Tabla de curaduría (recurso, ubicación, tipo, estado, justificación) y reorganización física en carpetas de parciales, transversales y excluidos con su _LEEME.txt.","horas":4.0,"horasCriterio":2.8,"pctCriterio":0.7,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Criterios de inclusión y exclusión aplicados al caso concreto del curso."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":1.2,"criterio":false,"detalle":"Inventario, detección de duplicados por nombre base y por contenido, clasificación inicial."},{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.5,"criterio":true,"detalle":"Decisión semana por semana y justificación escrita de cada exclusión."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.3,"criterio":true,"detalle":"Verificación de cero archivos huérfanos."}],"criterios":["Cero archivos huérfanos: todo recurso queda en un parcial o en excluidos","Cada exclusión tiene justificación específica escrita","No hay duplicación física entre parciales"]},"config_moodle":{"nombre":"Arquitectura y configuración del curso en Moodle","categoria":"arquitectura","unidad":"curso","descripcion":"Montaje de la estructura del aula: secciones por parcial y semana, nomenclatura estandarizada, restricciones de acceso, libro de calificaciones con ponderaciones, finalización de actividad y matrícula de docentes.","entregable":"Aula en Moodle estructurada, con libro de calificaciones configurado y probado con usuarios de prueba.","horas":5.0,"horasCriterio":1.8,"pctCriterio":0.36,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Esquema de ponderaciones del libro de calificaciones y reglas de restricción de acceso."},{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":3.2,"criterio":false,"detalle":"Creación de secciones, nomenclatura, carga de recursos, restricciones, finalización de actividad y matrículas."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":0.8,"criterio":true,"detalle":"Recorrido con usuario de prueba de rol estudiante y verificación del libro de calificaciones."}],"criterios":["El libro de calificaciones suma correctamente con usuario de prueba","Nomenclatura consistente en las 16 semanas","Las restricciones de acceso se comportan como se diseñaron"]},"control_calidad":{"nombre":"Auditoría de calidad final (5 niveles)","categoria":"arquitectura","unidad":"curso","descripcion":"Auditoría obligatoria antes de publicar: nivel estructural (completitud), pedagógico (objetivos, competencias, progresión), coherencia interna (el quiz evalúa lo que enseña la guía), técnico (GIFT, H5P, SCORM, HTML funcionan) y comunicación (instrucciones, rúbricas visibles, plazos). Un hallazgo crítico bloquea la publicación.","entregable":"Reporte de auditoría con checklist de los 5 niveles, hallazgos críticos, hallazgos menores y recomendaciones priorizadas.","horas":6.0,"horasCriterio":5.0,"pctCriterio":0.833,"fases":[{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":2.0,"criterio":true,"detalle":"Niveles 2 y 3: verificación pedagógica y de coherencia interna recurso por recurso."},{"fase":"Validación y QA","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":3.0,"criterio":true,"detalle":"Niveles 1, 4 y 5: completitud, validación técnica de todos los archivos y revisión de instrucciones, rúbricas y plazos."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":1.0,"criterio":false,"detalle":"Consolidación del reporte de auditoría."}],"criterios":["100% del nivel estructural y del nivel técnico cumplido","Mínimo 90% pedagógico, 85% coherencia y 90% comunicación","Ningún hallazgo crítico abierto al momento de publicar"]},"capacitacion_docente":{"nombre":"Sesión de capacitación docente (2 horas)","categoria":"servicio","unidad":"sesión","descripcion":"Sesión de dos horas con los docentes que van a dictar el curso: recorrido del aula, criterio pedagógico detrás del diseño, manejo del libro de calificaciones, uso de las rúbricas y de los reportes de H5P y SCORM para intervenir a tiempo.","entregable":"Sesión dictada (virtual o presencial), material de apoyo y grabación.","horas":3.5,"horasCriterio":3.0,"pctCriterio":0.857,"fases":[{"fase":"Decisión pedagógica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Preparación de la sesión y del material de apoyo ajustado al perfil del grupo docente."},{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":2.0,"criterio":true,"detalle":"Ejecución de la sesión de 2 horas."},{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":false,"detalle":"Guía rápida de referencia para el docente y edición de la grabación."}],"criterios":["El docente sale sabiendo leer los reportes de H5P y SCORM para intervenir","Queda material de consulta y grabación"]},"soporte_mensual":{"nombre":"Soporte técnico-pedagógico (mes)","categoria":"servicio","unidad":"mes","descripcion":"Acompañamiento mensual durante la operación del curso: resolución de incidencias técnicas, ajustes menores de recursos, apoyo al docente en la interpretación de datos de desempeño y correcciones derivadas del uso real.","entregable":"Atención de incidencias con tiempo de respuesta comprometido y reporte mensual de ajustes.","horas":2.5,"horasCriterio":1.0,"pctCriterio":0.4,"fases":[{"fase":"Producción técnica","rolClave":"prod","rol":"Producción técnica y montaje LMS","horas":1.5,"criterio":false,"detalle":"Atención de incidencias técnicas y ajustes menores en el aula."},{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":1.0,"criterio":true,"detalle":"Lectura de los datos de desempeño del grupo y recomendaciones de ajuste al docente."}],"criterios":["Incidencias críticas atendidas dentro del tiempo comprometido","Reporte mensual con recomendaciones accionables"]},"reporte_desempeno":{"nombre":"Reporte analítico de desempeño del curso","categoria":"servicio","unidad":"reporte","descripcion":"Análisis de los datos que deja el curso: ítems con mayor tasa de error, puntos de abandono en los videos, correlación entre actividades de refuerzo y resultado del parcial, y recomendaciones concretas de ajuste para el siguiente periodo.","entregable":"Informe con hallazgos, evidencia y plan de ajuste priorizado.","horas":4.5,"horasCriterio":3.0,"pctCriterio":0.667,"fases":[{"fase":"Generación asistida por IA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":1.5,"criterio":false,"detalle":"Extracción y procesamiento de los datos del LMS."},{"fase":"Revisión didáctica","rolClave":"socio","rol":"Dirección pedagógica y revisión científica","horas":2.5,"criterio":true,"detalle":"Interpretación pedagógica de los hallazgos y elaboración del plan de ajuste."},{"fase":"Validación y QA","rolClave":"di","rol":"Diseño instruccional y redacción","horas":0.5,"criterio":true,"detalle":"Consolidación y verificación del informe."}],"criterios":["Cada hallazgo viene con evidencia y con una acción propuesta","Identifica los ítems y recursos que están fallando, no solo promedios"]}},"plantillas":{"curso_nuevo_13":{"nombre":"Curso nuevo completo · 13 semanas (modelo USC 4-4-5)","descripcion":"Curso construido íntegramente desde la parcelación oficial, sin material previo aprovechable. Cumple los 5 componentes obligatorios por semana del modelo instruccional.","semanas":13,"composicion":{"diseno_curricular":1,"guia_html":10,"guia_repaso":3,"video_interactivo_h5p":13,"actividad_h5p":13,"quiz_moodle":13,"taller_practico":13,"workshop_coevaluacion":3,"examen_parcial":3,"scorm_diagnostico":3,"foro_guiado":3,"tarjetas_repaso_h5p":3,"encuesta_cierre":3,"banner_curso":1,"config_moodle":1,"control_calidad":1,"capacitacion_docente":2,"soporte_mensual":6}},"curso_nuevo_16":{"nombre":"Curso nuevo completo · 16 semanas","descripcion":"Variante de 16 semanas para programas con calendario extendido.","semanas":16,"composicion":{"diseno_curricular":1,"guia_html":13,"guia_repaso":3,"video_interactivo_h5p":16,"actividad_h5p":16,"quiz_moodle":16,"taller_practico":15,"workshop_coevaluacion":3,"examen_parcial":3,"scorm_diagnostico":3,"foro_guiado":4,"tarjetas_repaso_h5p":3,"encuesta_cierre":3,"banner_curso":1,"config_moodle":1,"control_calidad":1,"capacitacion_docente":2,"soporte_mensual":6}},"piloto_parcial":{"nombre":"Piloto de un parcial · 4 semanas","descripcion":"Entrada de bajo riesgo para una institución nueva: un parcial completo y funcional que la universidad puede evaluar con estudiantes reales antes de comprometer el curso entero. Reemplaza al mal llamado 'Plan Básico' de $4.800.000.","semanas":4,"composicion":{"diseno_curricular":1,"guia_html":3,"guia_repaso":1,"video_interactivo_h5p":4,"actividad_h5p":4,"quiz_moodle":4,"taller_practico":4,"workshop_coevaluacion":1,"examen_parcial":1,"scorm_diagnostico":1,"foro_guiado":1,"encuesta_cierre":1,"banner_curso":1,"config_moodle":1,"control_calidad":1,"capacitacion_docente":1,"soporte_mensual":3}}},"propuestas":{"usc_razonamiento_cuantitativo":{"institucion":"Universidad Santiago de Cali","curso":"Razonamiento Cuantitativo (CN111)","contexto":"Aula existente con 147 recursos publicados. La propuesta reorganiza el curso en 16 semanas con ruta de trabajo homogénea, aprovecha el material que ya funciona y produce solo lo que falta.","nuevos":{"guia_html":2,"actividad_h5p":2,"scorm_diagnostico":2,"foro_guiado":1,"encuesta_cierre":1,"diseno_curricular":1,"curaduria_recursos":1,"config_moodle":1,"control_calidad":1,"banner_curso":1,"capacitacion_docente":2,"soporte_mensual":6},"adecuacion":{"guia_html":14,"video_interactivo_h5p":13,"actividad_h5p":30,"quiz_moodle":13,"taller_practico":15,"workshop_coevaluacion":1,"scorm_diagnostico":2,"foro_guiado":6,"examen_parcial":3,"encuesta_cierre":2},"plan":"primera_implementacion"},"usc_quimica_general":{"institucion":"Universidad Santiago de Cali","curso":"Química General","contexto":"Curso de ciencias básicas con componente experimental. Estructura equivalente a Razonamiento Cuantitativo, con material de partida más limitado y mayor exigencia de revisión científica disciplinar.","nuevos":{"diseno_curricular":1,"curaduria_recursos":1,"guia_html":8,"guia_repaso":3,"video_interactivo_h5p":8,"actividad_h5p":10,"quiz_moodle":8,"taller_practico":8,"workshop_coevaluacion":2,"examen_parcial":2,"scorm_diagnostico":3,"foro_guiado":3,"tarjetas_repaso_h5p":3,"encuesta_cierre":3,"banner_curso":1,"config_moodle":1,"control_calidad":1,"capacitacion_docente":2,"soporte_mensual":6},"adecuacion":{"guia_html":5,"video_interactivo_h5p":8,"actividad_h5p":6,"quiz_moodle":8,"taller_practico":7,"examen_parcial":1},"plan":"curso_unico"},"usc_paquete_ciencias_basicas":{"institucion":"Universidad Santiago de Cali","curso":"Paquete ciencias básicas: Razonamiento Cuantitativo + Química General","contexto":"Los dos cursos contratados juntos. El diseño curricular, la identidad visual, las plantillas y la capacitación docente se producen una sola vez y sirven a ambos.","nuevos":{"guia_html":10.0,"actividad_h5p":12.0,"scorm_diagnostico":5.0,"foro_guiado":4.0,"encuesta_cierre":4.0,"diseno_curricular":1.5,"curaduria_recursos":2.0,"config_moodle":1.7,"control_calidad":2.0,"banner_curso":1.0,"capacitacion_docente":2.0,"soporte_mensual":12.0,"guia_repaso":3.0,"video_interactivo_h5p":8.0,"quiz_moodle":8.0,"taller_practico":8.0,"workshop_coevaluacion":2.0,"examen_parcial":2.0,"tarjetas_repaso_h5p":3.0},"adecuacion":{"guia_html":19.0,"video_interactivo_h5p":21.0,"actividad_h5p":36.0,"quiz_moodle":21.0,"taller_practico":22.0,"workshop_coevaluacion":1.0,"scorm_diagnostico":2.0,"foro_guiado":6.0,"examen_parcial":4.0,"encuesta_cierre":2.0},"plan":"paquete_usc_ciencias"}},"planes":{"piloto":{"nombre":"Piloto de parcial","cursos":"1 parcial","descuento":0.1,"razon":"Entrada de bajo riesgo para una institución nueva. El descuento es de acceso, no de volumen: se recupera en el contrato del curso completo."},"curso_unico":{"nombre":"Curso único","cursos":"1","descuento":0.0,"razon":"Precio de lista. Sin volumen no hay economía de escala que trasladar."},"semestral":{"nombre":"Plan semestral","cursos":"3 a 5","descuento":0.18,"razon":"El diseño curricular, la identidad visual, las plantillas y la capacitación docente se amortizan entre varios cursos del mismo programa."},"programa":{"nombre":"Plan programa","cursos":"6 a 10","descuento":0.28,"razon":"Digitalización del ciclo de ciencias básicas completo. Se estandariza una sola vez y se replica; la curva de aprendizaje del equipo con la institución ya está pagada."},"partner":{"nombre":"Partner estratégico","cursos":"10 o más, contrato plurianual","descuento":0.35,"razon":"Ingreso recurrente garantizado y planeación de capacidad a 12 meses. El descuento se compensa con ocupación asegurada y cero costo comercial de renovación."},"primera_implementacion":{"nombre":"Primera implementación USC","cursos":"1","descuento":0.341,"razon":"Descuento de acceso a una institución nueva, ya comprometido en la propuesta del 17 de septiembre de 2026 ($ 25.730.000 sin IVA). Se sostiene porque queda por encima del piso de rentabilidad y porque abre la puerta al paquete de ciencias básicas. Es irrepetible: las renovaciones y los cursos adicionales vuelven a la escala estándar de descuentos por volumen."},"paquete_usc_ciencias":{"nombre":"Paquete ciencias básicas USC","cursos":"2","descuento":0.22,"razon":"Plan semestral (18 %) más 4 puntos que honran el precio de primera implementación ya comprometido para Razonamiento Cuantitativo. Así la universidad no percibe que contratar el segundo curso encarece el primero."}},"params":{"factorAdecuacion":0.4,"iva":0.19,"pisoPct":0.25,"multiplicador":2.2,"overhead":0.1},"roles":{"socio":{"nombre":"Dirección pedagógica y revisión científica","corto":"Dirección pedagógica","tarifa":90000},"di":{"nombre":"Diseño instruccional y redacción","corto":"Diseño instruccional","tarifa":55000},"prod":{"nombre":"Producción técnica y montaje LMS","corto":"Producción técnica","tarifa":45000},"graf":{"nombre":"Diseño gráfico y multimedia","corto":"Diseño gráfico","tarifa":50000}}}</script>
+<script>/* Escritor de PDF sin dependencias.
+   Genera PDF 1.4 con las fuentes base Helvetica y Helvetica-Bold, que no
+   requieren incrustación. Suficiente para un reporte de cotización: texto,
+   líneas, rectángulos y tablas. Evita depender de un CDN en tiempo de uso. */
+var PDFMini = (function(){
+  "use strict";
+
+  /* Anchos AFM de Helvetica (unidades de 1/1000 em) para ASCII imprimible.
+     Los caracteres acentuados usan el ancho de su letra base, que en
+     Helvetica coincide. */
+  var W_REG = [278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,
+    556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,
+    1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,
+    667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,
+    333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,
+    556,556,333,500,278,556,500,722,500,500,500,334,260,334,584];
+  var W_BOLD = [278,333,474,556,556,889,722,238,333,333,389,584,278,333,278,278,
+    556,556,556,556,556,556,556,556,556,556,333,333,584,584,584,611,
+    975,722,722,722,722,667,611,778,722,278,556,722,611,833,722,778,
+    667,778,722,667,611,722,667,944,667,667,611,333,278,333,584,556,
+    333,556,611,556,611,556,333,611,611,278,278,556,278,889,611,611,
+    611,611,389,556,333,611,556,778,556,556,500,389,280,389,584];
+
+  /* Letra base de cada acentuado, para tomar su ancho. */
+  var BASE = {"á":"a","é":"e","í":"i","ó":"o","ú":"u","ü":"u","ñ":"n","Á":"A",
+    "É":"E","Í":"I","Ó":"O","Ú":"U","Ñ":"N","¿":"?","¡":"!","°":"o","º":"o","·":"."};
+
+  /* Caracteres fuera de WinAnsi que hay que sustituir antes de escribir. */
+  function limpiar(s){
+    return String(s == null ? "" : s)
+      .replace(/[—–−]/g, "-")
+      .replace(/[“”]/g, '"')
+      .replace(/[‘’]/g, "'")
+      .replace(/…/g, "...")
+      .replace(/ /g, " ")
+      .replace(/[ -‏]/g, " ");
+  }
+
+  function anchoChar(ch, bold){
+    var c = ch.charCodeAt(0);
+    if(c > 126){
+      var b = BASE[ch];
+      if(b) return anchoChar(b, bold);
+      return bold ? W_BOLD[65] : W_REG[65];  // ancho medio de respaldo
+    }
+    if(c < 32) return 0;
+    return (bold ? W_BOLD : W_REG)[c - 32];
+  }
+
+  function ancho(texto, size, bold){
+    var t = limpiar(texto), s = 0;
+    for(var i = 0; i < t.length; i++) s += anchoChar(t.charAt(i), bold);
+    return s * size / 1000;
+  }
+
+  function escapar(s){
+    return limpiar(s).replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+  }
+
+  /* --- documento --- */
+  function Doc(opciones){
+    var o = opciones || {};
+    this.ancho = o.ancho || 612;      // carta
+    this.alto  = o.alto  || 792;
+    this.margen = o.margen || 54;
+    this.paginas = [];
+    this.pieDe = o.pieDe || null;     // función(doc, numero) para el pie
+    this.nuevaPagina();
+  }
+
+  Doc.prototype.nuevaPagina = function(){
+    this.ops = [];
+    this.paginas.push(this.ops);
+    this.y = this.margen;
+    return this;
+  };
+
+  Doc.prototype.espacio = function(){ return this.alto - this.margen - this.y; };
+
+  /** Salta de página si no caben `alto` puntos. */
+  Doc.prototype.asegurar = function(alto){
+    if(this.espacio() < alto) this.nuevaPagina();
+    return this;
+  };
+
+  Doc.prototype.color = function(hex){
+    var n = parseInt(hex.slice(1), 16);
+    return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
+  };
+
+  /** Escribe una línea de texto. Devuelve el ancho ocupado. */
+  Doc.prototype.texto = function(x, texto, op){
+    op = op || {};
+    var size = op.size || 10, bold = !!op.bold;
+    var c = this.color(op.color || "#000000");
+    var t = escapar(texto);
+    var w = ancho(texto, size, bold);
+    var px = x;
+    if(op.align === "right") px = x - w;
+    else if(op.align === "center") px = x - w / 2;
+    var py = this.alto - (op.y != null ? op.y : this.y) - size;
+    this.ops.push("BT /" + (bold ? "F2" : "F1") + " " + size + " Tf " +
+      c[0].toFixed(3) + " " + c[1].toFixed(3) + " " + c[2].toFixed(3) + " rg " +
+      px.toFixed(2) + " " + py.toFixed(2) + " Td (" + t + ") Tj ET");
+    return w;
+  };
+
+  /** Texto con ajuste de línea dentro de un ancho dado. Avanza this.y. */
+  Doc.prototype.parrafo = function(x, maxAncho, texto, op){
+    op = op || {};
+    var size = op.size || 10, bold = !!op.bold;
+    var interlinea = op.interlinea || size * 1.42;
+    var palabras = limpiar(texto).split(/\s+/).filter(Boolean);
+    var linea = "";
+    for(var i = 0; i < palabras.length; i++){
+      var prueba = linea ? linea + " " + palabras[i] : palabras[i];
+      if(ancho(prueba, size, bold) > maxAncho && linea){
+        this.asegurar(interlinea);
+        this.texto(x, linea, op);
+        this.y += interlinea;
+        linea = palabras[i];
+      } else {
+        linea = prueba;
+      }
+    }
+    if(linea){
+      this.asegurar(interlinea);
+      this.texto(x, linea, op);
+      this.y += interlinea;
+    }
+    return this;
+  };
+
+  Doc.prototype.linea = function(x1, y1, x2, y2, grosor, color){
+    var c = this.color(color || "#cccccc");
+    this.ops.push(c[0].toFixed(3) + " " + c[1].toFixed(3) + " " + c[2].toFixed(3) + " RG " +
+      (grosor || 0.5) + " w " + x1.toFixed(2) + " " + (this.alto - y1).toFixed(2) + " m " +
+      x2.toFixed(2) + " " + (this.alto - y2).toFixed(2) + " l S");
+    return this;
+  };
+
+  Doc.prototype.rect = function(x, y, w, h, color){
+    var c = this.color(color);
+    this.ops.push(c[0].toFixed(3) + " " + c[1].toFixed(3) + " " + c[2].toFixed(3) + " rg " +
+      x.toFixed(2) + " " + (this.alto - y - h).toFixed(2) + " " +
+      w.toFixed(2) + " " + h.toFixed(2) + " re f");
+    return this;
+  };
+
+  Doc.prototype.medir = ancho;
+
+  /* --- serialización --- */
+  function bytesLatin1(str){
+    var out = [];
+    for(var i = 0; i < str.length; i++){
+      var c = str.charCodeAt(i);
+      out.push(c > 255 ? 63 : c);   // '?' para lo que no cabe en un byte
+    }
+    return out;
+  }
+
+  Doc.prototype.blob = function(){
+    var self = this;
+    // Pie de página, una vez conocido el total de páginas.
+    if(this.pieDe){
+      var totalPag = this.paginas.length;
+      this.paginas.forEach(function(ops, i){
+        self.ops = ops;
+        self.pieDe(self, i + 1, totalPag);
+      });
+    }
+
+    var objetos = [];   // cuerpo de cada objeto, 1-indexado
+    var nPag = this.paginas.length;
+    var idPaginas = 2;
+    var idContenido0 = 3;
+    var idFuente1 = idContenido0 + nPag * 2;
+    var idFuente2 = idFuente1 + 1;
+
+    objetos.push("<< /Type /Catalog /Pages " + idPaginas + " 0 R >>");
+
+    var kids = [];
+    for(var i = 0; i < nPag; i++) kids.push((idContenido0 + i * 2) + " 0 R");
+    objetos.push("<< /Type /Pages /Kids [" + kids.join(" ") + "] /Count " + nPag + " >>");
+
+    for(var p = 0; p < nPag; p++){
+      var idPag = idContenido0 + p * 2, idCont = idPag + 1;
+      objetos.push("<< /Type /Page /Parent " + idPaginas + " 0 R /MediaBox [0 0 " +
+        this.ancho + " " + this.alto + "] /Resources << /Font << /F1 " + idFuente1 +
+        " 0 R /F2 " + idFuente2 + " 0 R >> >> /Contents " + idCont + " 0 R >>");
+      var flujo = this.paginas[p].join("\n");
+      objetos.push("<< /Length " + bytesLatin1(flujo).length + " >>\nstream\n" + flujo + "\nendstream");
+    }
+
+    objetos.push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>");
+    objetos.push("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>");
+
+    var bytes = [], offsets = [];
+    function empujar(s){ bytes = bytes.concat(bytesLatin1(s)); }
+
+    empujar("%PDF-1.4\n%âãÏÓ\n");
+    objetos.forEach(function(cuerpo, idx){
+      offsets.push(bytes.length);
+      empujar((idx + 1) + " 0 obj\n" + cuerpo + "\nendobj\n");
+    });
+
+    var inicioXref = bytes.length;
+    var xref = "xref\n0 " + (objetos.length + 1) + "\n0000000000 65535 f \n";
+    offsets.forEach(function(off){
+      xref += ("0000000000" + off).slice(-10) + " 00000 n \n";
+    });
+    empujar(xref);
+    empujar("trailer\n<< /Size " + (objetos.length + 1) + " /Root 1 0 R >>\nstartxref\n" +
+      inicioXref + "\n%%EOF\n");
+
+    return new Blob([new Uint8Array(bytes)], {type: "application/pdf"});
+  };
+
+  return { Doc: Doc, medir: ancho, limpiar: limpiar };
+})();
+</script>
 <script>
 (function(){
   "use strict";
   var D = JSON.parse(document.getElementById("datos").textContent);
-  var R = D.recursos, P = D.params;
+  var R = D.recursos;
   var claves = Object.keys(R);
-  var estado = {};            // clave -> {n: nuevos, a: adecuacion}
-  var seleccion = null;       // recurso cuyo desglose se muestra
-  var vistaInterna = true;
+  var estado = {};
+  var seleccion = null;
+  var descargas = null;
+  var hayClaude = !!(window.claude && typeof window.claude.use === "function");
 
+  var TARIFAS = {}, CFG = {};
+  function restaurar(){
+    Object.keys(D.roles).forEach(function(k){ TARIFAS[k] = D.roles[k].tarifa; });
+    CFG.overhead = D.params.overhead;
+    CFG.mult     = D.params.multiplicador;
+    CFG.pisoPct  = D.params.pisoPct;
+    CFG.factorAd = D.params.factorAdecuacion;
+    CFG.iva      = D.params.iva;
+  }
+  restaurar();
   claves.forEach(function(k){ estado[k] = {n:0, a:0}; });
 
   var pesos = new Intl.NumberFormat("es-CO",{style:"currency",currency:"COP",maximumFractionDigits:0});
@@ -349,19 +676,61 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
   function dinero(v){ return pesos.format(Math.round(v||0)); }
   function pct(v){ return (v*100).toFixed(1).replace(".",",") + " %"; }
   function horas(v){ return (Math.round(v*10)/10).toLocaleString("es-CO") + " h"; }
+  function numero(v){ return (Math.round(v*10)/10).toLocaleString("es-CO"); }
+
+  /* ---------- cálculo derivado siempre de las fases ---------- */
+  function costoDirecto(k){
+    return R[k].fases.reduce(function(s,f){ return s + f.horas * (TARIFAS[f.rolClave]||0); }, 0);
+  }
+  function costoTotal(k){ return costoDirecto(k) * (1 + CFG.overhead); }
+  function precioMax(k){ return costoTotal(k) * CFG.mult; }
+  function precioMin(k){ return costoTotal(k) / (1 - CFG.pisoPct); }
+  function horasSocio(k){
+    return R[k].fases.reduce(function(s,f){ return s + (f.rolClave === "socio" ? f.horas : 0); }, 0);
+  }
+  function unidadesEq(k){ return estado[k].n + estado[k].a * CFG.factorAd; }
+  function subtotalRecurso(k){
+    var u = precioMax(k);
+    return estado[k].n * u + estado[k].a * u * CFG.factorAd;
+  }
+
+  function totales(){
+    var t = {subtotal:0, costo:0, horas:0, horasCriterio:0, horasSocio:0,
+             nuevos:0, adec:0, todoNuevo:0};
+    claves.forEach(function(k){
+      var r = R[k], e = estado[k], u = unidadesEq(k);
+      t.subtotal      += subtotalRecurso(k);
+      t.costo         += u * costoTotal(k);
+      t.horas         += u * r.horas;
+      t.horasCriterio += u * r.horasCriterio;
+      t.horasSocio    += u * horasSocio(k);
+      t.todoNuevo     += (e.n + e.a) * precioMax(k);
+      t.nuevos        += e.n;
+      t.adec          += e.a;
+    });
+    t.minimo = t.costo / (1 - CFG.pisoPct);
+    t.maximo = t.subtotal;
+    return t;
+  }
 
   /* ---------- bases ---------- */
   var bases = [];
   Object.keys(D.propuestas).forEach(function(k){
     var p = D.propuestas[k];
-    bases.push({id:"prop:"+k, etiqueta:p.curso, nuevos:p.nuevos, adecuacion:p.adecuacion, plan:p.plan});
+    bases.push({id:"prop:"+k, etiqueta:p.curso, nuevos:p.nuevos, adecuacion:p.adecuacion,
+                plan:p.plan, institucion:p.institucion, curso:p.curso, contexto:p.contexto});
   });
   Object.keys(D.plantillas).forEach(function(k){
     var t = D.plantillas[k];
     bases.push({id:"plan:"+k, etiqueta:t.nombre.split("·")[0].trim()+" · "+t.semanas+" sem.",
-                nuevos:t.composicion, adecuacion:{}, plan:"curso_unico"});
+                nuevos:t.composicion, adecuacion:{}, plan:"curso_unico",
+                institucion:"", curso:t.nombre, contexto:t.descripcion});
   });
-  bases.push({id:"cero", etiqueta:"Empezar de cero", nuevos:{}, adecuacion:{}, plan:"curso_unico"});
+  bases.push({id:"cero", etiqueta:"Empezar de cero", nuevos:{}, adecuacion:{},
+              plan:"curso_unico", institucion:"", curso:"", contexto:""});
+
+  var baseActiva = bases[0].id;
+  function baseDe(id){ return bases.filter(function(b){ return b.id === id; })[0]; }
 
   function pintarBases(){
     var cont = $("bases");
@@ -377,28 +746,37 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
     });
   }
 
-  var baseActiva = bases[0].id;
   function aplicarBase(id){
-    var b = bases.filter(function(x){ return x.id === id; })[0];
+    var b = baseDe(id);
     if(!b) return;
     baseActiva = id;
     claves.forEach(function(k){ estado[k] = {n: b.nuevos[k]||0, a: b.adecuacion[k]||0}; });
     var plan = D.planes[b.plan];
-    var d = plan ? Math.round(plan.descuento*1000)/10 : 0;
-    $("desc").value = d;
+    $("desc").value = plan ? Math.round(plan.descuento*1000)/10 : 0;
+    if(b.institucion) $("qInst").value = b.institucion;
+    if(b.curso) $("qCurso").value = b.curso;
     pintarBases();
     pintarFilas();
     recalcular();
   }
 
   /* ---------- tabla ---------- */
+  function barraMezcla(p){
+    var d = document.createElement("div");
+    d.className = "mezcla";
+    d.title = Math.round(p*100) + " % criterio humano";
+    var h = document.createElement("i"); h.className = "h"; h.style.width = (p*100)+"%";
+    var m = document.createElement("i"); m.className = "m"; m.style.width = ((1-p)*100)+"%";
+    d.appendChild(h); d.appendChild(m);
+    return d;
+  }
+
   function pintarFilas(){
     var cuerpo = $("cuerpo");
     cuerpo.innerHTML = "";
     claves.forEach(function(k){
       var r = R[k], e = estado[k];
       var tr = document.createElement("tr");
-      tr.dataset.k = k;
       if(k === seleccion) tr.className = "activa";
 
       var tdN = document.createElement("td");
@@ -416,7 +794,7 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
 
       var tdH = document.createElement("td");
       tdH.className = "n num";
-      tdH.textContent = (Math.round(r.horas*10)/10).toLocaleString("es-CO");
+      tdH.textContent = numero(r.horas);
       tr.appendChild(tdH);
 
       var tdM = document.createElement("td");
@@ -435,7 +813,6 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
         inp.addEventListener("input", function(){
           var v = parseFloat(inp.value);
           estado[k][campo] = (isFinite(v) && v > 0) ? v : 0;
-          actualizarSubtotalFila(k);
           recalcular();
         });
         td.appendChild(inp);
@@ -446,33 +823,19 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
       tdS.className = "n num";
       tdS.id = "sub-"+k;
       tr.appendChild(tdS);
-
       cuerpo.appendChild(tr);
-      actualizarSubtotalFila(k);
     });
+    actualizarSubtotales();
   }
 
-  function barraMezcla(p){
-    var d = document.createElement("div");
-    d.className = "mezcla";
-    d.title = Math.round(p*100) + " % criterio humano";
-    var h = document.createElement("i"); h.className = "h"; h.style.width = (p*100)+"%";
-    var m = document.createElement("i"); m.className = "m"; m.style.width = ((1-p)*100)+"%";
-    d.appendChild(h); d.appendChild(m);
-    return d;
-  }
-
-  function subtotalRecurso(k){
-    var r = R[k], e = estado[k];
-    return e.n * r.lista + e.a * r.lista * P.factorAdecuacion;
-  }
-
-  function actualizarSubtotalFila(k){
-    var celda = $("sub-"+k);
-    if(!celda) return;
-    var v = subtotalRecurso(k);
-    celda.textContent = v ? dinero(v) : "—";
-    celda.style.color = v ? "" : "var(--tenue)";
+  function actualizarSubtotales(){
+    claves.forEach(function(k){
+      var celda = $("sub-"+k);
+      if(!celda) return;
+      var v = subtotalRecurso(k);
+      celda.textContent = v ? dinero(v) : "—";
+      celda.style.color = v ? "" : "var(--tenue)";
+    });
   }
 
   /* ---------- detalle ---------- */
@@ -493,13 +856,28 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
     meta.className = "num";
     meta.style.fontSize = ".84rem";
     meta.style.color = "var(--suave)";
-    meta.textContent = horas(r.horas) + " · " + Math.round(r.pctCriterio*100) + " % criterio humano · " + dinero(r.lista);
+    meta.textContent = horas(r.horas) + " · " + Math.round(r.pctCriterio*100) + " % criterio humano";
     cab.appendChild(h3); cab.appendChild(meta);
     caja.appendChild(cab);
 
     var p = document.createElement("p");
     p.textContent = r.descripcion;
     caja.appendChild(p);
+
+    var chips = document.createElement("div");
+    chips.className = "precios-recurso";
+    [["min","Mínimo", precioMin(seleccion)],
+     ["max","Máximo", precioMax(seleccion)],
+     ["", "Adecuación", precioMax(seleccion)*CFG.factorAd]].forEach(function(par){
+      var c = document.createElement("span");
+      c.className = "chip " + par[0];
+      var et = document.createTextNode(par[1] + " ");
+      var b = document.createElement("b");
+      b.textContent = dinero(par[2]);
+      c.appendChild(et); c.appendChild(b);
+      chips.appendChild(c);
+    });
+    caja.appendChild(chips);
 
     var ul = document.createElement("ul");
     ul.className = "fases";
@@ -509,7 +887,10 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
       tipo.className = "marca-tipo " + (f.criterio ? "humana" : "asistida");
       tipo.textContent = f.criterio ? "humano" : "asistido";
       var nom = document.createElement("span");
-      nom.innerHTML = "<strong>" + f.fase + "</strong> · " + f.rol;
+      var fuerte = document.createElement("strong");
+      fuerte.textContent = f.fase;
+      nom.appendChild(fuerte);
+      nom.appendChild(document.createTextNode(" · " + f.rol));
       var hs = document.createElement("span");
       hs.className = "horas";
       hs.textContent = horas(f.horas);
@@ -522,9 +903,7 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
     caja.appendChild(ul);
 
     var t = document.createElement("p");
-    t.style.marginTop = "13px";
-    t.style.fontSize = ".84rem";
-    t.style.fontWeight = "600";
+    t.style.cssText = "margin-top:13px;font-size:.84rem;font-weight:600";
     t.textContent = "Se verifica antes de entregar:";
     caja.appendChild(t);
     var crit = document.createElement("ul");
@@ -538,59 +917,114 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
     cont.appendChild(caja);
   }
 
-  /* ---------- cálculo ---------- */
-  function totales(){
-    var t = {subtotal:0, costo:0, horas:0, horasCriterio:0, nuevos:0, adec:0, todoNuevo:0};
-    claves.forEach(function(k){
-      var r = R[k], e = estado[k];
-      var u = e.n + e.a * P.factorAdecuacion;   // unidades equivalentes de producción
-      t.subtotal     += subtotalRecurso(k);
-      t.costo        += u * r.costo;
-      t.horas        += u * r.horas;
-      t.horasCriterio+= u * r.horasCriterio;
-      t.todoNuevo    += (e.n + e.a) * r.lista;
-      t.nuevos       += e.n;
-      t.adec         += e.a;
+  /* ---------- tarifas ---------- */
+  function pintarTarifas(){
+    var cont = $("camposTarifas");
+    cont.innerHTML = "";
+    Object.keys(D.roles).forEach(function(k){
+      var rol = D.roles[k];
+      var div = document.createElement("div");
+      div.className = "campo";
+      var lab = document.createElement("label");
+      lab.setAttribute("for", "tarifa-"+k);
+      lab.textContent = rol.corto;
+      var inp = document.createElement("input");
+      inp.type = "number"; inp.id = "tarifa-"+k;
+      inp.min = "0"; inp.step = "5000"; inp.value = TARIFAS[k];
+      inp.addEventListener("input", function(){
+        var v = parseFloat(inp.value);
+        TARIFAS[k] = (isFinite(v) && v >= 0) ? v : 0;
+        marcarAjustado(); pintarDetalle(); recalcular();
+      });
+      var pista = document.createElement("span");
+      pista.className = "pista-txt";
+      pista.textContent = "COP por hora";
+      div.appendChild(lab); div.appendChild(inp); div.appendChild(pista);
+      cont.appendChild(div);
     });
-    t.piso = t.costo / (1 - P.pisoPct);
-    return t;
+    $("pOverhead").value = Math.round(CFG.overhead*100);
+    $("pMult").value     = CFG.mult;
+    $("pPisoPct").value  = Math.round(CFG.pisoPct*100);
   }
+
+  function marcarAjustado(){
+    var igual = Object.keys(D.roles).every(function(k){ return TARIFAS[k] === D.roles[k].tarifa; })
+      && CFG.overhead === D.params.overhead && CFG.mult === D.params.multiplicador
+      && CFG.pisoPct === D.params.pisoPct;
+    var m = $("msjTarifas");
+    m.textContent = igual ? "" : "Valores ajustados; difieren del modelo publicado.";
+    m.className = "estado-msj" + (igual ? "" : " err");
+  }
+
+  $("pOverhead").addEventListener("input", function(){
+    var v = parseFloat(this.value);
+    CFG.overhead = (isFinite(v) && v >= 0) ? v/100 : 0;
+    marcarAjustado(); pintarDetalle(); recalcular();
+  });
+  $("pMult").addEventListener("input", function(){
+    var v = parseFloat(this.value);
+    CFG.mult = (isFinite(v) && v >= 1) ? v : 1;
+    marcarAjustado(); pintarDetalle(); recalcular();
+  });
+  $("pPisoPct").addEventListener("input", function(){
+    var v = parseFloat(this.value);
+    CFG.pisoPct = (isFinite(v) && v >= 0 && v < 90) ? v/100 : 0;
+    marcarAjustado(); pintarDetalle(); recalcular();
+  });
+  $("btnRestaurar").addEventListener("click", function(){
+    restaurar(); pintarTarifas(); marcarAjustado(); pintarDetalle(); recalcular();
+  });
+
+  /* ---------- fijar precio a los topes ---------- */
+  function fijarA(valor){
+    var t = totales();
+    if(!t.subtotal) return;
+    var d = Math.max(0, Math.min(0.6, 1 - valor / t.subtotal));
+    // Se trunca en lugar de redondear: redondear hacia arriba dejaría el
+    // total unos pesos por debajo del mínimo y dispararía la alerta.
+    $("desc").value = (Math.floor(d*1000)/10).toFixed(1);
+    recalcular();
+  }
+  $("btnMin").addEventListener("click", function(){ fijarA(totales().minimo); });
+  $("btnMax").addEventListener("click", function(){ fijarA(totales().maximo); });
+
+  /* ---------- recálculo ---------- */
+  var ultimo = null;
 
   function recalcular(){
     var t = totales();
     var d = parseFloat($("desc").value) / 100;
+    if(!isFinite(d)) d = 0;
     var descuento = t.subtotal * d;
     var total = t.subtotal - descuento;
-    var iva = total * P.iva;
+    var iva = total * CFG.iva;
     var margen = total > 0 ? (total - t.costo) / total : 0;
-    var dmax = t.subtotal > 0 ? Math.max(0, 1 - t.piso / t.subtotal) : 0;
+    var dmax = t.subtotal > 0 ? Math.max(0, 1 - t.minimo / t.subtotal) : 0;
 
-    $("descVal").textContent = (Math.round(d*1000)/10).toFixed(1).replace(".",",") + " %";
-    $("pTotal").textContent   = dinero(total);
-    $("pTotal2").textContent  = dinero(total);
-    $("pSubtotal").textContent= dinero(t.subtotal);
-    $("pDesc").textContent    = descuento ? "− " + dinero(descuento) : "—";
-    $("pIva").textContent     = dinero(iva);
-    $("pConIva").textContent  = dinero(total + iva);
-    $("pNuevo").textContent   = dinero(t.todoNuevo);
-    $("pAhorro").textContent  = (t.todoNuevo - t.subtotal) > 0 ? "− " + dinero(t.todoNuevo - t.subtotal) : "—";
-    $("pCosto").textContent   = dinero(t.costo);
-    $("pPiso").textContent    = dinero(t.piso);
-    $("pDmax").textContent    = pct(dmax);
-    $("pSub").textContent     = horas(t.horas) + " · " +
+    actualizarSubtotales();
+
+    $("descVal").textContent   = (Math.round(d*1000)/10).toFixed(1).replace(".",",") + " %";
+    $("pTotal").textContent    = dinero(total);
+    $("pTotal2").textContent   = dinero(total);
+    $("pSubtotal").textContent = dinero(t.subtotal);
+    $("pDesc").textContent     = descuento ? "− " + dinero(descuento) : "—";
+    $("pIva").textContent      = dinero(iva);
+    $("pConIva").textContent   = dinero(total + iva);
+    $("pNuevo").textContent    = dinero(t.todoNuevo);
+    $("pAhorro").textContent   = (t.todoNuevo - t.subtotal) > 0 ? "− " + dinero(t.todoNuevo - t.subtotal) : "—";
+    $("pCosto").textContent    = dinero(t.costo);
+    $("pDmax").textContent     = pct(dmax);
+    $("pMin").textContent      = t.minimo ? dinero(t.minimo) : "—";
+    $("pMax").textContent      = t.maximo ? dinero(t.maximo) : "—";
+    $("pSocio").textContent    = horas(t.horasSocio) + " (" + (t.horasSocio/120).toFixed(1).replace(".",",") + " meses)";
+    $("pSub").textContent      = horas(t.horas) + " · " +
       (t.horas ? Math.round(t.horasCriterio / t.horas * 100) : 0) + " % criterio humano";
 
-    // horas del socio: aproximación por las fases de criterio a cargo de dirección
-    var hs = 0;
-    claves.forEach(function(k){
-      var e = estado[k], u = e.n + e.a * P.factorAdecuacion;
-      R[k].fases.forEach(function(f){
-        if(f.rol.indexOf("Dirección") === 0) hs += u * f.horas;
-      });
-    });
-    $("pSocio").textContent = horas(hs) + " (" + (hs/120).toFixed(1).replace(".",",") + " meses)";
+    var span = t.maximo - t.minimo;
+    var pos = span > 0 ? (total - t.minimo) / span : 0;
+    $("aguja").style.left = Math.max(0, Math.min(1, pos)) * 100 + "%";
 
-    $("ftHoras").textContent    = t.horas ? (Math.round(t.horas*10)/10).toLocaleString("es-CO") : "—";
+    $("ftHoras").textContent    = t.horas ? numero(t.horas) : "—";
     $("ftNuevos").textContent   = t.nuevos || "—";
     $("ftAdec").textContent     = t.adec || "—";
     $("ftSubtotal").textContent = t.subtotal ? dinero(t.subtotal) : "—";
@@ -598,75 +1032,329 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
     mz.innerHTML = "";
     if(t.horas) mz.appendChild(barraMezcla(t.horasCriterio / t.horas));
 
-    // medidor de margen: escala 0-60 %
     var barra = $("mgBarra");
-    var ancho = Math.max(0, Math.min(1, margen / 0.6)) * 100;
-    barra.style.width = ancho + "%";
+    barra.style.width = Math.max(0, Math.min(1, margen / 0.6)) * 100 + "%";
     $("mgVal").textContent = t.subtotal ? pct(margen) : "—";
-    $("mgPiso").style.left = (P.pisoPct / 0.6 * 100) + "%";
+    $("mgPiso").style.left = (CFG.pisoPct / 0.6 * 100) + "%";
+    $("mgPisoEt").textContent = "piso " + Math.round(CFG.pisoPct*100) + " %";
 
     var aviso = $("pAviso");
     if(!t.subtotal){
       barra.style.background = "var(--linea-fuerte)";
       aviso.className = "aviso cuidado";
       aviso.textContent = "Agregue componentes para calcular la cotización.";
-    } else if(margen < P.pisoPct){
+    } else if(margen < CFG.pisoPct){
       barra.style.background = "var(--critico)";
       aviso.className = "aviso mal";
-      aviso.textContent = "Por debajo del piso de rentabilidad. No firmar a este precio: reduzca alcance en lugar de bajar el precio. El descuento máximo admisible es " + pct(dmax) + ".";
-    } else if(margen < P.pisoPct + 0.08){
+      aviso.textContent = "Por debajo del precio mínimo. No firmar así: reduzca alcance en lugar de bajar el precio. Descuento máximo admisible: " + pct(dmax) + ".";
+    } else if(margen < CFG.pisoPct + 0.08){
       barra.style.background = "var(--alerta)";
       aviso.className = "aviso cuidado";
       aviso.textContent = "Margen ajustado. Queda poco espacio para imprevistos o reproceso. Máximo admisible: " + pct(dmax) + ".";
     } else {
       barra.style.background = "var(--acento)";
       aviso.className = "aviso ok";
-      aviso.textContent = "Margen sano. Se puede negociar hasta un " + pct(dmax) + " de descuento sin cruzar el piso.";
+      aviso.textContent = "Margen sano. Se puede negociar hasta un " + pct(dmax) + " de descuento sin cruzar el mínimo.";
     }
 
-    var plan = D.planes[(bases.filter(function(b){return b.id===baseActiva;})[0]||{}).plan];
-    $("pDescEt").textContent = plan && Math.abs(plan.descuento - d) < 0.005
-      ? "Descuento · " + plan.nombre : "Descuento aplicado";
+    var plan = D.planes[(baseDe(baseActiva)||{}).plan];
+    var planActivo = plan && Math.abs(plan.descuento - d) < 0.002;
+    $("pDescEt").textContent = planActivo ? "Descuento · " + plan.nombre : "Descuento aplicado";
 
+    ultimo = {t:t, d:d, descuento:descuento, total:total, iva:iva,
+              plan: planActivo ? plan.nombre : null};
     calcularRetorno(total);
   }
 
-  /* ---------- retorno para la institución ---------- */
+  /* ---------- retorno ---------- */
   function calcularRetorno(inversion){
-    var est  = +$("rEst").value || 0;
-    var mat  = +$("rMat").value || 0;
-    var red  = (+$("rRed").value || 0) / 100;
-    var des  = (+$("rDes").value || 0) / 100;
-    var coh  = +$("rCoh").value || 1;
-    var sem  = +$("rSem").value || 1;
+    var est = +$("rEst").value || 0, mat = +$("rMat").value || 0;
+    var red = (+$("rRed").value || 0)/100, des = (+$("rDes").value || 0)/100;
+    var coh = +$("rCoh").value || 1, sem = +$("rSem").value || 1;
 
-    var retenidosAno = est * red * des * coh;
-    var matriculaPreservada = retenidosAno * mat * sem;
-    var ahorroDocente = 40 * 65000 * coh;
-    var beneficio = matriculaPreservada + ahorroDocente;
-    var meses = beneficio > 0 ? inversion / (beneficio / 12) : 0;
+    var retenidos  = est * red * des * coh;
+    var preservada = retenidos * mat * sem;
+    var docente    = 40 * 65000 * coh;
+    var beneficio  = preservada + docente;
+    var meses      = beneficio > 0 ? inversion / (beneficio/12) : 0;
     var equilibrio = (mat * sem) > 0 ? inversion / (mat * sem) : 0;
 
-    $("roiRet").textContent = retenidosAno ? retenidosAno.toFixed(1).replace(".",",") : "—";
+    $("roiRet").textContent = retenidos ? retenidos.toFixed(1).replace(".",",") : "—";
     $("roiBen").textContent = beneficio ? dinero(beneficio) : "—";
     $("roiMes").textContent = (beneficio && inversion) ? meses.toFixed(1).replace(".",",") : "—";
     $("roiX").textContent   = (beneficio && inversion) ? (beneficio*3/inversion).toFixed(1).replace(".",",")+"x" : "—";
 
     var cierre = $("roiCierre");
+    cierre.innerHTML = "";
     if(inversion > 0 && equilibrio > 0){
-      cierre.innerHTML = "La inversión se recupera reteniendo <strong>" +
-        equilibrio.toFixed(1).replace(".",",") + " estudiantes</strong> que de otro modo se habrían retirado. Sobre una cohorte de " +
-        est.toLocaleString("es-CO") + ", equivale al <strong>" +
-        (est ? (equilibrio/est*100).toFixed(1).replace(".",",") : "0") + " %</strong> del curso.";
+      var b1 = document.createElement("strong");
+      b1.textContent = equilibrio.toFixed(1).replace(".",",") + " estudiantes";
+      var b2 = document.createElement("strong");
+      b2.textContent = (est ? (equilibrio/est*100).toFixed(1).replace(".",",") : "0") + " %";
+      cierre.appendChild(document.createTextNode("La inversión se recupera reteniendo "));
+      cierre.appendChild(b1);
+      cierre.appendChild(document.createTextNode(
+        " que de otro modo se habrían retirado. Sobre una cohorte de " +
+        est.toLocaleString("es-CO") + ", equivale al "));
+      cierre.appendChild(b2);
+      cierre.appendChild(document.createTextNode(" del curso."));
     } else {
       cierre.textContent = "Complete los parámetros para calcular el punto de equilibrio.";
     }
   }
 
+  /* ---------- reporte PDF ---------- */
+  var MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto",
+               "septiembre","octubre","noviembre","diciembre"];
+  function fechaLarga(d){ return d.getDate() + " de " + MESES[d.getMonth()] + " de " + d.getFullYear(); }
+
+  function construirPdf(){
+    var t = ultimo.t;
+    var doc = new PDFMini.Doc({
+      pieDe: function(dc, n, total){
+        dc.linea(54, 742, 558, 742, 0.5, "#cccccc");
+        dc.texto(54, "Desarrollos AP · Diseño y producción de cursos universitarios virtuales",
+                 {y:750, size:7.5, color:"#777777"});
+        dc.texto(558, "Página " + n + " de " + total,
+                 {y:750, size:7.5, color:"#777777", align:"right"});
+      }
+    });
+    var X = 54, X2 = 558, ANCHO = X2 - X;
+    var VERDE = "#0a6357", GRIS = "#5a6b7a", NEGRO = "#16222e";
+    var hoy = new Date();
+    var vence = new Date(hoy.getTime() + (+$("qDias").value || 30) * 86400000);
+
+    doc.rect(0, 0, 612, 6, VERDE);
+    doc.y = 46;
+    doc.texto(X, "DESARROLLOS AP", {size:9, bold:true, color:VERDE});
+    doc.texto(X2, ($("qNum").value || "").trim(), {size:9, bold:true, align:"right", color:GRIS});
+    doc.y += 13;
+    doc.texto(X, "Diseño y producción de cursos universitarios virtuales", {size:8.5, color:GRIS});
+    doc.texto(X2, fechaLarga(hoy), {size:8.5, align:"right", color:GRIS});
+    doc.y += 24;
+
+    doc.texto(X, "Propuesta económica", {size:20, bold:true, color:NEGRO});
+    doc.y += 26;
+    var curso = ($("qCurso").value || "").trim();
+    if(curso){ doc.texto(X, curso, {size:13, bold:true, color:VERDE}); doc.y += 18; }
+    var inst = ($("qInst").value || "").trim();
+    if(inst){ doc.texto(X, inst, {size:10.5, color:GRIS}); doc.y += 18; }
+
+    doc.y += 4;
+    doc.linea(X, doc.y, X2, doc.y, 1.2, VERDE);
+    doc.y += 16;
+
+    var base = baseDe(baseActiva);
+    if(base && base.contexto){
+      doc.parrafo(X, ANCHO, base.contexto, {size:9.5, color:GRIS, interlinea:13.5});
+      doc.y += 12;
+    }
+
+    var nRec = 0;
+    claves.forEach(function(k){ nRec += estado[k].n + estado[k].a; });
+    doc.asegurar(62);
+    doc.rect(X, doc.y, ANCHO, 40, "#eef4f2");
+    doc.texto(X + 12, "ALCANCE", {y: doc.y + 9, size:7.5, bold:true, color:VERDE});
+    doc.texto(X + 12, numero(nRec) + " componentes  ·  " + numero(t.horas) +
+      " horas de producción  ·  " +
+      (t.horas ? Math.round(t.horasCriterio/t.horas*100) : 0) +
+      " % de revisión profesional humana",
+      {y: doc.y + 23, size:10, bold:true, color:NEGRO});
+    doc.y += 54;
+
+    doc.asegurar(46);
+    doc.texto(X, "COMPONENTES", {size:8, bold:true, color:VERDE});
+    doc.y += 14;
+    var cCant = 348, cUnit = 452, cSub = X2;
+    function encabezadoTabla(){
+      doc.texto(X, "Componente", {size:7.5, bold:true, color:GRIS});
+      doc.texto(cCant, "Cantidad", {size:7.5, bold:true, color:GRIS, align:"right"});
+      doc.texto(cUnit, "Valor unitario", {size:7.5, bold:true, color:GRIS, align:"right"});
+      doc.texto(cSub, "Subtotal", {size:7.5, bold:true, color:GRIS, align:"right"});
+      doc.y += 11;
+      doc.linea(X, doc.y, X2, doc.y, 0.8, "#9bb8b1");
+      doc.y += 7;
+    }
+    encabezadoTabla();
+
+    claves.forEach(function(k){
+      var e = estado[k];
+      if(!e.n && !e.a) return;
+      var unit = precioMax(k);
+      [[e.n, unit, ""], [e.a, unit*CFG.factorAd, " (adecuación)"]].forEach(function(par){
+        if(!par[0]) return;
+        if(doc.espacio() < 44){ doc.nuevaPagina(); doc.y = 56; encabezadoTabla(); }
+        var completo = R[k].nombre + par[2], nombre = completo;
+        var maxN = cCant - X - 46;
+        while(PDFMini.medir(nombre, 9, false) > maxN && nombre.length > 8){
+          nombre = nombre.slice(0, -2);
+        }
+        if(nombre !== completo) nombre += "...";
+        doc.texto(X, nombre, {size:9, color:NEGRO});
+        doc.texto(cCant, numero(par[0]), {size:9, align:"right", color:NEGRO});
+        doc.texto(cUnit, dinero(par[1]), {size:9, align:"right", color:NEGRO});
+        doc.texto(cSub, dinero(par[0]*par[1]), {size:9, align:"right", color:NEGRO});
+        doc.y += 15;
+        doc.linea(X, doc.y - 4, X2, doc.y - 4, 0.3, "#e2e8ee");
+      });
+    });
+
+    doc.asegurar(130);
+    doc.y += 8;
+    doc.linea(X, doc.y, X2, doc.y, 0.8, "#9bb8b1");
+    doc.y += 10;
+    function filaTotal(etiqueta, valor, op){
+      op = op || {};
+      doc.asegurar(20);
+      doc.texto(cUnit, etiqueta, {size: op.size||9.5, bold: !!op.bold,
+                                  align:"right", color: op.color||GRIS});
+      doc.texto(cSub, valor, {size: op.size||9.5, bold: !!op.bold,
+                              align:"right", color: op.color||NEGRO});
+      doc.y += op.salto || 16;
+    }
+    filaTotal("Subtotal", dinero(t.subtotal));
+    if(ultimo.descuento > 0){
+      filaTotal("Descuento" + (ultimo.plan ? " · " + ultimo.plan : "") + " (" +
+        (Math.round(ultimo.d*1000)/10).toFixed(1).replace(".",",") + " %)",
+        "- " + dinero(ultimo.descuento), {color:VERDE});
+    }
+    doc.linea(cUnit - 130, doc.y - 4, X2, doc.y - 4, 0.5, "#cccccc");
+    doc.y += 2;
+    filaTotal("Total sin IVA", dinero(ultimo.total), {bold:true, size:11});
+    filaTotal("IVA 19 % (sujeto a régimen)", dinero(ultimo.iva));
+    doc.asegurar(36);
+    doc.rect(cUnit - 160, doc.y - 6, X2 - cUnit + 160, 27, "#eef4f2");
+    filaTotal("TOTAL CON IVA", dinero(ultimo.total + ultimo.iva),
+              {bold:true, size:11.5, color:VERDE, salto:28});
+
+    var ahorro = t.todoNuevo - t.subtotal;
+    if(ahorro > 0){
+      doc.asegurar(58);
+      doc.y += 8;
+      doc.rect(X, doc.y, 3, 40, VERDE);
+      doc.parrafo(X + 12, ANCHO - 12,
+        "Producir estos recursos íntegramente desde cero costaría " + dinero(t.todoNuevo) +
+        ". Aprovechar el material que la institución ya tiene representa un ahorro de " +
+        dinero(ahorro) + ".", {size:9.5, color:NEGRO, interlinea:13.5});
+      doc.y += 10;
+    }
+
+    doc.asegurar(120);
+    doc.y += 8;
+    doc.texto(X, "CÓMO PRODUCIMOS", {size:8, bold:true, color:VERDE});
+    doc.y += 15;
+    doc.parrafo(X, ANCHO,
+      "Usamos inteligencia artificial para el borrador de las guías, el código HTML base y la " +
+      "estructura de los bancos de preguntas. Nada generado por IA llega a un estudiante sin " +
+      "revisión profesional: cada ejemplo de cada guía se resuelve a mano, cada ítem de cada " +
+      "quiz se responde verificando que tenga una única respuesta correcta y distractores " +
+      "plausibles, y cada paquete H5P y SCORM se prueba en Moodle comprobando que registre la " +
+      "nota en el libro de calificaciones.", {size:9.5, color:GRIS, interlinea:13.5});
+    doc.y += 6;
+    doc.parrafo(X, ANCHO,
+      "En esta propuesta, " + numero(t.horasCriterio) + " de las " + numero(t.horas) +
+      " horas (" + (t.horas ? Math.round(t.horasCriterio/t.horas*100) : 0) +
+      " %) son criterio profesional humano. La proporción está desglosada recurso por recurso " +
+      "y la institución puede auditarla en cualquier momento.",
+      {size:9.5, color:NEGRO, interlinea:13.5});
+    doc.y += 12;
+
+    doc.asegurar(140);
+    doc.texto(X, "QUÉ GARANTIZAMOS", {size:8, bold:true, color:VERDE});
+    doc.y += 15;
+    ["Todo recurso se prueba en Moodle antes de entregarse: ningún H5P, SCORM, GIFT o HTML se entrega sin verificar que importa, funciona y registra calificación.",
+     "Toda guía y todo taller están resueltos. Existe solucionario para el docente.",
+     "Toda rúbrica es visible para el estudiante antes de la entrega.",
+     "Auditoría de calidad de cinco niveles antes de publicar. Un hallazgo crítico bloquea la publicación.",
+     "Corrección sin costo de cualquier error de contenido detectado durante los meses de soporte contratados.",
+     "La propiedad intelectual de todo el material producido es de la institución contratante."
+    ].forEach(function(g, i){
+      doc.asegurar(28);
+      var yFila = doc.y;
+      doc.texto(X, String(i+1) + ".", {y:yFila, size:9, bold:true, color:VERDE});
+      doc.parrafo(X + 16, ANCHO - 16, g, {size:9, color:GRIS, interlinea:12.5});
+      doc.y += 4;
+    });
+
+    doc.asegurar(110);
+    doc.y += 8;
+    doc.texto(X, "CONDICIONES", {size:8, bold:true, color:VERDE});
+    doc.y += 15;
+    ["Valores en pesos colombianos. El régimen de IVA se confirma con la oficina financiera de la institución; los servicios de educación pueden estar excluidos según el artículo 476 del Estatuto Tributario.",
+     "Validez de esta propuesta: hasta el " + fechaLarga(vence) + ".",
+     "No incluye hosting, licencias de Moodle ni honorarios docentes.",
+     "Forma de pago sugerida: 40 % al inicio, 30 % contra entrega del segundo parcial, 30 % contra reporte de auditoría final.",
+     "El diseño curricular se aprueba como hito independiente antes de iniciar la producción."
+    ].forEach(function(c){
+      doc.asegurar(26);
+      var yFila = doc.y;
+      doc.texto(X, "·", {y:yFila, size:9, bold:true, color:VERDE});
+      doc.parrafo(X + 12, ANCHO - 12, c, {size:9, color:GRIS, interlinea:12.5});
+      doc.y += 3;
+    });
+
+    return doc.blob();
+  }
+
+  function nombreArchivo(){
+    var n = ($("qNum").value || "cotizacion").trim().replace(/[^\w\-]+/g, "_");
+    var c = ($("qCurso").value || "").trim()
+      .replace(/[^\w\s\-]+/g, "").replace(/\s+/g, "_").slice(0, 40);
+    return "Cotizacion_" + n + (c ? "_" + c : "") + ".pdf";
+  }
+
+  function mensajePdf(texto, clase){
+    var m = $("msjPdf");
+    m.textContent = texto;
+    m.className = "estado-msj" + (clase ? " " + clase : "");
+  }
+
+  $("btnPdf").addEventListener("click", function(){
+    if(!ultimo || !ultimo.t.subtotal){
+      mensajePdf("Agregue al menos un componente antes de generar la cotización.", "err");
+      return;
+    }
+    var btn = this;
+    btn.disabled = true;
+    mensajePdf("Generando…");
+    var blob;
+    try {
+      blob = construirPdf();
+    } catch(e){
+      btn.disabled = false;
+      mensajePdf("No se pudo generar el PDF: " + e.message, "err");
+      return;
+    }
+    var archivo = nombreArchivo();
+
+    if(descargas){
+      descargas.save({filename: archivo, data: blob}).then(function(){
+        mensajePdf("Cotización descargada.", "bien");
+      }, function(err){
+        var c = err && err.code;
+        if(c === "declined") mensajePdf("Descarga cancelada.");
+        else if(c === "rate_limited") mensajePdf("Espere un momento e inténtelo de nuevo.", "err");
+        else mensajePdf("No se pudo guardar el archivo en esta vista.", "err");
+      }).then(function(){ btn.disabled = false; }, function(){ btn.disabled = false; });
+    } else if(!hayClaude){
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url; a.download = archivo;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
+      mensajePdf("Cotización descargada.", "bien");
+      btn.disabled = false;
+    } else {
+      mensajePdf("La descarga no está disponible en esta vista.", "err");
+      btn.disabled = false;
+    }
+  });
+
   /* ---------- vista ---------- */
   function fijarVista(interna){
-    vistaInterna = interna;
-    $("interno").hidden = !interna;
+    Array.prototype.forEach.call(document.querySelectorAll(".solo-interno"), function(el){
+      el.hidden = !interna;
+    });
     $("vInterna").setAttribute("aria-pressed", interna ? "true" : "false");
     $("vCliente").setAttribute("aria-pressed", interna ? "false" : "true");
     try { localStorage.setItem("ap-vista", interna ? "interna" : "cliente"); } catch(e){}
@@ -680,9 +1368,14 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
 
   var guardada = null;
   try { guardada = localStorage.getItem("ap-vista"); } catch(e){}
-  fijarVista(guardada !== "cliente");
 
+  pintarTarifas();
   pintarBases();
   aplicarBase(baseActiva);
+  fijarVista(guardada !== "cliente");
+
+  if(hayClaude){
+    window.claude.use("downloads").then(function(d){ descargas = d; }, function(){});
+  }
 })();
 </script>

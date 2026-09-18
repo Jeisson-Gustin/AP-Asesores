@@ -27,6 +27,39 @@ La vista elegida se recuerda en el navegador.
   rentabilidad.
 - Calcula el retorno para la institución con parámetros editables.
 
+## Cambiar tarifas y topes de precio
+
+El bloque **Tarifas y márgenes** (solo en vista interna) permite cambiar en vivo:
+
+- la tarifa por hora de cada uno de los cuatro roles,
+- el overhead operativo,
+- el multiplicador que define el **precio máximo** (precio de lista),
+- el margen mínimo que define el **precio mínimo** (piso de rentabilidad).
+
+Todo se recalcula desde las fases de cada recurso, así que el costo, el mínimo y
+el máximo responden de inmediato. «Restaurar valores del modelo» vuelve a
+`parametros.json`. Mientras los valores difieran del modelo publicado, la
+herramienta lo advierte.
+
+El panel lateral muestra el **rango cobrable** con botones para fijar el precio
+en el mínimo o en el máximo, y una aguja que indica dónde cae el precio actual
+dentro de ese rango. Este bloque es interno y se oculta en vista cliente.
+
+## Descargar la cotización en PDF
+
+El bloque **Generar la cotización** produce un PDF con los componentes
+seleccionados: alcance, tabla de componentes con valores unitarios, totales con
+descuento e IVA, argumento de ahorro, protocolo de producción con IA, garantías y
+condiciones. **No incluye costos, márgenes ni tarifas internas.**
+
+El PDF se genera con `pdf.js`, un escritor propio sin dependencias (PDF 1.4 con
+las fuentes base Helvetica). No usa ningún CDN: funciona siempre, también sin
+conexión.
+
+En el artifact publicado la descarga usa la capacidad `downloads`, que pide
+confirmación al visor. Abierto como archivo local, usa la descarga normal del
+navegador.
+
 ## Regenerar los datos
 
 `datos.json` se exporta desde el modelo. Tras cambiar `modelo/parametros.json` o
