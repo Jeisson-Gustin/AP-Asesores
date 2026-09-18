@@ -42,6 +42,12 @@
       "cursos": "2",
       "descuento": 0.22,
       "razon": "Plan semestral (18 %) más 4 puntos que honran el precio de primera implementación ya comprometido para Razonamiento Cuantitativo. Así la universidad no percibe que contratar el segundo curso encarece el primero."
+    },
+    "continuidad_usc": {
+      "nombre": "Continuidad Universidad Santiago de Cali",
+      "cursos": "1",
+      "descuento": 0.341,
+      "razon": "Iguala el descuento concedido en Razonamiento Cuantitativo para que la universidad no perciba un alza entre una propuesta y la siguiente. Decisión comercial explícita: convierte en permanente un descuento documentado como irrepetible, así que el margen queda en 31 % (zona ajustada). Antes de extenderlo a un tercer contrato conviene revisar la escala de descuentos."
     }
   },
   "propuestas": {
@@ -132,6 +138,27 @@
         "capacitacion_docente": 2
       },
       "_nota_ahorro": "Unidades que se descuentan del total al contratar ambos cursos, porque el trabajo no se duplica."
+    },
+    "usc_12_sesiones": {
+      "institucion": "Universidad Santiago de Cali",
+      "curso": "Curso de 12 sesiones · paquete de recursos por sesión",
+      "semanas": 12,
+      "plan": "continuidad_usc",
+      "contexto": "Producción de la ruta completa de trabajo para 12 sesiones. Cada sesión recibe cuatro componentes: una guía de aprendizaje en HTML, una actividad H5P de refuerzo con retroalimentación inmediata, un cuestionario evaluativo en Moodle y un taller práctico de alta demanda con rúbrica y solucionario. Los 48 componentes son producción nueva, construida desde la parcelación oficial del curso.",
+      "nuevos": {
+        "guia_html": 12,
+        "actividad_h5p": 12,
+        "quiz_moodle": 12,
+        "taller_practico": 12
+      },
+      "adecuacion": {},
+      "nota": "La 'actividad adicional' por sesión se cotiza como taller práctico de alta demanda con rúbrica y solucionario. Si se prefiere foro guiado o workshop con coevaluación, el valor cambia y se ajusta la cotización.",
+      "opcionales": {
+        "diseno_curricular": 1,
+        "config_moodle": 1,
+        "control_calidad": 1
+      },
+      "_nota_opcionales": "Trabajo que sostiene los 48 componentes pero que el cliente no solicitó. Se cotiza aparte para que decida: sin diseño curricular previo ni auditoría final, ese trabajo o se regala o reaparece después como sobrecosto."
     }
   }
 }

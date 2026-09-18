@@ -26,6 +26,7 @@ exige más, la respuesta no es bajar el precio sino reducir el alcance.
 | Partner estratégico | 10 o más, contrato plurianual | 35 % | Ingreso recurrente garantizado y planeación de capacidad a 12 meses. El descuento se compensa con ocupación asegurada y cero costo comercial de renovación. |
 | Primera implementación USC | 1 | 34 % | Descuento de acceso a una institución nueva, ya comprometido en la propuesta del 17 de septiembre de 2026 ($ 25.730.000 sin IVA). Se sostiene porque queda por encima del piso de rentabilidad y porque abre la puerta al paquete de ciencias básicas. Es irrepetible: las renovaciones y los cursos adicionales vuelven a la escala estándar de descuentos por volumen. |
 | Paquete ciencias básicas USC | 2 | 22 % | Plan semestral (18 %) más 4 puntos que honran el precio de primera implementación ya comprometido para Razonamiento Cuantitativo. Así la universidad no percibe que contratar el segundo curso encarece el primero. |
+| Continuidad Universidad Santiago de Cali | 1 | 34 % | Iguala el descuento concedido en Razonamiento Cuantitativo para que la universidad no perciba un alza entre una propuesta y la siguiente. Decisión comercial explícita: convierte en permanente un descuento documentado como irrepetible, así que el margen queda en 31 % (zona ajustada). Antes de extenderlo a un tercer contrato conviene revisar la escala de descuentos. |
 
 ### Universidad Santiago de Cali — Razonamiento Cuantitativo (CN111)
 
@@ -158,3 +159,34 @@ Los dos cursos contratados juntos. El diseño curricular, la identidad visual, l
 - Descuento máximo admisible: **39.4 %**
 
 **Argumento de venta.** Producir estos recursos íntegramente desde cero costaría $ 148.090.690. Aprovechar lo que la institución ya tiene le ahorra $ 53.671.728.
+
+### Universidad Santiago de Cali — Curso de 12 sesiones · paquete de recursos por sesión
+
+Producción de la ruta completa de trabajo para 12 sesiones. Cada sesión recibe cuatro componentes: una guía de aprendizaje en HTML, una actividad H5P de refuerzo con retroalimentación inmediata, un cuestionario evaluativo en Moodle y un taller práctico de alta demanda con rúbrica y solucionario. Los 48 componentes son producción nueva, construida desde la parcelación oficial del curso.
+
+| Componente | Cantidad | Precio nuevo | Precio adecuación | Subtotal |
+| --- | --- | ---: | ---: | ---: |
+| Guía de aprendizaje en HTML | 12 nuevo | $ 1.068.430 | $ 427.372 | $ 12.821.160 |
+| Actividad H5P de refuerzo | 12 nuevo | $ 434.390 | $ 173.756 | $ 5.212.680 |
+| Quiz evaluativo Moodle (GIFT) | 12 nuevo | $ 707.850 | $ 283.140 | $ 8.494.200 |
+| Taller práctico de alta demanda con rúbrica | 12 nuevo | $ 695.750 | $ 278.300 | $ 8.349.000 |
+
+| Concepto | Valor |
+| --- | ---: |
+| Subtotal | $ 34.877.040 |
+| Descuento · Continuidad Universidad Santiago de Cali (34 %) | ($ 11.893.071) |
+| **Total sin IVA** | **$ 22.983.969** |
+| IVA (19 %, sujeto a régimen) | $ 4.366.954 |
+| **Total con IVA** | **$ 27.350.924** |
+
+**Control interno (no se muestra al cliente):**
+
+- Horas de producción: 193.2 (141.6 h de criterio humano, 73 %)
+- Costo total: $ 15.853.200
+- Precio piso: $ 21.137.600 → **dentro del piso**
+- Margen efectivo: **31.0 %**
+- Descuento máximo admisible: **39.4 %**
+
+**Argumento de venta.** Producir estos recursos íntegramente desde cero costaría $ 34.877.040. Aprovechar lo que la institución ya tiene le ahorra $ 0.
+
+> La 'actividad adicional' por sesión se cotiza como taller práctico de alta demanda con rúbrica y solucionario. Si se prefiere foro guiado o workshop con coevaluación, el valor cambia y se ajusta la cotización.
