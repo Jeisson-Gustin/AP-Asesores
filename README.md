@@ -45,6 +45,7 @@ El catálogo completo, con el desglose de horas fase por fase, está en
 | [06 · Protocolo de revisión con IA](docs/06-protocolo-revision-ia.md) | Cómo se usa la IA y qué revisa un humano | **Cliente** |
 | [07 · Propuesta USC](docs/07-propuesta-usc.md) | Propuesta ejecutiva para la Universidad Santiago de Cali | **Cliente** |
 | [08 · Auditoría de calidad y precio](docs/08-auditoria-calidad-y-precio.md) | Evaluación de los recursos reales frente al mercado; posición de precio | Interno |
+| [Formulario de necesidades](herramientas/README.md) | Levantamiento del alcance con el cliente, en HTML y PDF | **Cliente** |
 
 Los documentos 01 y 05 **se generan** desde el modelo. No editarlos a mano.
 
@@ -59,6 +60,9 @@ modelo/
 ├── propuestas.json          Planes comerciales y propuestas por institución
 ├── cotizador.py             Motor de costeo y cotización
 ├── roi.py                   Modelo de retorno para la institución cliente
+├── catalogo_oferta.json     Los 79 tipos de recurso que se pueden ofrecer
+├── generar_formulario.py    Genera el formulario de necesidades (HTML y artifact)
+├── auditor_moodle.py        Audita recursos contra los criterios de las skills
 ├── generar_documentos.py    Regenera docs/01 y docs/05
 └── test_cotizador.py        Pruebas de coherencia del modelo
 ```

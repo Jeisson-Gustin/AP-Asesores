@@ -65,3 +65,53 @@ navegador.
 `datos.json` se exporta desde el modelo. Tras cambiar `modelo/parametros.json` o
 `modelo/catalogo_recursos.json`, hay que regenerarlo y volver a inyectarlo en el
 bloque `<script id="datos">` de `cotizador.html`.
+
+---
+
+# Formulario de levantamiento de necesidades
+
+Recoge, recurso por recurso, qué necesita el curso del cliente. Con el resumen
+que exporta se arma la cotización en el cotizador.
+
+**Publicado en:** https://claude.ai/artifact/7G3BRBiLpAM65dzAbRygbc
+
+## Archivos
+
+| Archivo | Para qué |
+| --- | --- |
+| `formulario_necesidades.html` | Versión autónoma: se abre en cualquier navegador y se imprime |
+| `formulario_necesidades.artifact.html` | La misma página sin el envoltorio HTML, para publicar como Artifact |
+| `generar_pdf_formulario.mjs` | Genera el PDF imprimible desde el HTML |
+| `../salidas/Formulario_Levantamiento_Necesidades_AP.pdf` | PDF de 13 páginas para enviar o imprimir |
+
+Los tres se generan desde `modelo/catalogo_oferta.json`:
+
+```bash
+python3 modelo/generar_formulario.py          # regenera ambos HTML
+node herramientas/generar_pdf_formulario.mjs  # regenera el PDF
+```
+
+## Qué contiene
+
+15 secciones (A–O) con **79 tipos de recurso** y **119 casillas de cantidad**:
+
+- **A–C** — identificación, contexto del curso y punto de partida (qué material existe ya).
+- **D** — las cinco guías HTML, de teórica simple a integral con prueba tipo Saber.
+- **E** — 20 tipos de H5P con banco de preguntas, cada uno en 10, 15 y 20 preguntas.
+- **F–G** — H5P de presentación y H5P compuestos (libro interactivo, escenario ramificado).
+- **H** — videos interactivos de 3, 4 y 5 interacciones, con o sin producción del video base.
+- **I** — cuatro tipos de paquete SCORM.
+- **J** — cuestionarios de 10, 15 y 20 preguntas, examen parcial y simulacro Saber Pro.
+- **K–L** — actividades y recursos nativos de Moodle.
+- **M** — arquitectura, auditoría de calidad y acompañamiento.
+- **N–O** — requerimientos especiales y observaciones.
+
+## Cómo se usa
+
+1. Se envía el PDF, o el enlace del formulario en pantalla.
+2. El cliente marca cantidades. Lo diligenciado se guarda solo en su navegador.
+3. **Copiar resumen** produce un texto ordenado por familia, con los códigos de cada recurso.
+4. Ese resumen se traslada al cotizador para obtener el precio.
+
+**El formulario no muestra precios.** Es deliberado: primero se define el alcance,
+después se cotiza.

@@ -1,0 +1,195 @@
+{
+  "_descripcion": "Catálogo completo de recursos y actividades que Desarrollos AP puede producir en Moodle. Alimenta el formulario de levantamiento de necesidades (HTML y PDF) y el cotizador. Las horas son de producción nueva; la adecuación de material existente cuesta el 40 %.",
+
+  "familias": [
+    {
+      "id": "guias",
+      "nombre": "Guías de aprendizaje en HTML",
+      "intro": "Documento autocontenido que se publica en Moodle como Página o Archivo. Los cinco niveles se diferencian por lo que el estudiante puede hacer dentro de la guía, no por la extensión del contenido teórico.",
+      "items": [
+        {"cod": "G1", "nombre": "Guía teórica", "horas": 5.7,
+         "detalle": "Desarrollo conceptual con definiciones formales, notación, ejemplos pareados (uno mecánico y uno aplicado por concepto), errores frecuentes señalados, síntesis y referencias bibliográficas.",
+         "entrega": "Archivo .html responsive, validado en W3C y probado en Moodle."},
+        {"cod": "G2", "nombre": "Guía teórica con actividades", "horas": 7.7,
+         "detalle": "Todo lo anterior más ejercicios autoevaluables dentro de la guía: verificación inmediata, contador de aciertos y retroalimentación por respuesta.",
+         "entrega": "Ídem, con 15 a 25 ejercicios interactivos."},
+        {"cod": "G3", "nombre": "Guía teórica con simuladores", "horas": 10.2,
+         "detalle": "Guía teórica más simulador manipulable: el estudiante mueve parámetros y observa el efecto en una gráfica, figura o modelo construido en SVG o Canvas.",
+         "entrega": "Ídem, con 1 a 2 simuladores propios."},
+        {"cod": "G4", "nombre": "Guía teórica con actividades y simuladores", "horas": 11.7,
+         "detalle": "Combina los ejercicios autoevaluables con los simuladores manipulables.",
+         "entrega": "Ídem, con ejercicios y simuladores."},
+        {"cod": "G5", "nombre": "Guía integral con prueba tipo Saber", "horas": 15.2,
+         "detalle": "Guía completa más un bloque de preguntas con la estructura de las pruebas Saber Pro: contexto extenso, competencias declaradas y retroalimentación que explica por qué cada distractor es incorrecto.",
+         "entrega": "Ídem, con 15 a 20 ítems tipo Saber y su informe de resultados."}
+      ]
+    },
+
+    {
+      "id": "h5p_evaluativos",
+      "nombre": "Actividades H5P con banco de preguntas",
+      "intro": "Se entregan empaquetadas como .h5p, listas para importar. Cada una se ofrece en tres tamaños según el número de ítems. Todas reportan calificación al libro de notas de Moodle y llevan umbral de aprobación configurado.",
+      "tamanos": [
+        {"cod": "10", "etiqueta": "10 preguntas", "factor": 1.0},
+        {"cod": "15", "etiqueta": "15 preguntas", "factor": 1.3},
+        {"cod": "20", "etiqueta": "20 preguntas", "factor": 1.6}
+      ],
+      "horas_base": 2.6,
+      "items": [
+        {"cod": "H01", "nombre": "Question Set (batería mixta)", "detalle": "Combina varios formatos en una sola actividad con navegación por puntos."},
+        {"cod": "H02", "nombre": "Single Choice Set", "detalle": "Secuencia rápida de preguntas de una sola respuesta, con ritmo de juego."},
+        {"cod": "H03", "nombre": "Multiple Choice", "detalle": "Selección múltiple con una o varias respuestas correctas."},
+        {"cod": "H04", "nombre": "True / False", "detalle": "Afirmaciones para validar o refutar, útil para detectar errores conceptuales."},
+        {"cod": "H05", "nombre": "Fill in the Blanks (completar)", "detalle": "Texto con espacios que el estudiante completa; admite pistas por espacio."},
+        {"cod": "H06", "nombre": "Drag the Words (arrastrar palabras)", "detalle": "Fija vocabulario formal y notación asociando términos a su lugar."},
+        {"cod": "H07", "nombre": "Mark the Words (marcar palabras)", "detalle": "El estudiante señala en un texto los términos que cumplen una condición."},
+        {"cod": "H08", "nombre": "Drag and Drop (arrastrar y soltar)", "detalle": "Clasificación sobre imágenes o esquemas; ideal para mapas y diagramas."},
+        {"cod": "H09", "nombre": "Summary (síntesis)", "detalle": "El estudiante elige la afirmación correcta que resume cada bloque."},
+        {"cod": "H10", "nombre": "Arithmetic Quiz", "detalle": "Batería de cálculo con tiempo, para automatizar operaciones básicas."},
+        {"cod": "H11", "nombre": "Crossword (crucigrama)", "detalle": "Consolidación de vocabulario técnico en formato lúdico."},
+        {"cod": "H12", "nombre": "Memory Game", "detalle": "Emparejamiento por memoria entre concepto y representación."},
+        {"cod": "H13", "nombre": "Flashcards", "detalle": "Tarjetas de repaso con respuesta escrita y validación."},
+        {"cod": "H14", "nombre": "Dialog Cards", "detalle": "Tarjetas de dos caras para estudio autónomo, sin calificación."},
+        {"cod": "H15", "nombre": "Sort the Paragraphs", "detalle": "Ordenar pasos de un procedimiento o etapas de un proceso."},
+        {"cod": "H16", "nombre": "Image Sequencing", "detalle": "Ordenar imágenes según una secuencia lógica o temporal."},
+        {"cod": "H17", "nombre": "Find the Hotspot / Image Hotspots", "detalle": "Identificar zonas en una imagen: partes, regiones o componentes."},
+        {"cod": "H18", "nombre": "Guess the Answer", "detalle": "Imagen con respuesta revelable, para activar conocimientos previos."},
+        {"cod": "H19", "nombre": "Essay (respuesta abierta)", "detalle": "Respuesta redactada con retroalimentación por palabras clave."},
+        {"cod": "H20", "nombre": "Personality Quiz", "detalle": "Cuestionario de perfil, útil en diagnóstico de estilos o intereses."}
+      ]
+    },
+
+    {
+      "id": "h5p_presentacion",
+      "nombre": "Recursos H5P de presentación y exploración",
+      "intro": "No llevan banco de preguntas: organizan, muestran o dejan explorar contenido. Se cotizan por unidad.",
+      "items": [
+        {"cod": "P01", "nombre": "Accordion (contenido plegable)", "horas": 1.4, "detalle": "Organiza contenido extenso en bloques desplegables."},
+        {"cod": "P02", "nombre": "Timeline (línea de tiempo)", "horas": 2.6, "detalle": "Secuencia histórica o de proceso, con hitos y multimedia."},
+        {"cod": "P03", "nombre": "Image Slider / Collage", "horas": 1.6, "detalle": "Comparación visual de casos, muestras o resultados."},
+        {"cod": "P04", "nombre": "Agamotto (comparador de imágenes)", "horas": 2.0, "detalle": "Transición entre imágenes para mostrar cambios por etapas."},
+        {"cod": "P05", "nombre": "Chart (gráfico interactivo)", "horas": 1.8, "detalle": "Gráfico de barras o sectores generado desde datos."},
+        {"cod": "P06", "nombre": "Image Hotspots (imagen con puntos)", "horas": 2.2, "detalle": "Imagen anotada con puntos que despliegan explicaciones."},
+        {"cod": "P07", "nombre": "Virtual Tour 360°", "horas": 6.5, "detalle": "Recorrido navegable en 360°, para laboratorios, plantas o espacios."},
+        {"cod": "P08", "nombre": "Documentation Tool", "horas": 3.2, "detalle": "Guía por pasos que el estudiante completa y exporta como documento."},
+        {"cod": "P09", "nombre": "Audio Recorder / Speak the Words", "horas": 2.4, "detalle": "Grabación de voz del estudiante, con o sin reconocimiento."},
+        {"cod": "P10", "nombre": "Iframe Embedder", "horas": 1.2, "detalle": "Incrusta un simulador externo (GeoGebra, PhET) dentro de Moodle."}
+      ]
+    },
+
+    {
+      "id": "h5p_compuestos",
+      "nombre": "Recursos H5P compuestos",
+      "intro": "Estructuras que contienen otros recursos H5P dentro. Son los de mayor esfuerzo y mayor impacto.",
+      "items": [
+        {"cod": "C01", "nombre": "Course Presentation (presentación interactiva)", "horas": 6.0, "detalle": "Presentación navegable con ejercicios incrustados en las diapositivas. De 12 a 20 diapositivas."},
+        {"cod": "C02", "nombre": "Interactive Book (libro interactivo)", "horas": 12.0, "detalle": "Capítulos con contenido y actividades, con progreso y resumen final. Sustituye a la guía en cursos largos."},
+        {"cod": "C03", "nombre": "Branching Scenario (escenario ramificado)", "horas": 14.0, "detalle": "Caso con decisiones que abren rutas distintas. El recurso de mayor demanda cognitiva del catálogo."},
+        {"cod": "C04", "nombre": "Game Map / Advent Calendar", "horas": 5.0, "detalle": "Mapa de progreso gamificado que agrupa las actividades de una unidad."}
+      ]
+    },
+
+    {
+      "id": "video",
+      "nombre": "Videos interactivos",
+      "intro": "H5P Interactive Video con preguntas incrustadas que pausan la reproducción y reportan calificación.",
+      "items": [
+        {"cod": "V01", "nombre": "Video interactivo, 3 interacciones", "horas": 4.2, "detalle": "Video de 6 a 10 minutos con tres puntos de verificación y resumen final."},
+        {"cod": "V02", "nombre": "Video interactivo, 4 interacciones", "horas": 4.6, "detalle": "Video de 8 a 12 minutos con cuatro puntos de verificación."},
+        {"cod": "V03", "nombre": "Video interactivo, 5 interacciones", "horas": 5.0, "detalle": "Video de 10 a 15 minutos con cinco puntos de verificación."},
+        {"cod": "V04", "nombre": "Producción de video original (complemento)", "horas": 4.0, "detalle": "Grabación y edición del video base: guion, screencast o cámara, rotulación y audio. Se suma a cualquiera de los anteriores."},
+        {"cod": "V05", "nombre": "Curaduría de video existente (complemento)", "horas": 1.0, "detalle": "Selección, verificación de licencia y recorte de material de terceros o del docente."}
+      ]
+    },
+
+    {
+      "id": "scorm",
+      "nombre": "Paquetes SCORM",
+      "intro": "SCORM 1.2 con reporte de estado, puntaje y detalle de respuestas al libro de calificaciones. Se usa cuando se necesita trazabilidad que H5P no da, o cuando el contenido debe ser portable a otro LMS.",
+      "items": [
+        {"cod": "S01", "nombre": "SCORM diagnóstico de entrada", "horas": 5.5, "detalle": "Mide prerrequisitos reales antes de iniciar la unidad. Cada rango de puntaje lleva una decisión pedagógica asociada."},
+        {"cod": "S02", "nombre": "SCORM evaluativo mixto", "horas": 6.5, "detalle": "Evaluación con selección múltiple, verdadero/falso, numérica con tolerancia, emparejar y respuesta corta en un solo paquete."},
+        {"cod": "S03", "nombre": "SCORM de contenido secuenciado", "horas": 8.0, "detalle": "Unidad completa con navegación controlada: no avanza sin superar el bloque anterior."},
+        {"cod": "S04", "nombre": "SCORM con simulación", "horas": 12.0, "detalle": "Simulador de procedimiento paso a paso con registro de cada decisión del estudiante."}
+      ]
+    },
+
+    {
+      "id": "cuestionarios",
+      "nombre": "Cuestionarios de Moodle",
+      "intro": "Banco de preguntas en formato GIFT o XML, importado y configurado en el cuestionario. Todos incluyen retroalimentación general y retroalimentación específica por cada opción incorrecta, y al menos cuatro tipos de pregunta.",
+      "items": [
+        {"cod": "Q01", "nombre": "Cuestionario de 10 preguntas", "horas": 3.2, "detalle": "Evaluación de sesión o control de lectura."},
+        {"cod": "Q02", "nombre": "Cuestionario de 15 preguntas", "horas": 4.0, "detalle": "Evaluación semanal estándar."},
+        {"cod": "Q03", "nombre": "Cuestionario de 20 preguntas", "horas": 4.8, "detalle": "Evaluación de cierre de unidad."},
+        {"cod": "Q04", "nombre": "Examen parcial con banco ampliado", "horas": 7.0, "detalle": "Banco de 40 a 60 ítems categorizado por competencia, con selección aleatoria para que cada estudiante reciba una versión distinta de dificultad equivalente."},
+        {"cod": "Q05", "nombre": "Simulacro tipo Saber Pro", "horas": 8.5, "detalle": "Banco con la estructura, el contexto extenso y la ponderación de la prueba oficial."}
+      ]
+    },
+
+    {
+      "id": "actividades",
+      "nombre": "Actividades de Moodle",
+      "intro": "Actividades nativas del LMS, diseñadas y configuradas con su consigna, criterios y calificación.",
+      "items": [
+        {"cod": "A01", "nombre": "Tarea con rúbrica y solucionario", "horas": 3.8, "detalle": "Situación contextualizada de alta demanda cognitiva, con rúbrica de 4 criterios × 4 niveles visible antes de la entrega y solucionario para el docente."},
+        {"cod": "A02", "nombre": "Taller con coevaluación (Workshop)", "horas": 4.0, "detalle": "Proyecto integrador en cuatro fases con evaluación anónima entre pares y ponderación docente/pares."},
+        {"cod": "A03", "nombre": "Foro guiado", "horas": 1.2, "detalle": "Consigna que obliga a tomar posición, criterios de participación explícitos y rúbrica simple."},
+        {"cod": "A04", "nombre": "Wiki colaborativa", "horas": 2.2, "detalle": "Estructura de páginas, reglas de edición, criterios de valoración del aporte individual."},
+        {"cod": "A05", "nombre": "Glosario colaborativo", "horas": 2.0, "detalle": "Términos semilla, formato de entrada y criterios de aprobación por el docente."},
+        {"cod": "A06", "nombre": "Base de datos colaborativa", "horas": 3.0, "detalle": "Campos, plantillas de vista y criterios; útil para casos, especímenes o repositorios de clase."},
+        {"cod": "A07", "nombre": "Lección con bifurcación", "horas": 5.5, "detalle": "Ruta adaptativa: la respuesta del estudiante determina el siguiente contenido."},
+        {"cod": "A08", "nombre": "Encuesta de percepción", "horas": 1.0, "detalle": "Ítems accionables: cada pregunta debe poder traducirse en un ajuste del curso."},
+        {"cod": "A09", "nombre": "Consulta (Choice)", "horas": 0.6, "detalle": "Votación rápida para activar discusión o tomar una decisión de grupo."},
+        {"cod": "A10", "nombre": "Chat / sesión sincrónica guiada", "horas": 0.8, "detalle": "Guion de sesión, reglas de participación y registro."},
+        {"cod": "A11", "nombre": "Diario reflexivo", "horas": 1.2, "detalle": "Pauta de reflexión periódica con criterios de valoración."}
+      ]
+    },
+
+    {
+      "id": "recursos",
+      "nombre": "Recursos y organización del aula",
+      "intro": "Elementos que estructuran y dan soporte al curso dentro de Moodle.",
+      "items": [
+        {"cod": "R01", "nombre": "Página de Moodle", "horas": 1.0, "detalle": "Contenido breve maquetado directamente en el LMS."},
+        {"cod": "R02", "nombre": "Libro (recurso multipágina)", "horas": 3.5, "detalle": "Contenido extenso organizado en capítulos con índice navegable."},
+        {"cod": "R03", "nombre": "Biblioteca del curso (carpeta curada)", "horas": 2.0, "detalle": "Selección, verificación de licencias, descripción y organización del material de consulta."},
+        {"cod": "R04", "nombre": "Banco de recursos del docente", "horas": 2.5, "detalle": "Material de refuerzo y reemplazo, oculto al estudiante, con su índice de uso."},
+        {"cod": "R05", "nombre": "Etiquetas y estructura de secciones", "horas": 1.5, "detalle": "Encabezados, separadores visuales y nomenclatura consistente en todo el curso."},
+        {"cod": "R06", "nombre": "Archivo o enlace externo", "horas": 0.3, "detalle": "Carga y descripción de un documento o vínculo."},
+        {"cod": "R07", "nombre": "Identidad visual y banner del curso", "horas": 1.5, "detalle": "Banner de cabecera y paleta coherente con la marca de la institución."}
+      ]
+    },
+
+    {
+      "id": "arquitectura",
+      "nombre": "Arquitectura, calidad y acompañamiento",
+      "intro": "El trabajo que sostiene la coherencia del curso. Sin esto, los recursos existen pero el curso no funciona como sistema.",
+      "items": [
+        {"cod": "X01", "nombre": "Diseño curricular del curso", "horas": 10.0, "detalle": "Conversión de la parcelación oficial en arquitectura virtual: mapeo de ejes a competencias, objetivo con verbo observable por sesión, evidencias verificables y verificación de progresión."},
+        {"cod": "X02", "nombre": "Curaduría de material existente", "horas": 4.0, "detalle": "Inventario, detección de duplicados y versiones obsoletas, decisión documentada de qué se usa y qué se archiva."},
+        {"cod": "X03", "nombre": "Arquitectura y configuración en Moodle", "horas": 5.0, "detalle": "Secciones, nomenclatura, restricciones de acceso, finalización de actividad y libro de calificaciones probado con usuarios de prueba."},
+        {"cod": "X04", "nombre": "Auditoría de calidad de cinco niveles", "horas": 6.0, "detalle": "Verificación estructural, pedagógica, de coherencia interna, técnica y de comunicación, con reporte entregable y hallazgos priorizados."},
+        {"cod": "X05", "nombre": "Capacitación docente (sesión de 2 horas)", "horas": 3.5, "detalle": "Recorrido del aula, criterio pedagógico del diseño, manejo de calificaciones y lectura de los reportes de H5P y SCORM."},
+        {"cod": "X06", "nombre": "Soporte técnico-pedagógico (mes)", "horas": 2.5, "detalle": "Atención de incidencias, ajustes menores y recomendaciones a partir de los datos de desempeño del grupo."},
+        {"cod": "X07", "nombre": "Reporte analítico de desempeño", "horas": 4.5, "detalle": "Qué ítems concentran los errores, dónde se abandona cada video y qué ajustar para el siguiente periodo."},
+        {"cod": "X08", "nombre": "Migración desde otro LMS", "horas": 8.0, "detalle": "Traslado de contenidos desde Blackboard, Canvas o Classroom, con verificación de integridad."}
+      ]
+    }
+  ],
+
+  "requerimientos": [
+    {"id": "wcag", "texto": "Accesibilidad WCAG 2.1 nivel AA (lectores de pantalla, navegación por teclado, contraste)"},
+    {"id": "mathjax", "texto": "Notación matemática avanzada con MathJax (integrales, matrices, sumatorias)"},
+    {"id": "marca", "texto": "Aplicación de la identidad visual institucional en todos los recursos"},
+    {"id": "bilingue", "texto": "Contenido bilingüe o en idioma distinto al español"},
+    {"id": "movil", "texto": "Optimización específica para uso en teléfono móvil"},
+    {"id": "offline", "texto": "Materiales descargables para consulta sin conexión"},
+    {"id": "scorm_portable", "texto": "Empaquetado SCORM portable a otro LMS en el futuro"},
+    {"id": "analitica", "texto": "Reportes de analítica de aprendizaje periódicos"},
+    {"id": "propiedad", "texto": "Cesión completa de la propiedad intelectual a la institución"},
+    {"id": "capacitacion", "texto": "Capacitación al equipo docente para mantener el curso"},
+    {"id": "integridad", "texto": "Medidas contra el fraude académico (aleatorización, bancos ampliados, tiempo límite)"},
+    {"id": "acreditacion", "texto": "Documentación de respaldo para procesos de acreditación o registro calificado"}
+  ]
+}

@@ -1,0 +1,913 @@
+<title>Levantamiento de Necesidades AP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --papel:#f5f7f9; --tarjeta:#ffffff; --tinta:#0e1d2a; --suave:#586b7b; --tenue:#8698a7;
+  --linea:#dbe2e9; --linea-fuerte:#c2ccd6;
+  --acento:#0a6357; --acento-suave:#e3efec; --acento-borde:#a6d0c7;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --texto:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --dato:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --papel:#0c151e; --tarjeta:#13202b; --tinta:#e4ecf3; --suave:#93a6b6; --tenue:#6d8093;
+  --linea:#213040; --linea-fuerte:#33485c;
+  --acento:#4fb8a4; --acento-suave:#10302a; --acento-borde:#1d564a;
+}}
+:root[data-theme="dark"]{
+  --papel:#0c151e; --tarjeta:#13202b; --tinta:#e4ecf3; --suave:#93a6b6; --tenue:#6d8093;
+  --linea:#213040; --linea-fuerte:#33485c;
+  --acento:#4fb8a4; --acento-suave:#10302a; --acento-borde:#1d564a;
+}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px;background:var(--papel);color:var(--tinta);
+  font:400 16px/1.55 var(--texto);-webkit-font-smoothing:antialiased}
+.hoja{max-width:1080px;margin:0 auto;padding-block:30px 80px}
+h1,h2,h3{font-family:var(--display);line-height:1.13;margin:0;font-weight:800;text-wrap:balance}
+h1{font-size:clamp(1.6rem,3.4vw,2.2rem);letter-spacing:-.02em}
+h2{font-size:1.22rem;letter-spacing:-.01em;color:var(--acento)}
+h3{font-size:.95rem;font-weight:600}
+p{margin:0}
+.cabecera{border-bottom:3px solid var(--tinta);padding-bottom:18px;margin-bottom:8px}
+.marca{font:600 .7rem/1.4 var(--texto);letter-spacing:.15em;text-transform:uppercase;
+  color:var(--acento);margin-bottom:8px}
+.lead{color:var(--suave);margin-top:10px;max-width:74ch;font-size:.95rem}
+.meta{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:14px;font-size:.8rem;color:var(--tenue)}
+section{margin-top:34px}
+.familia h2{padding-bottom:7px;border-bottom:2px solid var(--acento-borde)}
+.intro{color:var(--suave);font-size:.89rem;margin:10px 0 0;max-width:76ch}
+.nota-tam{font-size:.82rem;color:var(--acento);background:var(--acento-suave);
+  border:1px solid var(--acento-borde);border-radius:8px;padding:8px 12px;margin-top:12px}
+.campos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:16px}
+.campo{display:flex;flex-direction:column;gap:5px;grid-column:span var(--col,1)}
+.campo label{font:600 .71rem/1.3 var(--texto);letter-spacing:.05em;text-transform:uppercase;color:var(--tenue)}
+.campo input{width:100%;padding:9px 11px;border:1px solid var(--linea-fuerte);border-radius:8px;
+  background:var(--tarjeta);color:var(--tinta);font:400 .93rem/1.3 var(--texto)}
+.campo input:focus-visible{outline:2px solid var(--acento);outline-offset:-1px;border-color:var(--acento)}
+.pista{font-size:.72rem;color:var(--tenue)}
+.marco{overflow-x:auto;max-width:100%;margin-top:14px;border:1px solid var(--linea);
+  border-radius:11px;background:var(--tarjeta)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.88rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--linea);vertical-align:top}
+thead th{font:600 .67rem/1.3 var(--texto);letter-spacing:.07em;text-transform:uppercase;
+  color:var(--tenue);border-bottom:1.5px solid var(--linea-fuerte);background:var(--papel)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--acento-suave)}
+td.cod,th.cod{font-family:var(--dato);font-size:.76rem;color:var(--tenue);width:52px;white-space:nowrap}
+td.n,th.n{text-align:right;width:104px}
+.det{display:block;color:var(--suave);font-size:.81rem;line-height:1.45;margin-top:3px;max-width:62ch}
+input.cant{width:74px;padding:6px 8px;border:1px solid var(--linea-fuerte);border-radius:7px;
+  background:var(--papel);color:var(--tinta);font:600 .88rem/1.2 var(--dato);text-align:right}
+input.cant:focus-visible{outline:2px solid var(--acento);outline-offset:-1px;border-color:var(--acento)}
+input.cant.lleno{background:var(--acento-suave);border-color:var(--acento);color:var(--acento)}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:2px;
+  margin-top:16px;background:var(--linea);border:1px solid var(--linea);border-radius:11px;overflow:hidden}
+.check{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;background:var(--tarjeta);
+  cursor:pointer;font-size:.88rem;line-height:1.45}
+.check:hover{background:var(--acento-suave)}
+.check input{margin:3px 0 0;width:17px;height:17px;accent-color:var(--acento);flex-shrink:0}
+textarea{width:100%;min-height:130px;padding:12px 14px;border:1px solid var(--linea-fuerte);
+  border-radius:10px;background:var(--tarjeta);color:var(--tinta);
+  font:400 .93rem/1.6 var(--texto);resize:vertical;margin-top:14px}
+textarea:focus-visible{outline:2px solid var(--acento);outline-offset:-1px;border-color:var(--acento)}
+.resumen{position:sticky;bottom:0;margin-top:40px;background:var(--tinta);color:var(--papel);
+  border-radius:13px 13px 0 0;padding:16px 20px;display:flex;flex-wrap:wrap;gap:12px 28px;
+  align-items:center;justify-content:space-between;box-shadow:0 -6px 24px rgba(0,0,0,.14)}
+.resumen .cifras{display:flex;flex-wrap:wrap;gap:10px 26px}
+.resumen b{display:block;font:800 1.5rem/1.1 var(--display);font-variant-numeric:tabular-nums}
+.resumen span{font-size:.76rem;opacity:.72}
+.acciones{display:flex;flex-wrap:wrap;gap:9px}
+.btn{appearance:none;cursor:pointer;border:1px solid transparent;border-radius:9px;
+  padding:10px 17px;font:600 .86rem/1 var(--texto)}
+.btn.principal{background:var(--acento);color:#fff}
+.btn.secundario{background:transparent;color:var(--papel);border-color:rgba(255,255,255,.4)}
+.btn:hover{filter:brightness(1.1)}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.pie{margin-top:40px;border-top:1px solid var(--linea);padding-top:16px;
+  color:var(--tenue);font-size:.79rem;line-height:1.6}
+.firma{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:30px}
+.firma div{border-top:1px solid var(--linea-fuerte);padding-top:8px;font-size:.78rem;color:var(--tenue)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* ---------------- impresión: se vuelve formulario de papel ---------------- */
+@media print{
+  :root{--papel:#fff;--tarjeta:#fff;--tinta:#000;--suave:#333;--tenue:#555;
+        --linea:#bbb;--linea-fuerte:#888;--acento:#0a6357;--acento-suave:#fff;--acento-borde:#0a6357}
+  @page{size:Letter;margin:14mm 13mm 16mm}
+  body{padding:0;background:#fff;font-size:10.5pt}
+  .hoja{max-width:none;padding:0}
+  .resumen,.acciones,.no-print{display:none!important}
+  .familia{break-inside:avoid-page;page-break-inside:avoid}
+  table{min-width:0;font-size:9pt}
+  .marco{overflow:visible;border-color:#888}
+  thead{display:table-header-group}
+  tr{break-inside:avoid;page-break-inside:avoid}
+  tbody tr:hover{background:none}
+  .det{font-size:8pt;max-width:none}
+  input.cant{width:52px;border:1px solid #666;background:#fff;color:#000}
+  .campo input{border:0;border-bottom:1px solid #666;border-radius:0;background:#fff;padding:4px 2px}
+  /* El selector nativo de fecha no tiene sentido en papel: queda una línea en blanco. */
+  input[type=date]{color:transparent}
+  input[type=date]::-webkit-calendar-picker-indicator,
+  input[type=date]::-webkit-datetime-edit{display:none}
+  /* Ninguna sección ni campo se parte entre páginas. */
+  section{break-inside:avoid-page;page-break-inside:avoid}
+  .campo{break-inside:avoid;page-break-inside:avoid}
+  .checks{break-inside:avoid;page-break-inside:avoid}
+  h2{break-after:avoid;page-break-after:avoid}
+  .check input{width:12px;height:12px}
+  .checks{gap:0;background:#fff}
+  .check{border:1px solid #ccc;margin:-0.5px}
+  textarea{border:1px solid #666;min-height:90px;background:#fff}
+  h1{font-size:19pt} h2{font-size:12.5pt}
+  .cabecera{border-bottom:2.5px solid #000}
+  a{color:#000;text-decoration:none}
+}
+</style>
+<div class="hoja">
+<header class="cabecera">
+  <p class="marca">Desarrollos AP · Diseño y producción de cursos universitarios virtuales</p>
+  <h1>Formulario de levantamiento de necesidades</h1>
+  <p class="lead">Este formulario recoge lo que su curso necesita, recurso por recurso.
+  No hay que llenarlo todo: marque únicamente las cantidades de lo que le interese y
+  deje en blanco el resto. Con esta información preparamos una propuesta económica
+  ajustada a su alcance real, sin partidas genéricas.</p>
+  <div class="meta">
+    <span>Versión 18 de septiembre de 2026</span>
+    <span>Tiempo estimado de diligenciamiento: 15 minutos</span>
+    <span>Ninguna casilla es obligatoria</span>
+  </div>
+</header>
+<section>
+  <h2>A · Identificación</h2>
+  <div class="campos">
+<div class="campo" style="--col:2">
+  <label for="inst">Institución</label>
+  <input type="text" id="inst" name="inst" value="">
+</div>
+<div class="campo" style="--col:2">
+  <label for="programa">Programa o facultad</label>
+  <input type="text" id="programa" name="programa" value="">
+</div>
+<div class="campo" style="--col:2">
+  <label for="curso">Curso o asignatura</label>
+  <input type="text" id="curso" name="curso" value="">
+</div>
+<div class="campo" style="--col:1">
+  <label for="codigo">Código del curso</label>
+  <input type="text" id="codigo" name="codigo" value="">
+</div>
+<div class="campo" style="--col:1">
+  <label for="docente">Docente titular</label>
+  <input type="text" id="docente" name="docente" value="">
+</div>
+<div class="campo" style="--col:1">
+  <label for="contacto">Persona de contacto</label>
+  <input type="text" id="contacto" name="contacto" value="">
+</div>
+<div class="campo" style="--col:1">
+  <label for="correo">Correo</label>
+  <input type="email" id="correo" name="correo" value="">
+</div>
+<div class="campo" style="--col:1">
+  <label for="telefono">Teléfono</label>
+  <input type="tel" id="telefono" name="telefono" value="">
+</div>
+  </div>
+</section>
+<section>
+  <h2>B · Contexto del curso</h2>
+  <p class="intro">Estos datos determinan el tamaño del proyecto y permiten estimar el
+  retorno de la inversión para la institución.</p>
+  <div class="campos">
+<div class="campo" style="--col:1">
+  <label for="estudiantes">Estudiantes por cohorte</label>
+  <input type="number" id="estudiantes" name="estudiantes" value="">
+  <span class="pista">Matriculados en el curso por periodo</span>
+</div>
+<div class="campo" style="--col:1">
+  <label for="cohortes">Cohortes por año</label>
+  <input type="number" id="cohortes" name="cohortes" value="">
+  <span class="pista">Según el calendario académico</span>
+</div>
+<div class="campo" style="--col:1">
+  <label for="semanas">Semanas del curso</label>
+  <input type="number" id="semanas" name="semanas" value="">
+</div>
+<div class="campo" style="--col:1">
+  <label for="parciales">Número de parciales</label>
+  <input type="number" id="parciales" name="parciales" value="">
+</div>
+<div class="campo" style="--col:1">
+  <label for="sesiones">Sesiones por semana</label>
+  <input type="number" id="sesiones" name="sesiones" value="">
+</div>
+<div class="campo" style="--col:1">
+  <label for="inicio">Fecha deseada de puesta en marcha</label>
+  <input type="date" id="inicio" name="inicio" value="">
+</div>
+<div class="campo" style="--col:2">
+  <label for="lms">LMS y versión</label>
+  <input type="text" id="lms" name="lms" value="">
+  <span class="pista">Por ejemplo: Moodle 4.3</span>
+</div>
+<div class="campo" style="--col:2">
+  <label for="url">URL del aula</label>
+  <input type="url" id="url" name="url" value="">
+</div>
+  </div>
+</section>
+<section>
+  <h2>C · Punto de partida</h2>
+  <p class="intro">Aprovechar material existente reduce el costo de forma sustancial:
+  adecuar un recurso que ya tienen cuesta el 40 % de producirlo desde cero.</p>
+  <div class="checks">
+    <label class="check"><input type="checkbox" id="p-parcelacion"><span>Existe parcelación o microcurrículo oficial aprobado</span></label>
+    <label class="check"><input type="checkbox" id="p-aula"><span>Ya existe un aula montada en el LMS</span></label>
+    <label class="check"><input type="checkbox" id="p-material"><span>Hay material digital previo reutilizable</span></label>
+    <label class="check"><input type="checkbox" id="p-videos"><span>Hay videos propios grabados</span></label>
+    <label class="check"><input type="checkbox" id="p-banco"><span>Hay banco de preguntas existente</span></label>
+    <label class="check"><input type="checkbox" id="p-h5p"><span>El LMS ya tiene el plugin H5P instalado y activo</span></label>
+    <label class="check"><input type="checkbox" id="p-cero"><span>Se parte de cero: no hay material previo</span></label>
+    <label class="check"><input type="checkbox" id="p-migracion"><span>El contenido está en otro LMS y hay que migrarlo</span></label>
+  </div>
+</section>
+<section class="familia" id="fam-guias">
+  <h2>D · Guías de aprendizaje en HTML</h2>
+  <p class="intro">Documento autocontenido que se publica en Moodle como Página o Archivo. Los cinco niveles se diferencian por lo que el estudiante puede hacer dentro de la guía, no por la extensión del contenido teórico.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">Cantidad</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">G1</td>
+  <td><strong>Guía teórica</strong><span class="det">Desarrollo conceptual con definiciones formales, notación, ejemplos pareados (uno mecánico y uno aplicado por concepto), errores frecuentes señalados, síntesis y referencias bibliográficas.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="guias" data-cod="G1" id="c-guias-G1" aria-label="Guía teórica"></td>
+</tr>
+<tr>
+  <td class="cod">G2</td>
+  <td><strong>Guía teórica con actividades</strong><span class="det">Todo lo anterior más ejercicios autoevaluables dentro de la guía: verificación inmediata, contador de aciertos y retroalimentación por respuesta.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="guias" data-cod="G2" id="c-guias-G2" aria-label="Guía teórica con actividades"></td>
+</tr>
+<tr>
+  <td class="cod">G3</td>
+  <td><strong>Guía teórica con simuladores</strong><span class="det">Guía teórica más simulador manipulable: el estudiante mueve parámetros y observa el efecto en una gráfica, figura o modelo construido en SVG o Canvas.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="guias" data-cod="G3" id="c-guias-G3" aria-label="Guía teórica con simuladores"></td>
+</tr>
+<tr>
+  <td class="cod">G4</td>
+  <td><strong>Guía teórica con actividades y simuladores</strong><span class="det">Combina los ejercicios autoevaluables con los simuladores manipulables.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="guias" data-cod="G4" id="c-guias-G4" aria-label="Guía teórica con actividades y simuladores"></td>
+</tr>
+<tr>
+  <td class="cod">G5</td>
+  <td><strong>Guía integral con prueba tipo Saber</strong><span class="det">Guía completa más un bloque de preguntas con la estructura de las pruebas Saber Pro: contexto extenso, competencias declaradas y retroalimentación que explica por qué cada distractor es incorrecto.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="guias" data-cod="G5" id="c-guias-G5" aria-label="Guía integral con prueba tipo Saber"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="familia" id="fam-h5p_evaluativos">
+  <h2>E · Actividades H5P con banco de preguntas</h2>
+  <p class="intro">Se entregan empaquetadas como .h5p, listas para importar. Cada una se ofrece en tres tamaños según el número de ítems. Todas reportan calificación al libro de notas de Moodle y llevan umbral de aprobación configurado.</p>
+  <p class="nota-tam">Indique cuántas unidades necesita de cada tamaño. Puede combinar: por ejemplo, 4 de 10 preguntas y 2 de 20.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">10 preguntas</th><th class="n">15 preguntas</th><th class="n">20 preguntas</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">H01</td>
+  <td><strong>Question Set (batería mixta)</strong><span class="det">Combina varios formatos en una sola actividad con navegación por puntos.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H01-10" id="c-h5p_evaluativos-H01-10" aria-label="Question Set (batería mixta), 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H01-15" id="c-h5p_evaluativos-H01-15" aria-label="Question Set (batería mixta), 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H01-20" id="c-h5p_evaluativos-H01-20" aria-label="Question Set (batería mixta), 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H02</td>
+  <td><strong>Single Choice Set</strong><span class="det">Secuencia rápida de preguntas de una sola respuesta, con ritmo de juego.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H02-10" id="c-h5p_evaluativos-H02-10" aria-label="Single Choice Set, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H02-15" id="c-h5p_evaluativos-H02-15" aria-label="Single Choice Set, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H02-20" id="c-h5p_evaluativos-H02-20" aria-label="Single Choice Set, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H03</td>
+  <td><strong>Multiple Choice</strong><span class="det">Selección múltiple con una o varias respuestas correctas.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H03-10" id="c-h5p_evaluativos-H03-10" aria-label="Multiple Choice, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H03-15" id="c-h5p_evaluativos-H03-15" aria-label="Multiple Choice, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H03-20" id="c-h5p_evaluativos-H03-20" aria-label="Multiple Choice, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H04</td>
+  <td><strong>True / False</strong><span class="det">Afirmaciones para validar o refutar, útil para detectar errores conceptuales.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H04-10" id="c-h5p_evaluativos-H04-10" aria-label="True / False, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H04-15" id="c-h5p_evaluativos-H04-15" aria-label="True / False, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H04-20" id="c-h5p_evaluativos-H04-20" aria-label="True / False, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H05</td>
+  <td><strong>Fill in the Blanks (completar)</strong><span class="det">Texto con espacios que el estudiante completa; admite pistas por espacio.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H05-10" id="c-h5p_evaluativos-H05-10" aria-label="Fill in the Blanks (completar), 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H05-15" id="c-h5p_evaluativos-H05-15" aria-label="Fill in the Blanks (completar), 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H05-20" id="c-h5p_evaluativos-H05-20" aria-label="Fill in the Blanks (completar), 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H06</td>
+  <td><strong>Drag the Words (arrastrar palabras)</strong><span class="det">Fija vocabulario formal y notación asociando términos a su lugar.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H06-10" id="c-h5p_evaluativos-H06-10" aria-label="Drag the Words (arrastrar palabras), 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H06-15" id="c-h5p_evaluativos-H06-15" aria-label="Drag the Words (arrastrar palabras), 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H06-20" id="c-h5p_evaluativos-H06-20" aria-label="Drag the Words (arrastrar palabras), 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H07</td>
+  <td><strong>Mark the Words (marcar palabras)</strong><span class="det">El estudiante señala en un texto los términos que cumplen una condición.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H07-10" id="c-h5p_evaluativos-H07-10" aria-label="Mark the Words (marcar palabras), 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H07-15" id="c-h5p_evaluativos-H07-15" aria-label="Mark the Words (marcar palabras), 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H07-20" id="c-h5p_evaluativos-H07-20" aria-label="Mark the Words (marcar palabras), 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H08</td>
+  <td><strong>Drag and Drop (arrastrar y soltar)</strong><span class="det">Clasificación sobre imágenes o esquemas; ideal para mapas y diagramas.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H08-10" id="c-h5p_evaluativos-H08-10" aria-label="Drag and Drop (arrastrar y soltar), 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H08-15" id="c-h5p_evaluativos-H08-15" aria-label="Drag and Drop (arrastrar y soltar), 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H08-20" id="c-h5p_evaluativos-H08-20" aria-label="Drag and Drop (arrastrar y soltar), 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H09</td>
+  <td><strong>Summary (síntesis)</strong><span class="det">El estudiante elige la afirmación correcta que resume cada bloque.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H09-10" id="c-h5p_evaluativos-H09-10" aria-label="Summary (síntesis), 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H09-15" id="c-h5p_evaluativos-H09-15" aria-label="Summary (síntesis), 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H09-20" id="c-h5p_evaluativos-H09-20" aria-label="Summary (síntesis), 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H10</td>
+  <td><strong>Arithmetic Quiz</strong><span class="det">Batería de cálculo con tiempo, para automatizar operaciones básicas.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H10-10" id="c-h5p_evaluativos-H10-10" aria-label="Arithmetic Quiz, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H10-15" id="c-h5p_evaluativos-H10-15" aria-label="Arithmetic Quiz, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H10-20" id="c-h5p_evaluativos-H10-20" aria-label="Arithmetic Quiz, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H11</td>
+  <td><strong>Crossword (crucigrama)</strong><span class="det">Consolidación de vocabulario técnico en formato lúdico.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H11-10" id="c-h5p_evaluativos-H11-10" aria-label="Crossword (crucigrama), 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H11-15" id="c-h5p_evaluativos-H11-15" aria-label="Crossword (crucigrama), 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H11-20" id="c-h5p_evaluativos-H11-20" aria-label="Crossword (crucigrama), 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H12</td>
+  <td><strong>Memory Game</strong><span class="det">Emparejamiento por memoria entre concepto y representación.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H12-10" id="c-h5p_evaluativos-H12-10" aria-label="Memory Game, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H12-15" id="c-h5p_evaluativos-H12-15" aria-label="Memory Game, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H12-20" id="c-h5p_evaluativos-H12-20" aria-label="Memory Game, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H13</td>
+  <td><strong>Flashcards</strong><span class="det">Tarjetas de repaso con respuesta escrita y validación.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H13-10" id="c-h5p_evaluativos-H13-10" aria-label="Flashcards, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H13-15" id="c-h5p_evaluativos-H13-15" aria-label="Flashcards, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H13-20" id="c-h5p_evaluativos-H13-20" aria-label="Flashcards, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H14</td>
+  <td><strong>Dialog Cards</strong><span class="det">Tarjetas de dos caras para estudio autónomo, sin calificación.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H14-10" id="c-h5p_evaluativos-H14-10" aria-label="Dialog Cards, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H14-15" id="c-h5p_evaluativos-H14-15" aria-label="Dialog Cards, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H14-20" id="c-h5p_evaluativos-H14-20" aria-label="Dialog Cards, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H15</td>
+  <td><strong>Sort the Paragraphs</strong><span class="det">Ordenar pasos de un procedimiento o etapas de un proceso.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H15-10" id="c-h5p_evaluativos-H15-10" aria-label="Sort the Paragraphs, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H15-15" id="c-h5p_evaluativos-H15-15" aria-label="Sort the Paragraphs, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H15-20" id="c-h5p_evaluativos-H15-20" aria-label="Sort the Paragraphs, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H16</td>
+  <td><strong>Image Sequencing</strong><span class="det">Ordenar imágenes según una secuencia lógica o temporal.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H16-10" id="c-h5p_evaluativos-H16-10" aria-label="Image Sequencing, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H16-15" id="c-h5p_evaluativos-H16-15" aria-label="Image Sequencing, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H16-20" id="c-h5p_evaluativos-H16-20" aria-label="Image Sequencing, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H17</td>
+  <td><strong>Find the Hotspot / Image Hotspots</strong><span class="det">Identificar zonas en una imagen: partes, regiones o componentes.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H17-10" id="c-h5p_evaluativos-H17-10" aria-label="Find the Hotspot / Image Hotspots, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H17-15" id="c-h5p_evaluativos-H17-15" aria-label="Find the Hotspot / Image Hotspots, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H17-20" id="c-h5p_evaluativos-H17-20" aria-label="Find the Hotspot / Image Hotspots, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H18</td>
+  <td><strong>Guess the Answer</strong><span class="det">Imagen con respuesta revelable, para activar conocimientos previos.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H18-10" id="c-h5p_evaluativos-H18-10" aria-label="Guess the Answer, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H18-15" id="c-h5p_evaluativos-H18-15" aria-label="Guess the Answer, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H18-20" id="c-h5p_evaluativos-H18-20" aria-label="Guess the Answer, 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H19</td>
+  <td><strong>Essay (respuesta abierta)</strong><span class="det">Respuesta redactada con retroalimentación por palabras clave.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H19-10" id="c-h5p_evaluativos-H19-10" aria-label="Essay (respuesta abierta), 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H19-15" id="c-h5p_evaluativos-H19-15" aria-label="Essay (respuesta abierta), 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H19-20" id="c-h5p_evaluativos-H19-20" aria-label="Essay (respuesta abierta), 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">H20</td>
+  <td><strong>Personality Quiz</strong><span class="det">Cuestionario de perfil, útil en diagnóstico de estilos o intereses.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H20-10" id="c-h5p_evaluativos-H20-10" aria-label="Personality Quiz, 10 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H20-15" id="c-h5p_evaluativos-H20-15" aria-label="Personality Quiz, 15 preguntas"></td><td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_evaluativos" data-cod="H20-20" id="c-h5p_evaluativos-H20-20" aria-label="Personality Quiz, 20 preguntas"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="familia" id="fam-h5p_presentacion">
+  <h2>F · Recursos H5P de presentación y exploración</h2>
+  <p class="intro">No llevan banco de preguntas: organizan, muestran o dejan explorar contenido. Se cotizan por unidad.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">Cantidad</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">P01</td>
+  <td><strong>Accordion (contenido plegable)</strong><span class="det">Organiza contenido extenso en bloques desplegables.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P01" id="c-h5p_presentacion-P01" aria-label="Accordion (contenido plegable)"></td>
+</tr>
+<tr>
+  <td class="cod">P02</td>
+  <td><strong>Timeline (línea de tiempo)</strong><span class="det">Secuencia histórica o de proceso, con hitos y multimedia.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P02" id="c-h5p_presentacion-P02" aria-label="Timeline (línea de tiempo)"></td>
+</tr>
+<tr>
+  <td class="cod">P03</td>
+  <td><strong>Image Slider / Collage</strong><span class="det">Comparación visual de casos, muestras o resultados.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P03" id="c-h5p_presentacion-P03" aria-label="Image Slider / Collage"></td>
+</tr>
+<tr>
+  <td class="cod">P04</td>
+  <td><strong>Agamotto (comparador de imágenes)</strong><span class="det">Transición entre imágenes para mostrar cambios por etapas.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P04" id="c-h5p_presentacion-P04" aria-label="Agamotto (comparador de imágenes)"></td>
+</tr>
+<tr>
+  <td class="cod">P05</td>
+  <td><strong>Chart (gráfico interactivo)</strong><span class="det">Gráfico de barras o sectores generado desde datos.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P05" id="c-h5p_presentacion-P05" aria-label="Chart (gráfico interactivo)"></td>
+</tr>
+<tr>
+  <td class="cod">P06</td>
+  <td><strong>Image Hotspots (imagen con puntos)</strong><span class="det">Imagen anotada con puntos que despliegan explicaciones.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P06" id="c-h5p_presentacion-P06" aria-label="Image Hotspots (imagen con puntos)"></td>
+</tr>
+<tr>
+  <td class="cod">P07</td>
+  <td><strong>Virtual Tour 360°</strong><span class="det">Recorrido navegable en 360°, para laboratorios, plantas o espacios.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P07" id="c-h5p_presentacion-P07" aria-label="Virtual Tour 360°"></td>
+</tr>
+<tr>
+  <td class="cod">P08</td>
+  <td><strong>Documentation Tool</strong><span class="det">Guía por pasos que el estudiante completa y exporta como documento.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P08" id="c-h5p_presentacion-P08" aria-label="Documentation Tool"></td>
+</tr>
+<tr>
+  <td class="cod">P09</td>
+  <td><strong>Audio Recorder / Speak the Words</strong><span class="det">Grabación de voz del estudiante, con o sin reconocimiento.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P09" id="c-h5p_presentacion-P09" aria-label="Audio Recorder / Speak the Words"></td>
+</tr>
+<tr>
+  <td class="cod">P10</td>
+  <td><strong>Iframe Embedder</strong><span class="det">Incrusta un simulador externo (GeoGebra, PhET) dentro de Moodle.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_presentacion" data-cod="P10" id="c-h5p_presentacion-P10" aria-label="Iframe Embedder"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="familia" id="fam-h5p_compuestos">
+  <h2>G · Recursos H5P compuestos</h2>
+  <p class="intro">Estructuras que contienen otros recursos H5P dentro. Son los de mayor esfuerzo y mayor impacto.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">Cantidad</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">C01</td>
+  <td><strong>Course Presentation (presentación interactiva)</strong><span class="det">Presentación navegable con ejercicios incrustados en las diapositivas. De 12 a 20 diapositivas.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_compuestos" data-cod="C01" id="c-h5p_compuestos-C01" aria-label="Course Presentation (presentación interactiva)"></td>
+</tr>
+<tr>
+  <td class="cod">C02</td>
+  <td><strong>Interactive Book (libro interactivo)</strong><span class="det">Capítulos con contenido y actividades, con progreso y resumen final. Sustituye a la guía en cursos largos.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_compuestos" data-cod="C02" id="c-h5p_compuestos-C02" aria-label="Interactive Book (libro interactivo)"></td>
+</tr>
+<tr>
+  <td class="cod">C03</td>
+  <td><strong>Branching Scenario (escenario ramificado)</strong><span class="det">Caso con decisiones que abren rutas distintas. El recurso de mayor demanda cognitiva del catálogo.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_compuestos" data-cod="C03" id="c-h5p_compuestos-C03" aria-label="Branching Scenario (escenario ramificado)"></td>
+</tr>
+<tr>
+  <td class="cod">C04</td>
+  <td><strong>Game Map / Advent Calendar</strong><span class="det">Mapa de progreso gamificado que agrupa las actividades de una unidad.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="h5p_compuestos" data-cod="C04" id="c-h5p_compuestos-C04" aria-label="Game Map / Advent Calendar"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="familia" id="fam-video">
+  <h2>H · Videos interactivos</h2>
+  <p class="intro">H5P Interactive Video con preguntas incrustadas que pausan la reproducción y reportan calificación.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">Cantidad</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">V01</td>
+  <td><strong>Video interactivo, 3 interacciones</strong><span class="det">Video de 6 a 10 minutos con tres puntos de verificación y resumen final.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="video" data-cod="V01" id="c-video-V01" aria-label="Video interactivo, 3 interacciones"></td>
+</tr>
+<tr>
+  <td class="cod">V02</td>
+  <td><strong>Video interactivo, 4 interacciones</strong><span class="det">Video de 8 a 12 minutos con cuatro puntos de verificación.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="video" data-cod="V02" id="c-video-V02" aria-label="Video interactivo, 4 interacciones"></td>
+</tr>
+<tr>
+  <td class="cod">V03</td>
+  <td><strong>Video interactivo, 5 interacciones</strong><span class="det">Video de 10 a 15 minutos con cinco puntos de verificación.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="video" data-cod="V03" id="c-video-V03" aria-label="Video interactivo, 5 interacciones"></td>
+</tr>
+<tr>
+  <td class="cod">V04</td>
+  <td><strong>Producción de video original (complemento)</strong><span class="det">Grabación y edición del video base: guion, screencast o cámara, rotulación y audio. Se suma a cualquiera de los anteriores.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="video" data-cod="V04" id="c-video-V04" aria-label="Producción de video original (complemento)"></td>
+</tr>
+<tr>
+  <td class="cod">V05</td>
+  <td><strong>Curaduría de video existente (complemento)</strong><span class="det">Selección, verificación de licencia y recorte de material de terceros o del docente.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="video" data-cod="V05" id="c-video-V05" aria-label="Curaduría de video existente (complemento)"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="familia" id="fam-scorm">
+  <h2>I · Paquetes SCORM</h2>
+  <p class="intro">SCORM 1.2 con reporte de estado, puntaje y detalle de respuestas al libro de calificaciones. Se usa cuando se necesita trazabilidad que H5P no da, o cuando el contenido debe ser portable a otro LMS.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">Cantidad</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">S01</td>
+  <td><strong>SCORM diagnóstico de entrada</strong><span class="det">Mide prerrequisitos reales antes de iniciar la unidad. Cada rango de puntaje lleva una decisión pedagógica asociada.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="scorm" data-cod="S01" id="c-scorm-S01" aria-label="SCORM diagnóstico de entrada"></td>
+</tr>
+<tr>
+  <td class="cod">S02</td>
+  <td><strong>SCORM evaluativo mixto</strong><span class="det">Evaluación con selección múltiple, verdadero/falso, numérica con tolerancia, emparejar y respuesta corta en un solo paquete.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="scorm" data-cod="S02" id="c-scorm-S02" aria-label="SCORM evaluativo mixto"></td>
+</tr>
+<tr>
+  <td class="cod">S03</td>
+  <td><strong>SCORM de contenido secuenciado</strong><span class="det">Unidad completa con navegación controlada: no avanza sin superar el bloque anterior.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="scorm" data-cod="S03" id="c-scorm-S03" aria-label="SCORM de contenido secuenciado"></td>
+</tr>
+<tr>
+  <td class="cod">S04</td>
+  <td><strong>SCORM con simulación</strong><span class="det">Simulador de procedimiento paso a paso con registro de cada decisión del estudiante.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="scorm" data-cod="S04" id="c-scorm-S04" aria-label="SCORM con simulación"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="familia" id="fam-cuestionarios">
+  <h2>J · Cuestionarios de Moodle</h2>
+  <p class="intro">Banco de preguntas en formato GIFT o XML, importado y configurado en el cuestionario. Todos incluyen retroalimentación general y retroalimentación específica por cada opción incorrecta, y al menos cuatro tipos de pregunta.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">Cantidad</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">Q01</td>
+  <td><strong>Cuestionario de 10 preguntas</strong><span class="det">Evaluación de sesión o control de lectura.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="cuestionarios" data-cod="Q01" id="c-cuestionarios-Q01" aria-label="Cuestionario de 10 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">Q02</td>
+  <td><strong>Cuestionario de 15 preguntas</strong><span class="det">Evaluación semanal estándar.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="cuestionarios" data-cod="Q02" id="c-cuestionarios-Q02" aria-label="Cuestionario de 15 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">Q03</td>
+  <td><strong>Cuestionario de 20 preguntas</strong><span class="det">Evaluación de cierre de unidad.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="cuestionarios" data-cod="Q03" id="c-cuestionarios-Q03" aria-label="Cuestionario de 20 preguntas"></td>
+</tr>
+<tr>
+  <td class="cod">Q04</td>
+  <td><strong>Examen parcial con banco ampliado</strong><span class="det">Banco de 40 a 60 ítems categorizado por competencia, con selección aleatoria para que cada estudiante reciba una versión distinta de dificultad equivalente.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="cuestionarios" data-cod="Q04" id="c-cuestionarios-Q04" aria-label="Examen parcial con banco ampliado"></td>
+</tr>
+<tr>
+  <td class="cod">Q05</td>
+  <td><strong>Simulacro tipo Saber Pro</strong><span class="det">Banco con la estructura, el contexto extenso y la ponderación de la prueba oficial.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="cuestionarios" data-cod="Q05" id="c-cuestionarios-Q05" aria-label="Simulacro tipo Saber Pro"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="familia" id="fam-actividades">
+  <h2>K · Actividades de Moodle</h2>
+  <p class="intro">Actividades nativas del LMS, diseñadas y configuradas con su consigna, criterios y calificación.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">Cantidad</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">A01</td>
+  <td><strong>Tarea con rúbrica y solucionario</strong><span class="det">Situación contextualizada de alta demanda cognitiva, con rúbrica de 4 criterios × 4 niveles visible antes de la entrega y solucionario para el docente.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A01" id="c-actividades-A01" aria-label="Tarea con rúbrica y solucionario"></td>
+</tr>
+<tr>
+  <td class="cod">A02</td>
+  <td><strong>Taller con coevaluación (Workshop)</strong><span class="det">Proyecto integrador en cuatro fases con evaluación anónima entre pares y ponderación docente/pares.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A02" id="c-actividades-A02" aria-label="Taller con coevaluación (Workshop)"></td>
+</tr>
+<tr>
+  <td class="cod">A03</td>
+  <td><strong>Foro guiado</strong><span class="det">Consigna que obliga a tomar posición, criterios de participación explícitos y rúbrica simple.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A03" id="c-actividades-A03" aria-label="Foro guiado"></td>
+</tr>
+<tr>
+  <td class="cod">A04</td>
+  <td><strong>Wiki colaborativa</strong><span class="det">Estructura de páginas, reglas de edición, criterios de valoración del aporte individual.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A04" id="c-actividades-A04" aria-label="Wiki colaborativa"></td>
+</tr>
+<tr>
+  <td class="cod">A05</td>
+  <td><strong>Glosario colaborativo</strong><span class="det">Términos semilla, formato de entrada y criterios de aprobación por el docente.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A05" id="c-actividades-A05" aria-label="Glosario colaborativo"></td>
+</tr>
+<tr>
+  <td class="cod">A06</td>
+  <td><strong>Base de datos colaborativa</strong><span class="det">Campos, plantillas de vista y criterios; útil para casos, especímenes o repositorios de clase.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A06" id="c-actividades-A06" aria-label="Base de datos colaborativa"></td>
+</tr>
+<tr>
+  <td class="cod">A07</td>
+  <td><strong>Lección con bifurcación</strong><span class="det">Ruta adaptativa: la respuesta del estudiante determina el siguiente contenido.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A07" id="c-actividades-A07" aria-label="Lección con bifurcación"></td>
+</tr>
+<tr>
+  <td class="cod">A08</td>
+  <td><strong>Encuesta de percepción</strong><span class="det">Ítems accionables: cada pregunta debe poder traducirse en un ajuste del curso.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A08" id="c-actividades-A08" aria-label="Encuesta de percepción"></td>
+</tr>
+<tr>
+  <td class="cod">A09</td>
+  <td><strong>Consulta (Choice)</strong><span class="det">Votación rápida para activar discusión o tomar una decisión de grupo.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A09" id="c-actividades-A09" aria-label="Consulta (Choice)"></td>
+</tr>
+<tr>
+  <td class="cod">A10</td>
+  <td><strong>Chat / sesión sincrónica guiada</strong><span class="det">Guion de sesión, reglas de participación y registro.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A10" id="c-actividades-A10" aria-label="Chat / sesión sincrónica guiada"></td>
+</tr>
+<tr>
+  <td class="cod">A11</td>
+  <td><strong>Diario reflexivo</strong><span class="det">Pauta de reflexión periódica con criterios de valoración.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="actividades" data-cod="A11" id="c-actividades-A11" aria-label="Diario reflexivo"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="familia" id="fam-recursos">
+  <h2>L · Recursos y organización del aula</h2>
+  <p class="intro">Elementos que estructuran y dan soporte al curso dentro de Moodle.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">Cantidad</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">R01</td>
+  <td><strong>Página de Moodle</strong><span class="det">Contenido breve maquetado directamente en el LMS.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="recursos" data-cod="R01" id="c-recursos-R01" aria-label="Página de Moodle"></td>
+</tr>
+<tr>
+  <td class="cod">R02</td>
+  <td><strong>Libro (recurso multipágina)</strong><span class="det">Contenido extenso organizado en capítulos con índice navegable.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="recursos" data-cod="R02" id="c-recursos-R02" aria-label="Libro (recurso multipágina)"></td>
+</tr>
+<tr>
+  <td class="cod">R03</td>
+  <td><strong>Biblioteca del curso (carpeta curada)</strong><span class="det">Selección, verificación de licencias, descripción y organización del material de consulta.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="recursos" data-cod="R03" id="c-recursos-R03" aria-label="Biblioteca del curso (carpeta curada)"></td>
+</tr>
+<tr>
+  <td class="cod">R04</td>
+  <td><strong>Banco de recursos del docente</strong><span class="det">Material de refuerzo y reemplazo, oculto al estudiante, con su índice de uso.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="recursos" data-cod="R04" id="c-recursos-R04" aria-label="Banco de recursos del docente"></td>
+</tr>
+<tr>
+  <td class="cod">R05</td>
+  <td><strong>Etiquetas y estructura de secciones</strong><span class="det">Encabezados, separadores visuales y nomenclatura consistente en todo el curso.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="recursos" data-cod="R05" id="c-recursos-R05" aria-label="Etiquetas y estructura de secciones"></td>
+</tr>
+<tr>
+  <td class="cod">R06</td>
+  <td><strong>Archivo o enlace externo</strong><span class="det">Carga y descripción de un documento o vínculo.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="recursos" data-cod="R06" id="c-recursos-R06" aria-label="Archivo o enlace externo"></td>
+</tr>
+<tr>
+  <td class="cod">R07</td>
+  <td><strong>Identidad visual y banner del curso</strong><span class="det">Banner de cabecera y paleta coherente con la marca de la institución.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="recursos" data-cod="R07" id="c-recursos-R07" aria-label="Identidad visual y banner del curso"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="familia" id="fam-arquitectura">
+  <h2>M · Arquitectura, calidad y acompañamiento</h2>
+  <p class="intro">El trabajo que sostiene la coherencia del curso. Sin esto, los recursos existen pero el curso no funciona como sistema.</p>
+  <div class="marco">
+    <table>
+      <thead><tr><th class="cod">Cód.</th><th>Recurso</th><th class="n">Cantidad</th></tr></thead>
+      <tbody>
+<tr>
+  <td class="cod">X01</td>
+  <td><strong>Diseño curricular del curso</strong><span class="det">Conversión de la parcelación oficial en arquitectura virtual: mapeo de ejes a competencias, objetivo con verbo observable por sesión, evidencias verificables y verificación de progresión.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="arquitectura" data-cod="X01" id="c-arquitectura-X01" aria-label="Diseño curricular del curso"></td>
+</tr>
+<tr>
+  <td class="cod">X02</td>
+  <td><strong>Curaduría de material existente</strong><span class="det">Inventario, detección de duplicados y versiones obsoletas, decisión documentada de qué se usa y qué se archiva.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="arquitectura" data-cod="X02" id="c-arquitectura-X02" aria-label="Curaduría de material existente"></td>
+</tr>
+<tr>
+  <td class="cod">X03</td>
+  <td><strong>Arquitectura y configuración en Moodle</strong><span class="det">Secciones, nomenclatura, restricciones de acceso, finalización de actividad y libro de calificaciones probado con usuarios de prueba.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="arquitectura" data-cod="X03" id="c-arquitectura-X03" aria-label="Arquitectura y configuración en Moodle"></td>
+</tr>
+<tr>
+  <td class="cod">X04</td>
+  <td><strong>Auditoría de calidad de cinco niveles</strong><span class="det">Verificación estructural, pedagógica, de coherencia interna, técnica y de comunicación, con reporte entregable y hallazgos priorizados.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="arquitectura" data-cod="X04" id="c-arquitectura-X04" aria-label="Auditoría de calidad de cinco niveles"></td>
+</tr>
+<tr>
+  <td class="cod">X05</td>
+  <td><strong>Capacitación docente (sesión de 2 horas)</strong><span class="det">Recorrido del aula, criterio pedagógico del diseño, manejo de calificaciones y lectura de los reportes de H5P y SCORM.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="arquitectura" data-cod="X05" id="c-arquitectura-X05" aria-label="Capacitación docente (sesión de 2 horas)"></td>
+</tr>
+<tr>
+  <td class="cod">X06</td>
+  <td><strong>Soporte técnico-pedagógico (mes)</strong><span class="det">Atención de incidencias, ajustes menores y recomendaciones a partir de los datos de desempeño del grupo.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="arquitectura" data-cod="X06" id="c-arquitectura-X06" aria-label="Soporte técnico-pedagógico (mes)"></td>
+</tr>
+<tr>
+  <td class="cod">X07</td>
+  <td><strong>Reporte analítico de desempeño</strong><span class="det">Qué ítems concentran los errores, dónde se abandona cada video y qué ajustar para el siguiente periodo.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="arquitectura" data-cod="X07" id="c-arquitectura-X07" aria-label="Reporte analítico de desempeño"></td>
+</tr>
+<tr>
+  <td class="cod">X08</td>
+  <td><strong>Migración desde otro LMS</strong><span class="det">Traslado de contenidos desde Blackboard, Canvas o Classroom, con verificación de integridad.</span></td>
+  <td class="n"><input type="number" min="0" step="1" placeholder="0" class="cant" data-fam="arquitectura" data-cod="X08" id="c-arquitectura-X08" aria-label="Migración desde otro LMS"></td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section>
+  <h2>N · Requerimientos especiales</h2>
+  <p class="intro">Marque los que apliquen. Algunos cambian el esfuerzo de producción
+  de forma significativa y conviene definirlos antes de cotizar.</p>
+  <div class="checks">
+<label class="check"><input type="checkbox" id="req-wcag" class="req"><span>Accesibilidad WCAG 2.1 nivel AA (lectores de pantalla, navegación por teclado, contraste)</span></label>
+<label class="check"><input type="checkbox" id="req-mathjax" class="req"><span>Notación matemática avanzada con MathJax (integrales, matrices, sumatorias)</span></label>
+<label class="check"><input type="checkbox" id="req-marca" class="req"><span>Aplicación de la identidad visual institucional en todos los recursos</span></label>
+<label class="check"><input type="checkbox" id="req-bilingue" class="req"><span>Contenido bilingüe o en idioma distinto al español</span></label>
+<label class="check"><input type="checkbox" id="req-movil" class="req"><span>Optimización específica para uso en teléfono móvil</span></label>
+<label class="check"><input type="checkbox" id="req-offline" class="req"><span>Materiales descargables para consulta sin conexión</span></label>
+<label class="check"><input type="checkbox" id="req-scorm_portable" class="req"><span>Empaquetado SCORM portable a otro LMS en el futuro</span></label>
+<label class="check"><input type="checkbox" id="req-analitica" class="req"><span>Reportes de analítica de aprendizaje periódicos</span></label>
+<label class="check"><input type="checkbox" id="req-propiedad" class="req"><span>Cesión completa de la propiedad intelectual a la institución</span></label>
+<label class="check"><input type="checkbox" id="req-capacitacion" class="req"><span>Capacitación al equipo docente para mantener el curso</span></label>
+<label class="check"><input type="checkbox" id="req-integridad" class="req"><span>Medidas contra el fraude académico (aleatorización, bancos ampliados, tiempo límite)</span></label>
+<label class="check"><input type="checkbox" id="req-acreditacion" class="req"><span>Documentación de respaldo para procesos de acreditación o registro calificado</span></label>
+  </div>
+</section>
+<section>
+  <h2>O · Observaciones</h2>
+  <p class="intro">Restricciones de presupuesto, plazos, decisiones ya tomadas,
+  experiencias previas que no funcionaron, o cualquier cosa que debamos saber.</p>
+  <textarea id="obs" placeholder="Escriba aquí…"></textarea>
+</section>
+<div class="firma">
+  <div>Nombre y cargo de quien diligencia</div>
+  <div>Fecha</div>
+  <div>Firma</div>
+</div>
+<p class="pie">
+  Desarrollos AP produce cada recurso con apoyo de inteligencia artificial para el
+  borrador y el código base, y revisión profesional humana de todo lo generado:
+  cada ejemplo se resuelve, cada ítem se responde y cada paquete se prueba en el LMS
+  antes de entregarse. Dos de cada tres horas de producción son criterio humano.
+  Este formulario no constituye una oferta comercial; con él se elabora la propuesta
+  económica, que se entrega por separado.
+</p>
+<div class="resumen no-print" id="resumen">
+  <div class="cifras">
+    <div><b id="tTipos">0</b><span>tipos seleccionados</span></div>
+    <div><b id="tUnidades">0</b><span>unidades en total</span></div>
+    <div><b id="tReqs">0</b><span>requerimientos especiales</span></div>
+  </div>
+  <div class="acciones">
+    <button type="button" class="btn secundario" id="btnLimpiar">Limpiar</button>
+    <button type="button" class="btn secundario" id="btnImprimir">Imprimir o guardar PDF</button>
+    <button type="button" class="btn principal" id="btnCopiar">Copiar resumen</button>
+  </div>
+</div>
+</div>
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  var cants = [].slice.call(document.querySelectorAll(".cant"));
+  var reqs  = [].slice.call(document.querySelectorAll(".req"));
+  function guardar(){
+    try {
+      var d = {};
+      [].forEach.call(document.querySelectorAll("input,textarea"), function(el){
+        if(!el.id) return;
+        d[el.id] = el.type === "checkbox" ? el.checked : el.value;
+      });
+      localStorage.setItem("ap-formulario", JSON.stringify(d));
+    } catch(e){}
+  }
+  function restaurar(){
+    try {
+      var d = JSON.parse(localStorage.getItem("ap-formulario") || "{}");
+      Object.keys(d).forEach(function(k){
+        var el = $(k);
+        if(!el) return;
+        if(el.type === "checkbox") el.checked = !!d[k]; else el.value = d[k];
+      });
+    } catch(e){}
+  }
+  function recalcular(){
+    var tipos = 0, unidades = 0;
+    cants.forEach(function(i){
+      var v = parseInt(i.value, 10);
+      var hay = isFinite(v) && v > 0;
+      i.classList.toggle("lleno", hay);
+      if(hay){ tipos++; unidades += v; }
+    });
+    $("tTipos").textContent = tipos;
+    $("tUnidades").textContent = unidades;
+    $("tReqs").textContent = reqs.filter(function(r){ return r.checked; }).length;
+    guardar();
+  }
+  function resumen(){
+    var L = [];
+    var inst = $("inst").value.trim(), curso = $("curso").value.trim();
+    L.push("SOLICITUD DE PROPUESTA · DESARROLLOS AP");
+    if(inst)  L.push("Institución: " + inst);
+    if(curso) L.push("Curso: " + curso);
+    ["programa","docente","contacto","correo","telefono","estudiantes","cohortes",
+     "semanas","parciales","sesiones","inicio","lms","url"].forEach(function(k){
+      var el = $(k);
+      if(el && el.value.trim()){
+        var lab = el.previousElementSibling ? el.previousElementSibling.textContent : k;
+        L.push(lab + ": " + el.value.trim());
+      }
+    });
+    var partida = [];
+    ["p-parcelacion","p-aula","p-material","p-videos","p-banco","p-h5p","p-cero","p-migracion"]
+      .forEach(function(k){
+        var el = $(k);
+        if(el && el.checked) partida.push(el.parentElement.textContent.trim());
+      });
+    if(partida.length){ L.push("", "PUNTO DE PARTIDA"); partida.forEach(function(p){ L.push("  - " + p); }); }
+    L.push("", "RECURSOS SOLICITADOS");
+    var porFam = {};
+    cants.forEach(function(i){
+      var v = parseInt(i.value, 10);
+      if(!isFinite(v) || v <= 0) return;
+      var tr = i.closest("tr");
+      var fam = i.closest("section").querySelector("h2").textContent.trim();
+      var nom = tr.querySelector("strong").textContent.trim();
+      var th = i.closest("table").querySelectorAll("thead th");
+      var idx = [].indexOf.call(tr.children, i.closest("td"));
+      var etq = th[idx] ? th[idx].textContent.trim() : "";
+      if(etq && etq.toLowerCase() !== "cantidad") nom += " (" + etq + ")";
+      (porFam[fam] = porFam[fam] || []).push("  - " + nom + " x " + v +
+        "   [" + i.dataset.cod + "]");
+    });
+    Object.keys(porFam).forEach(function(f){
+      L.push("", f);
+      porFam[f].forEach(function(l){ L.push(l); });
+    });
+    if(!Object.keys(porFam).length) L.push("  (ninguno marcado)");
+    var rs = reqs.filter(function(r){ return r.checked; })
+                 .map(function(r){ return "  - " + r.parentElement.textContent.trim(); });
+    if(rs.length){ L.push("", "REQUERIMIENTOS ESPECIALES"); rs.forEach(function(l){ L.push(l); }); }
+    var o = $("obs").value.trim();
+    if(o) L.push("", "OBSERVACIONES", o);
+    L.push("", "Total: " + $("tTipos").textContent + " tipos, " +
+           $("tUnidades").textContent + " unidades.");
+    return L.join("\n");
+  }
+  cants.forEach(function(i){ i.addEventListener("input", recalcular); });
+  reqs.forEach(function(r){ r.addEventListener("change", recalcular); });
+  [].forEach.call(document.querySelectorAll("input,textarea"), function(el){
+    el.addEventListener("change", guardar);
+    el.addEventListener("input", guardar);
+  });
+  $("btnImprimir").addEventListener("click", function(){ window.print(); });
+  $("btnCopiar").addEventListener("click", function(){
+    var t = resumen(), btn = this, txt = btn.textContent;
+    function fin(ok){
+      btn.textContent = ok ? "Copiado" : "Copie manualmente";
+      setTimeout(function(){ btn.textContent = txt; }, 2200);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){ fin(true); }, function(){ fin(false); });
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = t; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); fin(true); } catch(e){ fin(false); }
+      ta.remove();
+    }
+  });
+  $("btnLimpiar").addEventListener("click", function(){
+    if(!confirm("¿Borrar todo lo diligenciado?")) return;
+    [].forEach.call(document.querySelectorAll("input,textarea"), function(el){
+      if(el.type === "checkbox") el.checked = false; else el.value = "";
+    });
+    try { localStorage.removeItem("ap-formulario"); } catch(e){}
+    recalcular();
+  });
+  restaurar();
+  recalcular();
+})();
+</script>
