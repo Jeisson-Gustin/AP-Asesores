@@ -27,6 +27,7 @@ exige más, la respuesta no es bajar el precio sino reducir el alcance.
 | Primera implementación USC | 1 | 34 % | Descuento de acceso a una institución nueva, ya comprometido en la propuesta del 17 de septiembre de 2026 ($ 25.730.000 sin IVA). Se sostiene porque queda por encima del piso de rentabilidad y porque abre la puerta al paquete de ciencias básicas. Es irrepetible: las renovaciones y los cursos adicionales vuelven a la escala estándar de descuentos por volumen. |
 | Paquete ciencias básicas USC | 2 | 22 % | Plan semestral (18 %) más 4 puntos que honran el precio de primera implementación ya comprometido para Razonamiento Cuantitativo. Así la universidad no percibe que contratar el segundo curso encarece el primero. |
 | Continuidad Universidad Santiago de Cali | 1 | 34 % | Iguala el descuento concedido en Razonamiento Cuantitativo para que la universidad no perciba un alza entre una propuesta y la siguiente. Decisión comercial explícita: convierte en permanente un descuento documentado como irrepetible, así que el margen queda en 31 % (zona ajustada). Antes de extenderlo a un tercer contrato conviene revisar la escala de descuentos. |
+| Ajuste a presupuesto | 1 | 34 % | Medio punto sobre el 34,1 % de continuidad para cerrar el precio en diez millones más IVA y entrar bajo el techo de $ 12.000.000 con holgura. El alcance se dimensionó contra el presupuesto, no al revés: es la forma correcta de responder a un techo, en lugar de recortar el precio de un alcance mayor. |
 
 ### Universidad Santiago de Cali — Razonamiento Cuantitativo (CN111)
 
@@ -221,3 +222,38 @@ Esquema de 12 sesiones organizadas en 3 parciales de 4 sesiones. El material con
 **Argumento de venta.** Producir estos recursos íntegramente desde cero costaría $ 23.330.010. Aprovechar lo que la institución ya tiene le ahorra $ 0.
 
 > Asume 3 parciales de 4 sesiones. La guía de parcial cuesta el 58 % de producir cuatro guías de sesión por separado; el ahorro viene del encuadre, la maquetación y el QA, que se hacen una sola vez.
+
+### Universidad Santiago de Cali — Tres parciales · propuesta ajustada a presupuesto
+
+Material completo para trabajar los tres parciales dentro de un techo de $ 12.000.000. Cada parcial lleva su guía de aprendizaje, su actividad H5P de refuerzo, su cuestionario en Moodle y su taller práctico de alta demanda con rúbrica y solucionario. A eso se suma un recurso propio de cada etapa: el primer parcial abre con un diagnóstico SCORM que mide los prerrequisitos reales del grupo y un foro guiado; el segundo suma un foro y tarjetas de repaso interactivas para consolidar antes del examen; el tercero cierra con un workshop de coevaluación entre pares como proyecto integrador. 17 componentes en total.
+
+| Componente | Cantidad | Precio nuevo | Precio adecuación | Subtotal |
+| --- | --- | ---: | ---: | ---: |
+| Actividad H5P de refuerzo | 3 nuevo | $ 434.390 | $ 173.756 | $ 1.303.170 |
+| Tarjetas de repaso (H5P Course Presentation) | 1 nuevo | $ 279.510 | $ 111.804 | $ 279.510 |
+| Quiz evaluativo Moodle (GIFT) | 3 nuevo | $ 707.850 | $ 283.140 | $ 2.123.550 |
+| Taller práctico de alta demanda con rúbrica | 3 nuevo | $ 695.750 | $ 278.300 | $ 2.087.250 |
+| Workshop con coevaluación (proyecto integrador) | 1 nuevo | $ 665.500 | $ 266.200 | $ 665.500 |
+| Foro guiado | 2 nuevo | $ 205.700 | $ 82.280 | $ 411.400 |
+| Paquete SCORM diagnóstico | 1 nuevo | $ 871.200 | $ 348.480 | $ 871.200 |
+| Guía de aprendizaje de parcial (HTML) | 3 nuevo | $ 2.511.960 | $ 1.004.784 | $ 7.535.880 |
+
+| Concepto | Valor |
+| --- | ---: |
+| Subtotal | $ 15.277.460 |
+| Descuento · Ajuste a presupuesto (34 %) | ($ 5.270.724) |
+| **Total sin IVA** | **$ 10.006.736** |
+| IVA (19 %, sujeto a régimen) | $ 1.901.280 |
+| **Total con IVA** | **$ 11.908.016** |
+
+**Control interno (no se muestra al cliente):**
+
+- Horas de producción: 85.0 (61.2 h de criterio humano, 72 %)
+- Costo total: $ 6.944.300
+- Precio piso: $ 9.259.067 → **dentro del piso**
+- Margen efectivo: **30.6 %**
+- Descuento máximo admisible: **39.4 %**
+
+**Argumento de venta.** Producir estos recursos íntegramente desde cero costaría $ 15.277.460. Aprovechar lo que la institución ya tiene le ahorra $ 0.
+
+> Distribución por parcial — P1: guía, diagnóstico SCORM, actividad H5P, quiz, taller y foro. P2: guía, actividad H5P, quiz, taller, foro y tarjetas de repaso. P3: guía, actividad H5P, quiz, taller y workshop de coevaluación.

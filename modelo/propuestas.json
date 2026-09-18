@@ -48,6 +48,12 @@
       "cursos": "1",
       "descuento": 0.341,
       "razon": "Iguala el descuento concedido en Razonamiento Cuantitativo para que la universidad no perciba un alza entre una propuesta y la siguiente. Decisión comercial explícita: convierte en permanente un descuento documentado como irrepetible, así que el margen queda en 31 % (zona ajustada). Antes de extenderlo a un tercer contrato conviene revisar la escala de descuentos."
+    },
+    "ajuste_presupuesto_usc": {
+      "nombre": "Ajuste a presupuesto",
+      "cursos": "1",
+      "descuento": 0.345,
+      "razon": "Medio punto sobre el 34,1 % de continuidad para cerrar el precio en diez millones más IVA y entrar bajo el techo de $ 12.000.000 con holgura. El alcance se dimensionó contra el presupuesto, no al revés: es la forma correcta de responder a un techo, en lugar de recortar el precio de un alcance mayor."
     }
   },
   "propuestas": {
@@ -179,6 +185,30 @@
         "control_calidad": 1
       },
       "nota": "Asume 3 parciales de 4 sesiones. La guía de parcial cuesta el 58 % de producir cuatro guías de sesión por separado; el ahorro viene del encuadre, la maquetación y el QA, que se hacen una sola vez."
+    },
+    "usc_parciales_presupuesto_12m": {
+      "institucion": "Universidad Santiago de Cali",
+      "curso": "Tres parciales · propuesta ajustada a presupuesto",
+      "semanas": 12,
+      "plan": "ajuste_presupuesto_usc",
+      "contexto": "Material completo para trabajar los tres parciales dentro de un techo de $ 12.000.000. Cada parcial lleva su guía de aprendizaje, su actividad H5P de refuerzo, su cuestionario en Moodle y su taller práctico de alta demanda con rúbrica y solucionario. A eso se suma un recurso propio de cada etapa: el primer parcial abre con un diagnóstico SCORM que mide los prerrequisitos reales del grupo y un foro guiado; el segundo suma un foro y tarjetas de repaso interactivas para consolidar antes del examen; el tercero cierra con un workshop de coevaluación entre pares como proyecto integrador. 17 componentes en total.",
+      "nuevos": {
+        "guia_html_parcial": 3,
+        "actividad_h5p": 3,
+        "quiz_moodle": 3,
+        "taller_practico": 3,
+        "scorm_diagnostico": 1,
+        "foro_guiado": 2,
+        "tarjetas_repaso_h5p": 1,
+        "workshop_coevaluacion": 1
+      },
+      "adecuacion": {},
+      "opcionales": {
+        "diseno_curricular": 1,
+        "config_moodle": 1,
+        "control_calidad": 1
+      },
+      "nota": "Distribución por parcial — P1: guía, diagnóstico SCORM, actividad H5P, quiz, taller y foro. P2: guía, actividad H5P, quiz, taller, foro y tarjetas de repaso. P3: guía, actividad H5P, quiz, taller y workshop de coevaluación."
     }
   }
 }
