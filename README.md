@@ -44,6 +44,7 @@ El catálogo completo, con el desglose de horas fase por fase, está en
 | [05 · Cotizaciones](docs/05-cotizaciones.md) | Cotizaciones vigentes con control de margen | Mixto |
 | [06 · Protocolo de revisión con IA](docs/06-protocolo-revision-ia.md) | Cómo se usa la IA y qué revisa un humano | **Cliente** |
 | [07 · Propuesta USC](docs/07-propuesta-usc.md) | Propuesta ejecutiva para la Universidad Santiago de Cali | **Cliente** |
+| [08 · Auditoría de calidad y precio](docs/08-auditoria-calidad-y-precio.md) | Evaluación de los recursos reales frente al mercado; posición de precio | Interno |
 
 Los documentos 01 y 05 **se generan** desde el modelo. No editarlos a mano.
 
