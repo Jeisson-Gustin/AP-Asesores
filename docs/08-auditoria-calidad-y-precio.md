@@ -49,10 +49,20 @@ No es un documento maquetado: es un objeto de aprendizaje interactivo.
 MathJax, atributos ARIA. Y las respuestas de los 24 ejercicios **no salen del
 navegador**: el estudiante trabaja y el docente nunca se entera.
 
-### 2.2 Guía de igualdad e identidad algebraica — simple
+### 2.2 Guía de igualdad e identidad algebraica — también interactiva
 
-Del mismo periodo, sin interactividad alguna: cero botones, cero campos. Es
-contenido expositivo con tablas. Se cobra igual que la anterior y no es lo mismo.
+*Corrección: una versión anterior de este informe afirmaba que esta guía no
+tenía interactividad. Era un error de medición mío y queda rectificado.*
+
+Tiene 88 controles, 14 campos de entrada, seis manejadores de eventos y 23
+puntos de verificación. Señala errores frecuentes de forma explícita («Error
+frecuente: al intercambiar los miembros no se cambian los signos») y plantea
+diagnósticos de error («¿Cuál fue su error? Debió multiplicar en lugar de
+dividir»), que es justo el tipo de retroalimentación que el modelo instruccional
+pide.
+
+Es del mismo nivel que la guía de cónicas. **No hay, por tanto, evidencia de
+dispersión de calidad entre las guías examinadas: las dos son buenas.**
 
 ### 2.3 Taller de teoría de conjuntos — buen contenido, producto incompleto
 
@@ -130,7 +140,7 @@ es el origen típico de publicar la versión equivocada.
 
 ## 3. El patrón, y cuánto vale
 
-Los cinco recursos dicen lo mismo:
+Los cinco recursos, pese a venir de meses distintos, dicen lo mismo:
 
 > **El contenido disciplinar es sólido. Lo que falta, de forma sistemática, es la
 > capa pedagógica formal: objetivos, competencias, referencias, rúbricas,
