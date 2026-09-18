@@ -1,0 +1,96 @@
+{
+  "_descripcion": "Parámetros base del modelo de costos y precios de Desarrollos AP. Editar aquí para recalibrar todo el modelo: los documentos y cotizaciones se regeneran con generar_documentos.py.",
+  "moneda": "COP",
+  "anio_vigencia": 2026,
+
+  "roles": {
+    "socio": {
+      "nombre": "Dirección pedagógica y revisión científica",
+      "tarifa_costo_hora": 90000,
+      "descripcion": "Socio fundador. Diseño curricular, revisión pedagógica, didáctica y científica. Núcleo no delegable ni automatizable.",
+      "justificacion_tarifa": "Costo de oportunidad de un consultor senior con posgrado en educación/ciencias en Colombia 2026. Equivale a ~$14.4M/mes sobre 160 h facturables."
+    },
+    "di": {
+      "nombre": "Diseño instruccional y redacción",
+      "tarifa_costo_hora": 55000,
+      "descripcion": "Colaborador por obra. Conducción de la generación asistida por IA, redacción de retroalimentación, documentación.",
+      "justificacion_tarifa": "Contrato por obra para profesional con experiencia en diseño instruccional; mercado Colombia 2026."
+    },
+    "prod": {
+      "nombre": "Producción técnica y montaje LMS",
+      "tarifa_costo_hora": 45000,
+      "descripcion": "Colaborador por obra. Maquetación HTML, empaquetado H5P/SCORM, montaje y configuración en Moodle, pruebas de calificación.",
+      "justificacion_tarifa": "Tecnólogo/profesional con experiencia en Moodle y H5P; contrato por obra."
+    },
+    "graf": {
+      "nombre": "Diseño gráfico y multimedia",
+      "tarifa_costo_hora": 50000,
+      "descripcion": "Colaborador por obra. Identidad visual del curso, banners, edición de video.",
+      "justificacion_tarifa": "Freelance de diseño gráfico con experiencia en material educativo."
+    }
+  },
+
+  "fases": {
+    "diseno": {
+      "nombre": "Decisión pedagógica",
+      "automatizable": false,
+      "descripcion": "Definición del objetivo, la progresión, el contexto y los criterios. La IA no decide esto: requiere conocimiento del programa, del perfil del estudiante y de la disciplina."
+    },
+    "generacion_ia": {
+      "nombre": "Generación asistida por IA",
+      "automatizable": true,
+      "descripcion": "Borrador de contenido, código base HTML/CSS, estructura de ítems, esqueleto SCORM. Se conduce con prompts especificados; nunca se publica sin revisión."
+    },
+    "revision_cientifica": {
+      "nombre": "Revisión científica",
+      "automatizable": false,
+      "descripcion": "Verificación disciplinar: definiciones, notación, resolución completa de cada ejemplo y cada ítem, validez de distractores y tolerancias numéricas."
+    },
+    "revision_didactica": {
+      "nombre": "Revisión didáctica",
+      "automatizable": false,
+      "descripcion": "Progresión cognitiva, pertinencia del contexto, calidad de la retroalimentación, alineación con competencias y evidencias."
+    },
+    "produccion_tecnica": {
+      "nombre": "Producción técnica",
+      "automatizable": true,
+      "descripcion": "Maquetación, empaquetado, montaje y configuración en el LMS. Parcialmente acelerada por IA en el código base."
+    },
+    "qa": {
+      "nombre": "Validación y QA",
+      "automatizable": false,
+      "descripcion": "Pruebas reales en Moodle: importación, render, registro de calificaciones, comportamiento en móvil. Un recurso no se entrega sin pasar por aquí."
+    }
+  },
+
+  "costos_indirectos_mensuales": {
+    "herramientas_ia_y_software": {
+      "valor": 650000,
+      "detalle": "Suscripciones de IA, Lumi/H5P, edición de video y diseño, hosting de Moodle de pruebas, almacenamiento."
+    },
+    "administracion_y_legal": {
+      "valor": 500000,
+      "detalle": "Contabilidad, facturación electrónica, cámara de comercio, asesoría jurídica de contratos."
+    }
+  },
+  "capacidad": {
+    "cursos_paralelos": 3,
+    "cursos_ano_objetivo": 8,
+    "horas_socio_facturables_mes": 120,
+    "nota": "Equipo: socio fundador + 1-2 colaboradores por obra. La capacidad está limitada por las horas de criterio del socio, no por las de producción."
+  },
+  "overhead_pct": 0.10,
+  "_nota_overhead": "Costos fijos anuales (13.8M) repartidos sobre 8 cursos/año ≈ 1.7M por curso ≈ 8.6% del costo directo de un curso nuevo. Se redondea a 10% para absorber imprevistos y tiempo comercial no facturable.",
+
+  "factor_adecuacion": 0.40,
+  "_nota_adecuacion": "Un recurso preexistente se adecúa por el 40% de las horas de producción nueva: se audita el contenido, se verifican claves y notación, se estandariza al modelo instruccional y se reprueba en Moodle. Factor ya comprometido en la propuesta USC de septiembre de 2026.",
+
+  "multiplicador_precio_lista": 2.2,
+  "_nota_multiplicador": "Precio de lista = costo total x 2.2 (margen bruto 54.5%). Cubre tiempo comercial no facturable, riesgo de reproceso, garantía post-entrega, reinversión en el modelo y utilidad. Estándar de consultoría especializada.",
+
+  "piso_rentabilidad_pct": 0.25,
+  "_nota_piso": "Margen mínimo aceptable sobre precio de venta. Por debajo del 25% la operación no cubre el riesgo de reproceso ni la reinversión: es la línea que ningún descuento puede cruzar.",
+
+  "iva_pct": 0.19,
+  "_nota_iva": "Verificar el régimen tributario aplicable. Los servicios de educación pueden estar excluidos según el artículo 476 del Estatuto Tributario; confirmar con el contador y con la oficina de compras de cada institución."
+}

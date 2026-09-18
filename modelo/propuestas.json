@@ -1,0 +1,137 @@
+{
+  "_descripcion": "Propuestas concretas por institución. `nuevos` son recursos producidos desde cero; `adecuacion` son recursos que la institución ya tiene y que se auditan, estandarizan y reprueban al factor de adecuación.",
+  "planes_comerciales": {
+    "piloto": {
+      "nombre": "Piloto de parcial",
+      "cursos": "1 parcial",
+      "descuento": 0.1,
+      "razon": "Entrada de bajo riesgo para una institución nueva. El descuento es de acceso, no de volumen: se recupera en el contrato del curso completo."
+    },
+    "curso_unico": {
+      "nombre": "Curso único",
+      "cursos": "1",
+      "descuento": 0.0,
+      "razon": "Precio de lista. Sin volumen no hay economía de escala que trasladar."
+    },
+    "semestral": {
+      "nombre": "Plan semestral",
+      "cursos": "3 a 5",
+      "descuento": 0.18,
+      "razon": "El diseño curricular, la identidad visual, las plantillas y la capacitación docente se amortizan entre varios cursos del mismo programa."
+    },
+    "programa": {
+      "nombre": "Plan programa",
+      "cursos": "6 a 10",
+      "descuento": 0.28,
+      "razon": "Digitalización del ciclo de ciencias básicas completo. Se estandariza una sola vez y se replica; la curva de aprendizaje del equipo con la institución ya está pagada."
+    },
+    "partner": {
+      "nombre": "Partner estratégico",
+      "cursos": "10 o más, contrato plurianual",
+      "descuento": 0.35,
+      "razon": "Ingreso recurrente garantizado y planeación de capacidad a 12 meses. El descuento se compensa con ocupación asegurada y cero costo comercial de renovación."
+    },
+    "primera_implementacion": {
+      "nombre": "Primera implementación USC",
+      "cursos": "1",
+      "descuento": 0.341,
+      "razon": "Descuento de acceso a una institución nueva, ya comprometido en la propuesta del 17 de septiembre de 2026 ($ 25.730.000 sin IVA). Se sostiene porque queda por encima del piso de rentabilidad y porque abre la puerta al paquete de ciencias básicas. Es irrepetible: las renovaciones y los cursos adicionales vuelven a la escala estándar de descuentos por volumen."
+    },
+    "paquete_usc_ciencias": {
+      "nombre": "Paquete ciencias básicas USC",
+      "cursos": "2",
+      "descuento": 0.22,
+      "razon": "Plan semestral (18 %) más 4 puntos que honran el precio de primera implementación ya comprometido para Razonamiento Cuantitativo. Así la universidad no percibe que contratar el segundo curso encarece el primero."
+    }
+  },
+  "propuestas": {
+    "usc_razonamiento_cuantitativo": {
+      "institucion": "Universidad Santiago de Cali",
+      "curso": "Razonamiento Cuantitativo (CN111)",
+      "semanas": 16,
+      "plan": "primera_implementacion",
+      "contexto": "Aula existente con 147 recursos publicados. La propuesta reorganiza el curso en 16 semanas con ruta de trabajo homogénea, aprovecha el material que ya funciona y produce solo lo que falta.",
+      "nuevos": {
+        "guia_html": 2,
+        "actividad_h5p": 2,
+        "scorm_diagnostico": 2,
+        "foro_guiado": 1,
+        "encuesta_cierre": 1,
+        "diseno_curricular": 1,
+        "curaduria_recursos": 1,
+        "config_moodle": 1,
+        "control_calidad": 1,
+        "banner_curso": 1,
+        "capacitacion_docente": 2,
+        "soporte_mensual": 6
+      },
+      "adecuacion": {
+        "guia_html": 14,
+        "video_interactivo_h5p": 13,
+        "actividad_h5p": 30,
+        "quiz_moodle": 13,
+        "taller_practico": 15,
+        "workshop_coevaluacion": 1,
+        "scorm_diagnostico": 2,
+        "foro_guiado": 6,
+        "examen_parcial": 3,
+        "encuesta_cierre": 2
+      }
+    },
+    "usc_quimica_general": {
+      "institucion": "Universidad Santiago de Cali",
+      "curso": "Química General",
+      "semanas": 16,
+      "plan": "curso_unico",
+      "contexto": "Curso de ciencias básicas con componente experimental. Estructura equivalente a Razonamiento Cuantitativo, con material de partida más limitado y mayor exigencia de revisión científica disciplinar.",
+      "nuevos": {
+        "diseno_curricular": 1,
+        "curaduria_recursos": 1,
+        "guia_html": 8,
+        "guia_repaso": 3,
+        "video_interactivo_h5p": 8,
+        "actividad_h5p": 10,
+        "quiz_moodle": 8,
+        "taller_practico": 8,
+        "workshop_coevaluacion": 2,
+        "examen_parcial": 2,
+        "scorm_diagnostico": 3,
+        "foro_guiado": 3,
+        "tarjetas_repaso_h5p": 3,
+        "encuesta_cierre": 3,
+        "banner_curso": 1,
+        "config_moodle": 1,
+        "control_calidad": 1,
+        "capacitacion_docente": 2,
+        "soporte_mensual": 6
+      },
+      "adecuacion": {
+        "guia_html": 5,
+        "video_interactivo_h5p": 8,
+        "actividad_h5p": 6,
+        "quiz_moodle": 8,
+        "taller_practico": 7,
+        "examen_parcial": 1
+      },
+      "nota": "Composición estimada a partir del alcance típico de un curso de química general de 16 semanas. Requiere ajuste tras el inventario real del aula, que se realiza en la fase de curaduría."
+    },
+    "usc_paquete_ciencias_basicas": {
+      "institucion": "Universidad Santiago de Cali",
+      "curso": "Paquete ciencias básicas: Razonamiento Cuantitativo + Química General",
+      "semanas": 32,
+      "plan": "paquete_usc_ciencias",
+      "contexto": "Los dos cursos contratados juntos. El diseño curricular, la identidad visual, las plantillas y la capacitación docente se producen una sola vez y sirven a ambos.",
+      "combina": [
+        "usc_razonamiento_cuantitativo",
+        "usc_quimica_general"
+      ],
+      "ahorro_compartido": {
+        "diseno_curricular": 0.5,
+        "banner_curso": 1,
+        "config_moodle": 0.3,
+        "capacitacion_docente": 2
+      },
+      "_nota_ahorro": "Unidades que se descuentan del total al contratar ambos cursos, porque el trabajo no se duplica."
+    }
+  }
+}
