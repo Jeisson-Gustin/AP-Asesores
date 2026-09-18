@@ -71,6 +71,7 @@ genera contenido sin revisarlo.
 | Sesión de capacitación docente (2 horas) | 3.5 | 86 % | $ 327.250 | $ 436.333 | $ 719.950 |
 | Soporte técnico-pedagógico (mes) | 2.5 | 40 % | $ 173.250 | $ 231.000 | $ 381.150 |
 | Reporte analítico de desempeño del curso | 4.5 | 67 % | $ 368.500 | $ 491.333 | $ 810.700 |
+| Guía de aprendizaje de parcial (HTML) | 13.3 | 77 % | $ 1.141.800 | $ 1.522.400 | $ 2.511.960 |
 
 ## Desglose recurso por recurso
 
@@ -640,6 +641,38 @@ Análisis de los datos que deja el curso: ítems con mayor tasa de error, puntos
 
 - Cada hallazgo viene con evidencia y con una acción propuesta
 - Identifica los ítems y recursos que están fallando, no solo promedios
+
+### Guía de aprendizaje de parcial (HTML)
+
+Guía única en HTML que cubre las sesiones de un parcial completo (4 en el esquema estándar). Misma estructura de 8 secciones obligatorias, pero con 12 a 16 conceptos, sus ejemplos pareados y sus errores frecuentes, articulados en una sola progresión con navegación por sesión.
+
+**Entregable.** Archivo .html autocontenido con CSS embebido, MathJax y tabla de contenidos de dos niveles (parcial y sesión), validado en W3C y probado en Moodle.
+
+| Fase | Rol | Horas | ¿Criterio humano? | Costo |
+| --- | --- | ---: | --- | ---: |
+| Decisión pedagógica | Dirección pedagógica y revisión científica | 2.5 | sí | $ 225.000 |
+| Generación asistida por IA | Diseño instruccional y redacción | 1.2 | — | $ 66.000 |
+| Revisión científica | Dirección pedagógica y revisión científica | 5.0 | sí | $ 450.000 |
+| Revisión didáctica | Dirección pedagógica y revisión científica | 2.0 | sí | $ 180.000 |
+| Producción técnica | Producción técnica y montaje LMS | 1.8 | — | $ 81.000 |
+| Validación y QA | Producción técnica y montaje LMS | 0.8 | sí | $ 36.000 |
+
+**Total: 13.3 horas**, de las cuales 10.3 (77 %) son criterio humano no automatizable.
+
+- Costo directo: $ 1.038.000
+- Costo total con overhead (10 %): $ 1.141.800
+- Precio piso (margen 25 %): $ 1.522.400
+- **Precio de lista: $ 2.511.960**
+- Adecuación de un recurso existente (40 %): $ 1.004.784
+
+**Criterios de calidad verificados antes de entregar:**
+
+- Cada concepto tiene definición, ejemplo mecánico y ejemplo aplicado
+- La navegación permite ir directo a la sesión que corresponde
+- La progresión entre las cuatro sesiones no tiene saltos ni repeticiones
+- Sirve como material de estudio semanal y como guía de repaso del parcial
+
+> Equivale al 58 % de producir cuatro guías de sesión por separado: el ahorro viene del encuadre, la maquetación y el QA, que se hacen una sola vez.
 
 ## Plantillas de curso
 

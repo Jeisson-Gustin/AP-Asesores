@@ -159,6 +159,26 @@
         "control_calidad": 1
       },
       "_nota_opcionales": "Trabajo que sostiene los 48 componentes pero que el cliente no solicitó. Se cotiza aparte para que decida: sin diseño curricular previo ni auditoría final, ese trabajo o se regala o reaparece después como sobrecosto."
+    },
+    "usc_12_sesiones_esquema_parcial": {
+      "institucion": "Universidad Santiago de Cali",
+      "curso": "Curso de 12 sesiones · esquema por parcial",
+      "semanas": 12,
+      "plan": "continuidad_usc",
+      "contexto": "Esquema de 12 sesiones organizadas en 3 parciales de 4 sesiones. El material conceptual se concentra en una guía por parcial, que cubre sus cuatro sesiones con navegación interna. La práctica y la evaluación siguen siendo semanales: cada sesión tiene su actividad H5P de refuerzo y su cuestionario en Moodle. Cada parcial cierra con un taller práctico de alta demanda con rúbrica y solucionario.",
+      "nuevos": {
+        "guia_html_parcial": 3,
+        "actividad_h5p": 12,
+        "quiz_moodle": 12,
+        "taller_practico": 3
+      },
+      "adecuacion": {},
+      "opcionales": {
+        "diseno_curricular": 1,
+        "config_moodle": 1,
+        "control_calidad": 1
+      },
+      "nota": "Asume 3 parciales de 4 sesiones. La guía de parcial cuesta el 58 % de producir cuatro guías de sesión por separado; el ahorro viene del encuadre, la maquetación y el QA, que se hacen una sola vez."
     }
   }
 }

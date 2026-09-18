@@ -190,3 +190,34 @@ Producción de la ruta completa de trabajo para 12 sesiones. Cada sesión recibe
 **Argumento de venta.** Producir estos recursos íntegramente desde cero costaría $ 34.877.040. Aprovechar lo que la institución ya tiene le ahorra $ 0.
 
 > La 'actividad adicional' por sesión se cotiza como taller práctico de alta demanda con rúbrica y solucionario. Si se prefiere foro guiado o workshop con coevaluación, el valor cambia y se ajusta la cotización.
+
+### Universidad Santiago de Cali — Curso de 12 sesiones · esquema por parcial
+
+Esquema de 12 sesiones organizadas en 3 parciales de 4 sesiones. El material conceptual se concentra en una guía por parcial, que cubre sus cuatro sesiones con navegación interna. La práctica y la evaluación siguen siendo semanales: cada sesión tiene su actividad H5P de refuerzo y su cuestionario en Moodle. Cada parcial cierra con un taller práctico de alta demanda con rúbrica y solucionario.
+
+| Componente | Cantidad | Precio nuevo | Precio adecuación | Subtotal |
+| --- | --- | ---: | ---: | ---: |
+| Actividad H5P de refuerzo | 12 nuevo | $ 434.390 | $ 173.756 | $ 5.212.680 |
+| Quiz evaluativo Moodle (GIFT) | 12 nuevo | $ 707.850 | $ 283.140 | $ 8.494.200 |
+| Taller práctico de alta demanda con rúbrica | 3 nuevo | $ 695.750 | $ 278.300 | $ 2.087.250 |
+| Guía de aprendizaje de parcial (HTML) | 3 nuevo | $ 2.511.960 | $ 1.004.784 | $ 7.535.880 |
+
+| Concepto | Valor |
+| --- | ---: |
+| Subtotal | $ 23.330.010 |
+| Descuento · Continuidad Universidad Santiago de Cali (34 %) | ($ 7.955.533) |
+| **Total sin IVA** | **$ 15.374.477** |
+| IVA (19 %, sujeto a régimen) | $ 2.921.151 |
+| **Total con IVA** | **$ 18.295.627** |
+
+**Control interno (no se muestra al cliente):**
+
+- Horas de producción: 130.5 (94.5 h de criterio humano, 72 %)
+- Costo total: $ 10.604.550
+- Precio piso: $ 14.139.400 → **dentro del piso**
+- Margen efectivo: **31.0 %**
+- Descuento máximo admisible: **39.4 %**
+
+**Argumento de venta.** Producir estos recursos íntegramente desde cero costaría $ 23.330.010. Aprovechar lo que la institución ya tiene le ahorra $ 0.
+
+> Asume 3 parciales de 4 sesiones. La guía de parcial cuesta el 58 % de producir cuatro guías de sesión por separado; el ahorro viene del encuadre, la maquetación y el QA, que se hacen una sola vez.
