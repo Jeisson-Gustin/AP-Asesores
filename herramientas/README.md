@@ -45,20 +45,49 @@ El panel lateral muestra el **rango cobrable** con botones para fijar el precio
 en el mínimo o en el máximo, y una aguja que indica dónde cae el precio actual
 dentro de ese rango. Este bloque es interno y se oculta en vista cliente.
 
-## Descargar la cotización en PDF
+## Descargar la cotización en PDF y en Word
 
-El bloque **Generar la cotización** produce un PDF con los componentes
-seleccionados: alcance, tabla de componentes con valores unitarios, totales con
-descuento e IVA, argumento de ahorro, protocolo de producción con IA, garantías y
-condiciones. **No incluye costos, márgenes ni tarifas internas.**
+El bloque **Generar la cotización** ofrece dos botones, **Descargar en PDF** y
+**Descargar en Word**. Ambos producen el mismo documento para el cliente:
+alcance, tabla de componentes con valores unitarios, totales con descuento e IVA,
+argumento de ahorro, servicios complementarios, protocolo de producción con IA,
+garantías y condiciones. **Ninguno incluye costos, márgenes ni tarifas internas.**
 
-El PDF se genera con `pdf.js`, un escritor propio sin dependencias (PDF 1.4 con
-las fuentes base Helvetica). No usa ningún CDN: funciona siempre, también sin
-conexión.
+El PDF sirve para enviar y firmar; el Word sirve cuando la institución necesita
+editar el documento, pegarlo en su propia plantilla o tramitarlo por un sistema
+que solo acepta `.docx`.
+
+| Formato | Escritor | Qué produce |
+| --- | --- | --- |
+| PDF | `pdf.js` | PDF 1.4 con fuentes base Helvetica, paginado y con pie de página |
+| Word | `docx.js` | `.docx` OOXML válido (documento, estilos, propiedades) en su propio ZIP |
+
+Los dos son escritores propios, sin dependencias ni CDN: funcionan siempre,
+también sin conexión.
+
+**Los dos formatos comparten una única fuente de verdad.** Los textos fijos
+(`T_PRODUCIMOS_1`, `T_GARANTIAS`, `T_COMPLEMENTARIOS`) y el armado de los datos
+(`lineasComponentes`, `lineasOpcionales`, `etiquetaDescuento`, `tCondiciones`,
+`tAhorro`, `totalComponentes`) están definidos una sola vez y los usan tanto
+`construirPdf` como `construirDocx`. Al cambiar una cifra o una frase hay que
+tocar solo el helper: los dos documentos se mueven juntos.
 
 En el artifact publicado la descarga usa la capacidad `downloads`, que pide
 confirmación al visor. Abierto como archivo local, usa la descarga normal del
 navegador.
+
+### Verificar el Word generado
+
+`modelo/validar_docx.py` comprueba lo que Word y los validadores estrictos
+exigen y que un simple «abre bien» no detecta: integridad del ZIP,
+`[Content_Types].xml` como primera entrada, XML bien formado en cada parte,
+`<w:tblGrid>` presente y coherente con el número de celdas de cada fila, y el
+orden de los hijos de `<w:pPr>`, `<w:rPr>`, `<w:tblPr>` y `<w:tcPr>` según la
+secuencia del esquema OOXML.
+
+```bash
+python3 modelo/validar_docx.py salidas/*.docx
+```
 
 ## Regenerar los datos
 

@@ -46,6 +46,7 @@ El catálogo completo, con el desglose de horas fase por fase, está en
 | [07 · Propuesta USC](docs/07-propuesta-usc.md) | Propuesta ejecutiva para la Universidad Santiago de Cali | **Cliente** |
 | [08 · Auditoría de calidad y precio](docs/08-auditoria-calidad-y-precio.md) | Evaluación de los recursos reales frente al mercado; posición de precio | Interno |
 | [Formulario de necesidades](herramientas/README.md) | Levantamiento del alcance con el cliente, en HTML y PDF | **Cliente** |
+| [Cotizador interactivo](herramientas/README.md) | Cotizar en vivo y descargar la propuesta en PDF o en Word | Mixto |
 
 Los documentos 01 y 05 **se generan** desde el modelo. No editarlos a mano.
 
@@ -63,6 +64,7 @@ modelo/
 ├── catalogo_oferta.json     Los 79 tipos de recurso que se pueden ofrecer
 ├── generar_formulario.py    Genera el formulario de necesidades (HTML y artifact)
 ├── auditor_moodle.py        Audita recursos contra los criterios de las skills
+├── validar_docx.py          Valida los .docx que genera el cotizador (esquema OOXML)
 ├── generar_documentos.py    Regenera docs/01 y docs/05
 └── test_cotizador.py        Pruebas de coherencia del modelo
 ```
@@ -90,6 +92,9 @@ python3 modelo/generar_documentos.py
 
 # Verificar la coherencia del modelo
 python3 modelo/test_cotizador.py
+
+# Verificar los .docx que produce el cotizador
+python3 modelo/validar_docx.py salidas/*.docx
 ```
 
 ### Cómo recalibrar

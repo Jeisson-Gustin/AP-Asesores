@@ -321,7 +321,8 @@ input[type=range]:focus-visible{outline:2px solid var(--acento);outline-offset:3
         <ul class="opcionales" id="listaOpcionales"></ul>
       </div>
       <div class="acciones">
-        <button type="button" class="btn principal" id="btnPdf">Descargar cotización en PDF</button>
+        <button type="button" class="btn principal" id="btnPdf">Descargar en PDF</button>
+        <button type="button" class="btn secundario" id="btnWord">Descargar en Word</button>
         <span class="estado-msj" id="msjPdf"></span>
       </div>
     </section>
@@ -660,6 +661,317 @@ var PDFMini = (function(){
   };
 
   return { Doc: Doc, medir: ancho, limpiar: limpiar };
+})();
+</script>
+<script>
+/* Escritor de .docx sin dependencias.
+   Un .docx es un ZIP con partes OOXML. Aquí se arman las cuatro partes mínimas
+   que Word necesita y se empaquetan con un ZIP propio (método STORE, sin
+   compresión), de modo que la página no depende de ninguna librería externa. */
+var DocxMini = (function(){
+  "use strict";
+
+  /* ---------------------------------------------------------------- ZIP ---*/
+
+  var TABLA_CRC = (function(){
+    var t = new Uint32Array(256), c, n, k;
+    for(n = 0; n < 256; n++){
+      c = n;
+      for(k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+      t[n] = c >>> 0;
+    }
+    return t;
+  })();
+
+  function crc32(bytes){
+    var c = 0xFFFFFFFF;
+    for(var i = 0; i < bytes.length; i++){
+      c = TABLA_CRC[(c ^ bytes[i]) & 0xFF] ^ (c >>> 8);
+    }
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+
+  function utf8(str){
+    if(typeof TextEncoder !== "undefined") return new TextEncoder().encode(str);
+    var s = unescape(encodeURIComponent(str)), a = new Uint8Array(s.length);
+    for(var i = 0; i < s.length; i++) a[i] = s.charCodeAt(i);
+    return a;
+  }
+
+  /** Empaqueta [{nombre, datos}] en un ZIP sin compresión. */
+  function zip(entradas){
+    var partes = [], central = [], offset = 0;
+    var d = new Date();
+    var hora = ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() / 2)) & 0xFFFF;
+    var fecha = (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF;
+
+    function u8(n){ return [n & 255]; }
+    function u16(n){ return [n & 255, (n >>> 8) & 255]; }
+    function u32(n){ return [n & 255, (n >>> 8) & 255, (n >>> 16) & 255, (n >>> 24) & 255]; }
+
+    entradas.forEach(function(e){
+      var nombre = utf8(e.nombre), datos = e.datos, crc = crc32(datos);
+      var local = [].concat(
+        u32(0x04034b50), u16(20), u16(0), u16(0),   // firma, versión, flags, método STORE
+        u16(hora), u16(fecha), u32(crc),
+        u32(datos.length), u32(datos.length),
+        u16(nombre.length), u16(0));
+      partes.push(new Uint8Array(local), nombre, datos);
+
+      central.push([].concat(
+        u32(0x02014b50), u16(20), u16(20), u16(0), u16(0),
+        u16(hora), u16(fecha), u32(crc),
+        u32(datos.length), u32(datos.length),
+        u16(nombre.length), u16(0), u16(0), u16(0), u16(0),
+        u32(0), u32(offset)));
+      central[central.length - 1].nombre = nombre;
+      offset += local.length + nombre.length + datos.length;
+    });
+
+    var inicioCentral = offset, tamCentral = 0;
+    central.forEach(function(c){
+      partes.push(new Uint8Array(c), c.nombre);
+      tamCentral += c.length + c.nombre.length;
+    });
+
+    partes.push(new Uint8Array([].concat(
+      u32(0x06054b50), u16(0), u16(0),
+      u16(entradas.length), u16(entradas.length),
+      u32(tamCentral), u32(inicioCentral), u16(0))));
+
+    var total = partes.reduce(function(s, p){ return s + p.length; }, 0);
+    var salida = new Uint8Array(total), pos = 0;
+    partes.forEach(function(p){ salida.set(p, pos); pos += p.length; });
+    return salida;
+  }
+
+  /* -------------------------------------------------------------- OOXML ---*/
+
+  var NS_W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
+  var XML = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n';
+
+  function esc(s){
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  /** Un run: texto con formato. */
+  function run(texto, op){
+    op = op || {};
+    // El orden de los hijos de <w:rPr> lo fija el esquema (CT_RPr):
+    // rFonts, b, i, caps, color, sz. Alterarlo hace que validadores estrictos
+    // rechacen el documento.
+    var pr = "";
+    if(op.font) pr += '<w:rFonts w:ascii="' + op.font + '" w:hAnsi="' + op.font + '"/>';
+    if(op.bold) pr += "<w:b/>";
+    if(op.italic) pr += "<w:i/>";
+    if(op.caps) pr += "<w:caps/>";
+    if(op.color) pr += '<w:color w:val="' + op.color.replace("#", "") + '"/>';
+    if(op.size) pr += '<w:sz w:val="' + (op.size * 2) + '"/>';   // half-points
+    if(pr) pr = "<w:rPr>" + pr + "</w:rPr>";
+    // xml:space preserva los espacios de los extremos
+    return "<w:r>" + pr + '<w:t xml:space="preserve">' + esc(texto) + "</w:t></w:r>";
+  }
+
+  function Doc(){
+    this.cuerpo = [];
+  }
+
+  /** Párrafo. `op.runs` permite varios formatos en la misma línea. */
+  Doc.prototype.parrafo = function(texto, op){
+    op = op || {};
+    // Orden fijado por el esquema (CT_PPr): pStyle, pBdr, shd, spacing, ind, jc.
+    var pr = "";
+    if(op.estilo) pr += '<w:pStyle w:val="' + op.estilo + '"/>';
+    if(op.bordeInferior){
+      pr += '<w:pBdr><w:bottom w:val="single" w:sz="' + (op.bordeGrosor || 6) +
+            '" w:space="4" w:color="' + (op.bordeColor || "0A6357").replace("#", "") +
+            '"/></w:pBdr>';
+    }
+    if(op.sombreado){
+      pr += '<w:shd w:val="clear" w:fill="' + op.sombreado.replace("#", "") + '"/>';
+    }
+    if(op.espacioAntes || op.espacioDespues){
+      pr += '<w:spacing' +
+        (op.espacioAntes ? ' w:before="' + op.espacioAntes + '"' : "") +
+        (op.espacioDespues ? ' w:after="' + op.espacioDespues + '"' : "") + "/>";
+    }
+    if(op.sangria) pr += '<w:ind w:left="' + op.sangria + '"/>';
+    if(op.align) pr += '<w:jc w:val="' + op.align + '"/>';
+    if(pr) pr = "<w:pPr>" + pr + "</w:pPr>";
+
+    var contenido = op.runs
+      ? op.runs.map(function(r){ return run(r[0], r[1]); }).join("")
+      : run(texto, op);
+    this.cuerpo.push("<w:p>" + pr + contenido + "</w:p>");
+    return this;
+  };
+
+  Doc.prototype.titulo = function(t){
+    return this.parrafo(t, {estilo: "Titulo", size: 26, bold: true, color: "16222E"});
+  };
+
+  Doc.prototype.h1 = function(t){
+    return this.parrafo(t, {size: 13, bold: true, color: "0A6357", caps: true,
+                            espacioAntes: 260, espacioDespues: 100});
+  };
+
+  Doc.prototype.espacio = function(alto){
+    this.cuerpo.push('<w:p><w:pPr><w:spacing w:after="' + (alto || 120) +
+                     '"/></w:pPr></w:p>');
+    return this;
+  };
+
+  /**
+   * Tabla. `filas` es una matriz de celdas; cada celda es string u objeto
+   * {texto, bold, align, color, fondo, ancho}. `op.encabezado` marca la
+   * primera fila como cabecera repetible.
+   */
+  Doc.prototype.tabla = function(filas, op){
+    op = op || {};
+    var anchos = op.anchos || null;
+    var borde = (op.borde || "D6DEE5").replace("#", "");
+    var xml = ['<w:tbl><w:tblPr><w:tblW w:w="5000" w:type="pct"/>',
+      '<w:tblBorders>',
+      ['top', 'left', 'bottom', 'right', 'insideH', 'insideV'].map(function(l){
+        return '<w:' + l + ' w:val="single" w:sz="' + (op.grosor || 4) +
+               '" w:space="0" w:color="' + borde + '"/>';
+      }).join(""),
+      '</w:tblBorders>',
+      '<w:tblCellMar><w:top w:w="60" w:type="dxa"/><w:bottom w:w="60" w:type="dxa"/>',
+      '<w:left w:w="100" w:type="dxa"/><w:right w:w="100" w:type="dxa"/></w:tblCellMar>',
+      '</w:tblPr>'];
+
+    // El esquema OOXML exige <w:tblGrid>; sin él Word repagina mal las columnas
+    // y los lectores estrictos rechazan el documento.
+    var nCols = filas.reduce(function(m, f){ return Math.max(m, f.length); }, 0);
+    if(nCols){
+      var util = 12240 - 1021 - 1021;   // ancho de carta menos márgenes, en twips
+      var pesos = [];
+      var suma = 0;
+      for(var i = 0; i < nCols; i++){
+        var w = (anchos && anchos[i]) ? Number(anchos[i]) : (5000 / nCols);
+        pesos.push(w); suma += w;
+      }
+      xml.push("<w:tblGrid>" + pesos.map(function(w){
+        return '<w:gridCol w:w="' + Math.round(util * w / suma) + '"/>';
+      }).join("") + "</w:tblGrid>");
+    }
+
+    filas.forEach(function(fila, iFila){
+      var cabecera = op.encabezado && iFila === 0;
+      xml.push("<w:tr>");
+      if(cabecera) xml.push("<w:trPr><w:tblHeader/></w:trPr>");
+      fila.forEach(function(celda, iCol){
+        var c = (typeof celda === "object" && celda !== null) ? celda : {texto: celda};
+        var tcPr = "";
+        if(anchos && anchos[iCol]) tcPr += '<w:tcW w:w="' + anchos[iCol] + '" w:type="pct"/>';
+        var fondo = c.fondo || (cabecera ? op.fondoEncabezado : null);
+        if(fondo) tcPr += '<w:shd w:val="clear" w:fill="' + fondo.replace("#", "") + '"/>';
+        tcPr += '<w:vAlign w:val="center"/>';
+        var pPr = "";
+        if(c.align) pPr = '<w:pPr><w:jc w:val="' + c.align + '"/></w:pPr>';
+        xml.push("<w:tc><w:tcPr>" + tcPr + "</w:tcPr><w:p>" + pPr +
+          run(c.texto, {bold: c.bold || cabecera, color: c.color,
+                        size: c.size || op.size, caps: cabecera && op.capsEncabezado}) +
+          "</w:p></w:tc>");
+      });
+      xml.push("</w:tr>");
+    });
+    xml.push("</w:tbl>");
+    this.cuerpo.push(xml.join(""));
+    // Word necesita un párrafo tras la tabla para no pegar el contenido siguiente.
+    this.cuerpo.push('<w:p><w:pPr><w:spacing w:after="60"/></w:pPr></w:p>');
+    return this;
+  };
+
+  Doc.prototype.vinieta = function(texto, op){
+    op = op || {};
+    return this.parrafo("•  " + texto, {
+      sangria: op.sangria || 220, size: op.size || 10,
+      color: op.color, espacioDespues: op.espacioDespues || 60});
+  };
+
+  Doc.prototype.xmlDocumento = function(){
+    return XML + '<w:document xmlns:w="' + NS_W + '"><w:body>' +
+      this.cuerpo.join("") +
+      '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/>' +          // carta
+      '<w:pgMar w:top="1134" w:right="1021" w:bottom="1134" w:left="1021" ' +
+      'w:header="567" w:footer="567" w:gutter="0"/></w:sectPr>' +
+      "</w:body></w:document>";
+  };
+
+  var ESTILOS = XML +
+    '<w:styles xmlns:w="' + NS_W + '">' +
+    '<w:docDefaults><w:rPrDefault><w:rPr>' +
+    '<w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:cs="Calibri"/>' +
+    '<w:sz w:val="20"/><w:szCs w:val="20"/><w:lang w:val="es-CO"/>' +
+    '</w:rPr></w:rPrDefault>' +
+    '<w:pPrDefault><w:pPr><w:spacing w:after="120" w:line="264" w:lineRule="auto"/>' +
+    '</w:pPr></w:pPrDefault></w:docDefaults>' +
+    '<w:style w:type="paragraph" w:default="1" w:styleId="Normal">' +
+    '<w:name w:val="Normal"/><w:qFormat/></w:style>' +
+    '<w:style w:type="paragraph" w:styleId="Titulo">' +
+    '<w:name w:val="Title"/><w:basedOn w:val="Normal"/><w:qFormat/>' +
+    '<w:pPr><w:spacing w:after="80"/></w:pPr>' +
+    '<w:rPr><w:b/><w:sz w:val="52"/></w:rPr></w:style>' +
+    '</w:styles>';
+
+  var CONTENT_TYPES = XML +
+    '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
+    '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
+    '<Default Extension="xml" ContentType="application/xml"/>' +
+    '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>' +
+    '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>' +
+    '<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>' +
+    '</Types>';
+
+  var RELS = XML +
+    '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+    '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>' +
+    '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>' +
+    '</Relationships>';
+
+  var RELS_DOC = XML +
+    '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+    '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>' +
+    '</Relationships>';
+
+  function propiedades(titulo, autor){
+    var ahora = new Date().toISOString().replace(/\.\d+Z$/, "Z");
+    return XML +
+      '<cp:coreProperties ' +
+      'xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" ' +
+      'xmlns:dc="http://purl.org/dc/elements/1.1/" ' +
+      'xmlns:dcterms="http://purl.org/dc/terms/" ' +
+      'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' +
+      "<dc:title>" + esc(titulo) + "</dc:title>" +
+      "<dc:creator>" + esc(autor) + "</dc:creator>" +
+      "<cp:lastModifiedBy>" + esc(autor) + "</cp:lastModifiedBy>" +
+      '<dcterms:created xsi:type="dcterms:W3CDTF">' + ahora + "</dcterms:created>" +
+      '<dcterms:modified xsi:type="dcterms:W3CDTF">' + ahora + "</dcterms:modified>" +
+      "</cp:coreProperties>";
+  }
+
+  /** Devuelve el .docx como Blob. */
+  Doc.prototype.blob = function(op){
+    op = op || {};
+    var entradas = [
+      {nombre: "[Content_Types].xml", datos: utf8(CONTENT_TYPES)},
+      {nombre: "_rels/.rels", datos: utf8(RELS)},
+      {nombre: "docProps/core.xml",
+       datos: utf8(propiedades(op.titulo || "Documento", op.autor || "Desarrollos AP"))},
+      {nombre: "word/_rels/document.xml.rels", datos: utf8(RELS_DOC)},
+      {nombre: "word/document.xml", datos: utf8(this.xmlDocumento())},
+      {nombre: "word/styles.xml", datos: utf8(ESTILOS)}
+    ];
+    return new Blob([zip(entradas)], {
+      type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    });
+  };
+
+  return {Doc: Doc, esc: esc};
 })();
 </script>
 <script>
@@ -1154,6 +1466,93 @@ var PDFMini = (function(){
     }
   }
 
+  /* ---------- textos y datos del reporte, comunes a PDF y Word ---------- */
+  var T_PRODUCIMOS_1 =
+    "Usamos inteligencia artificial para el borrador de las guías, el código HTML base y la " +
+    "estructura de los bancos de preguntas. Nada generado por IA llega a un estudiante sin " +
+    "revisión profesional: cada ejemplo de cada guía se resuelve a mano, cada ítem de cada " +
+    "quiz se responde verificando que tenga una única respuesta correcta y distractores " +
+    "plausibles, y cada paquete H5P y SCORM se prueba en Moodle comprobando que registre la " +
+    "nota en el libro de calificaciones.";
+
+  function tProducimos2(t){
+    return "En esta propuesta, " + numero(t.horasCriterio) + " de las " + numero(t.horas) +
+      " horas (" + (t.horas ? Math.round(t.horasCriterio / t.horas * 100) : 0) +
+      " %) son criterio profesional humano. La proporción está desglosada recurso por recurso " +
+      "y la institución puede auditarla en cualquier momento.";
+  }
+
+  var T_GARANTIAS = [
+    "Todo recurso se prueba en Moodle antes de entregarse: ningún H5P, SCORM, GIFT o HTML se entrega sin verificar que importa, funciona y registra calificación.",
+    "Toda guía y todo taller están resueltos. Existe solucionario para el docente.",
+    "Toda rúbrica es visible para el estudiante antes de la entrega.",
+    "Auditoría de calidad de cinco niveles antes de publicar. Un hallazgo crítico bloquea la publicación.",
+    "Corrección sin costo de cualquier error de contenido detectado durante los meses de soporte contratados.",
+    "La propiedad intelectual de todo el material producido es de la institución contratante."
+  ];
+
+  var T_COMPLEMENTARIOS =
+    "No están incluidos en el total anterior. Son el trabajo que sostiene la coherencia " +
+    "y la calidad de los componentes cotizados; se presentan por separado para que la " +
+    "institución decida sobre ellos.";
+
+  function tCondiciones(vence){
+    return [
+      "Valores en pesos colombianos. El régimen de IVA se confirma con la oficina financiera de la institución; los servicios de educación pueden estar excluidos según el artículo 476 del Estatuto Tributario.",
+      "Validez de esta propuesta: hasta el " + fechaLarga(vence) + ".",
+      "No incluye hosting, licencias de Moodle ni honorarios docentes.",
+      "Forma de pago sugerida: 40 % al inicio, 30 % contra entrega del segundo parcial, 30 % contra reporte de auditoría final.",
+      "El diseño curricular se aprueba como hito independiente antes de iniciar la producción."
+    ];
+  }
+
+  function tAhorro(t){
+    return "Producir estos recursos íntegramente desde cero costaría " + dinero(t.todoNuevo) +
+      ". Aprovechar el material que la institución ya tiene representa un ahorro de " +
+      dinero(t.todoNuevo - t.subtotal) + ".";
+  }
+
+  /** Filas de la tabla de componentes, compartidas por ambos formatos. */
+  function lineasComponentes(){
+    var filas = [];
+    claves.forEach(function(k){
+      var e = estado[k];
+      if(!e.n && !e.a) return;
+      var unit = precioMax(k);
+      if(e.n) filas.push({nombre: R[k].nombre, cant: e.n, unit: unit, sub: e.n * unit});
+      if(e.a) filas.push({nombre: R[k].nombre + " (adecuación)", cant: e.a,
+                          unit: unit * CFG.factorAd, sub: e.a * unit * CFG.factorAd});
+    });
+    return filas;
+  }
+
+  /** Servicios complementarios marcados, con el mismo descuento aplicado. */
+  function lineasOpcionales(){
+    return Object.keys(opcionales)
+      .filter(function(k){ return opcionales[k].incluido; })
+      .map(function(k){
+        var q = opcionales[k].cantidad;
+        return {nombre: R[k].nombre + (q > 1 ? " (" + q + ")" : ""),
+                entregable: R[k].entregable,
+                valor: precioMax(k) * q * (1 - ultimo.d)};
+      });
+  }
+
+  function etiquetaDescuento(){
+    return "Descuento" + (ultimo.plan ? " · " + ultimo.plan : "") + " (" +
+      (Math.round(ultimo.d * 1000) / 10).toFixed(1).replace(".", ",") + " %)";
+  }
+
+  function vencimiento(){
+    return new Date(Date.now() + (+$("qDias").value || 30) * 86400000);
+  }
+
+  function totalComponentes(){
+    var n = 0;
+    claves.forEach(function(k){ n += estado[k].n + estado[k].a; });
+    return n;
+  }
+
   /* ---------- reporte PDF ---------- */
   var MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto",
                "septiembre","octubre","noviembre","diciembre"];
@@ -1172,8 +1571,7 @@ var PDFMini = (function(){
     });
     var X = 54, X2 = 558, ANCHO = X2 - X;
     var VERDE = "#0a6357", GRIS = "#5a6b7a", NEGRO = "#16222e";
-    var hoy = new Date();
-    var vence = new Date(hoy.getTime() + (+$("qDias").value || 30) * 86400000);
+    var hoy = new Date(), vence = vencimiento();
 
     doc.rect(0, 0, 612, 6, VERDE);
     doc.y = 46;
@@ -1201,8 +1599,7 @@ var PDFMini = (function(){
       doc.y += 12;
     }
 
-    var nRec = 0;
-    claves.forEach(function(k){ nRec += estado[k].n + estado[k].a; });
+    var nRec = totalComponentes();
     doc.asegurar(62);
     doc.rect(X, doc.y, ANCHO, 40, "#eef4f2");
     doc.texto(X + 12, "ALCANCE", {y: doc.y + 9, size:7.5, bold:true, color:VERDE});
@@ -1228,26 +1625,20 @@ var PDFMini = (function(){
     }
     encabezadoTabla();
 
-    claves.forEach(function(k){
-      var e = estado[k];
-      if(!e.n && !e.a) return;
-      var unit = precioMax(k);
-      [[e.n, unit, ""], [e.a, unit*CFG.factorAd, " (adecuación)"]].forEach(function(par){
-        if(!par[0]) return;
-        if(doc.espacio() < 44){ doc.nuevaPagina(); doc.y = 56; encabezadoTabla(); }
-        var completo = R[k].nombre + par[2], nombre = completo;
-        var maxN = cCant - X - 46;
-        while(PDFMini.medir(nombre, 9, false) > maxN && nombre.length > 8){
-          nombre = nombre.slice(0, -2);
-        }
-        if(nombre !== completo) nombre += "...";
-        doc.texto(X, nombre, {size:9, color:NEGRO});
-        doc.texto(cCant, numero(par[0]), {size:9, align:"right", color:NEGRO});
-        doc.texto(cUnit, dinero(par[1]), {size:9, align:"right", color:NEGRO});
-        doc.texto(cSub, dinero(par[0]*par[1]), {size:9, align:"right", color:NEGRO});
-        doc.y += 15;
-        doc.linea(X, doc.y - 4, X2, doc.y - 4, 0.3, "#e2e8ee");
-      });
+    lineasComponentes().forEach(function(f){
+      if(doc.espacio() < 44){ doc.nuevaPagina(); doc.y = 56; encabezadoTabla(); }
+      var completo = f.nombre, nombre = completo;
+      var maxN = cCant - X - 46;
+      while(PDFMini.medir(nombre, 9, false) > maxN && nombre.length > 8){
+        nombre = nombre.slice(0, -2);
+      }
+      if(nombre !== completo) nombre += "...";
+      doc.texto(X, nombre, {size:9, color:NEGRO});
+      doc.texto(cCant, numero(f.cant), {size:9, align:"right", color:NEGRO});
+      doc.texto(cUnit, dinero(f.unit), {size:9, align:"right", color:NEGRO});
+      doc.texto(cSub, dinero(f.sub), {size:9, align:"right", color:NEGRO});
+      doc.y += 15;
+      doc.linea(X, doc.y - 4, X2, doc.y - 4, 0.3, "#e2e8ee");
     });
 
     doc.asegurar(130);
@@ -1265,9 +1656,7 @@ var PDFMini = (function(){
     }
     filaTotal("Subtotal", dinero(t.subtotal));
     if(ultimo.descuento > 0){
-      filaTotal("Descuento" + (ultimo.plan ? " · " + ultimo.plan : "") + " (" +
-        (Math.round(ultimo.d*1000)/10).toFixed(1).replace(".",",") + " %)",
-        "- " + dinero(ultimo.descuento), {color:VERDE});
+      filaTotal(etiquetaDescuento(), "- " + dinero(ultimo.descuento), {color:VERDE});
     }
     doc.linea(cUnit - 130, doc.y - 4, X2, doc.y - 4, 0.5, "#cccccc");
     doc.y += 2;
@@ -1283,36 +1672,27 @@ var PDFMini = (function(){
       doc.asegurar(58);
       doc.y += 8;
       doc.rect(X, doc.y, 3, 40, VERDE);
-      doc.parrafo(X + 12, ANCHO - 12,
-        "Producir estos recursos íntegramente desde cero costaría " + dinero(t.todoNuevo) +
-        ". Aprovechar el material que la institución ya tiene representa un ahorro de " +
-        dinero(ahorro) + ".", {size:9.5, color:NEGRO, interlinea:13.5});
+      doc.parrafo(X + 12, ANCHO - 12, tAhorro(t), {size:9.5, color:NEGRO, interlinea:13.5});
       doc.y += 10;
     }
 
     // Servicios complementarios: se presentan aparte y no suman al total.
-    var opcIncluidos = Object.keys(opcionales).filter(function(k){ return opcionales[k].incluido; });
-    if(opcIncluidos.length){
+    var opc = lineasOpcionales();
+    if(opc.length){
       doc.asegurar(112);
       doc.y += 10;
       doc.texto(X, "SERVICIOS COMPLEMENTARIOS", {size:8, bold:true, color:VERDE});
       doc.y += 13;
-      doc.parrafo(X, ANCHO,
-        "No están incluidos en el total anterior. Son el trabajo que sostiene la coherencia " +
-        "y la calidad de los componentes cotizados; se presentan por separado para que la " +
-        "institución decida sobre ellos.", {size:9, color:GRIS, interlinea:12.5});
+      doc.parrafo(X, ANCHO, T_COMPLEMENTARIOS, {size:9, color:GRIS, interlinea:12.5});
       doc.y += 8;
       var sumaOpc = 0;
-      opcIncluidos.forEach(function(k){
+      opc.forEach(function(o){
         doc.asegurar(28);
-        var q = opcionales[k].cantidad;
-        var bruto = precioMax(k) * q;
-        var neto = bruto * (1 - ultimo.d);
-        sumaOpc += neto;
-        doc.texto(X, R[k].nombre + (q > 1 ? " (" + q + ")" : ""), {size:9, color:NEGRO});
-        doc.texto(cSub, dinero(neto), {size:9, align:"right", color:NEGRO});
+        sumaOpc += o.valor;
+        doc.texto(X, o.nombre, {size:9, color:NEGRO});
+        doc.texto(cSub, dinero(o.valor), {size:9, align:"right", color:NEGRO});
         doc.y += 13;
-        doc.parrafo(X + 10, ANCHO - 120, R[k].entregable, {size:8, color:GRIS, interlinea:10.5});
+        doc.parrafo(X + 10, ANCHO - 120, o.entregable, {size:8, color:GRIS, interlinea:10.5});
         doc.y += 5;
         doc.linea(X, doc.y - 3, X2, doc.y - 3, 0.3, "#e2e8ee");
       });
@@ -1328,32 +1708,15 @@ var PDFMini = (function(){
     doc.y += 8;
     doc.texto(X, "CÓMO PRODUCIMOS", {size:8, bold:true, color:VERDE});
     doc.y += 15;
-    doc.parrafo(X, ANCHO,
-      "Usamos inteligencia artificial para el borrador de las guías, el código HTML base y la " +
-      "estructura de los bancos de preguntas. Nada generado por IA llega a un estudiante sin " +
-      "revisión profesional: cada ejemplo de cada guía se resuelve a mano, cada ítem de cada " +
-      "quiz se responde verificando que tenga una única respuesta correcta y distractores " +
-      "plausibles, y cada paquete H5P y SCORM se prueba en Moodle comprobando que registre la " +
-      "nota en el libro de calificaciones.", {size:9.5, color:GRIS, interlinea:13.5});
+    doc.parrafo(X, ANCHO, T_PRODUCIMOS_1, {size:9.5, color:GRIS, interlinea:13.5});
     doc.y += 6;
-    doc.parrafo(X, ANCHO,
-      "En esta propuesta, " + numero(t.horasCriterio) + " de las " + numero(t.horas) +
-      " horas (" + (t.horas ? Math.round(t.horasCriterio/t.horas*100) : 0) +
-      " %) son criterio profesional humano. La proporción está desglosada recurso por recurso " +
-      "y la institución puede auditarla en cualquier momento.",
-      {size:9.5, color:NEGRO, interlinea:13.5});
+    doc.parrafo(X, ANCHO, tProducimos2(t), {size:9.5, color:NEGRO, interlinea:13.5});
     doc.y += 12;
 
     doc.asegurar(140);
     doc.texto(X, "QUÉ GARANTIZAMOS", {size:8, bold:true, color:VERDE});
     doc.y += 15;
-    ["Todo recurso se prueba en Moodle antes de entregarse: ningún H5P, SCORM, GIFT o HTML se entrega sin verificar que importa, funciona y registra calificación.",
-     "Toda guía y todo taller están resueltos. Existe solucionario para el docente.",
-     "Toda rúbrica es visible para el estudiante antes de la entrega.",
-     "Auditoría de calidad de cinco niveles antes de publicar. Un hallazgo crítico bloquea la publicación.",
-     "Corrección sin costo de cualquier error de contenido detectado durante los meses de soporte contratados.",
-     "La propiedad intelectual de todo el material producido es de la institución contratante."
-    ].forEach(function(g, i){
+    T_GARANTIAS.forEach(function(g, i){
       doc.asegurar(28);
       var yFila = doc.y;
       doc.texto(X, String(i+1) + ".", {y:yFila, size:9, bold:true, color:VERDE});
@@ -1365,12 +1728,7 @@ var PDFMini = (function(){
     doc.y += 8;
     doc.texto(X, "CONDICIONES", {size:8, bold:true, color:VERDE});
     doc.y += 15;
-    ["Valores en pesos colombianos. El régimen de IVA se confirma con la oficina financiera de la institución; los servicios de educación pueden estar excluidos según el artículo 476 del Estatuto Tributario.",
-     "Validez de esta propuesta: hasta el " + fechaLarga(vence) + ".",
-     "No incluye hosting, licencias de Moodle ni honorarios docentes.",
-     "Forma de pago sugerida: 40 % al inicio, 30 % contra entrega del segundo parcial, 30 % contra reporte de auditoría final.",
-     "El diseño curricular se aprueba como hito independiente antes de iniciar la producción."
-    ].forEach(function(c){
+    tCondiciones(vence).forEach(function(c){
       doc.asegurar(26);
       var yFila = doc.y;
       doc.texto(X, "·", {y:yFila, size:9, bold:true, color:VERDE});
@@ -1381,11 +1739,129 @@ var PDFMini = (function(){
     return doc.blob();
   }
 
-  function nombreArchivo(){
+  /* ---------- reporte Word ---------- */
+
+  function construirDocx(){
+    var t = ultimo.t;
+    var d = new DocxMini.Doc();
+    var VERDE = "0A6357", GRIS = "5A6B7A", NEGRO = "16222E", FONDO = "EEF4F2";
+    var hoy = new Date(), vence = vencimiento();
+
+    // Encabezado
+    d.parrafo("", {runs: [
+      ["DESARROLLOS AP", {bold: true, size: 9, color: VERDE, caps: true}]
+    ]});
+    d.parrafo("", {runs: [
+      ["Diseño y producción de cursos universitarios virtuales   ·   ", {size: 8, color: GRIS}],
+      [($("qNum").value || "").trim(), {size: 8, color: GRIS, bold: true}],
+      ["   ·   " + fechaLarga(hoy), {size: 8, color: GRIS}]
+    ], espacioDespues: 200});
+
+    d.titulo("Propuesta económica");
+    var curso = ($("qCurso").value || "").trim();
+    if(curso) d.parrafo(curso, {size: 13, bold: true, color: VERDE, espacioDespues: 40});
+    var inst = ($("qInst").value || "").trim();
+    if(inst) d.parrafo(inst, {size: 10, color: GRIS, bordeInferior: true,
+                              bordeGrosor: 12, espacioDespues: 200});
+
+    var base = baseDe(baseActiva);
+    if(base && base.contexto) d.parrafo(base.contexto, {size: 10, color: GRIS, espacioDespues: 160});
+
+    // Alcance
+    d.tabla([[{
+      texto: numero(totalComponentes()) + " componentes   ·   " + numero(t.horas) +
+             " horas de producción   ·   " +
+             (t.horas ? Math.round(t.horasCriterio / t.horas * 100) : 0) +
+             " % de revisión profesional humana",
+      bold: true, align: "center", size: 10, color: NEGRO, fondo: FONDO
+    }]], {borde: "A6D0C7", grosor: 6});
+
+    // Componentes
+    d.h1("Componentes");
+    var filas = [["Componente", {texto: "Cant.", align: "right"},
+                  {texto: "Valor unitario", align: "right"},
+                  {texto: "Subtotal", align: "right"}]];
+    lineasComponentes().forEach(function(l){
+      filas.push([l.nombre,
+                  {texto: numero(l.cant), align: "right"},
+                  {texto: dinero(l.unit), align: "right"},
+                  {texto: dinero(l.sub), align: "right"}]);
+    });
+    d.tabla(filas, {encabezado: true, fondoEncabezado: FONDO, capsEncabezado: true,
+                    size: 9, anchos: [2600, 500, 950, 950]});
+
+    // Totales
+    var tot = [[{texto: "Subtotal", align: "right"}, {texto: dinero(t.subtotal), align: "right"}]];
+    if(ultimo.descuento > 0){
+      tot.push([{texto: etiquetaDescuento(), align: "right", color: VERDE},
+                {texto: "- " + dinero(ultimo.descuento), align: "right", color: VERDE}]);
+    }
+    tot.push([{texto: "Total sin IVA", align: "right", bold: true, size: 11},
+              {texto: dinero(ultimo.total), align: "right", bold: true, size: 11}]);
+    tot.push([{texto: "IVA 19 % (sujeto a régimen)", align: "right", color: GRIS},
+              {texto: dinero(ultimo.iva), align: "right", color: GRIS}]);
+    tot.push([{texto: "TOTAL CON IVA", align: "right", bold: true, size: 12,
+               color: VERDE, fondo: FONDO},
+              {texto: dinero(ultimo.total + ultimo.iva), align: "right", bold: true,
+               size: 12, color: VERDE, fondo: FONDO}]);
+    d.tabla(tot, {anchos: [3500, 1500], borde: "FFFFFF", grosor: 0, size: 10});
+
+    // Ahorro
+    if(t.todoNuevo - t.subtotal > 0){
+      d.tabla([[{texto: tAhorro(t), size: 10, color: NEGRO, fondo: FONDO}]],
+              {borde: "A6D0C7", grosor: 6});
+    }
+
+    // Servicios complementarios
+    var opc = lineasOpcionales();
+    if(opc.length){
+      d.h1("Servicios complementarios");
+      d.parrafo(T_COMPLEMENTARIOS, {size: 9, color: GRIS, espacioDespues: 120});
+      var fo = [["Servicio", {texto: "Valor", align: "right"}]];
+      opc.forEach(function(o){
+        fo.push([{texto: o.nombre, bold: true}, {texto: dinero(o.valor), align: "right"}]);
+        fo.push([{texto: o.entregable, size: 8, color: GRIS}, ""]);
+      });
+      var suma = opc.reduce(function(s, o){ return s + o.valor; }, 0);
+      fo.push([{texto: "Subtotal servicios complementarios", bold: true, align: "right"},
+               {texto: dinero(suma), bold: true, align: "right", color: VERDE}]);
+      d.tabla(fo, {encabezado: true, fondoEncabezado: FONDO, capsEncabezado: true,
+                   size: 9, anchos: [3800, 1200]});
+    }
+
+    // Cómo producimos
+    d.h1("Cómo producimos");
+    d.parrafo(T_PRODUCIMOS_1, {size: 10, color: GRIS});
+    d.parrafo(tProducimos2(t), {size: 10, color: NEGRO, espacioDespues: 160});
+
+    // Garantías
+    d.h1("Qué garantizamos");
+    T_GARANTIAS.forEach(function(g, i){
+      d.parrafo("", {runs: [
+        [(i + 1) + ".  ", {bold: true, color: VERDE, size: 10}],
+        [g, {size: 10, color: GRIS}]
+      ], sangria: 220, espacioDespues: 80});
+    });
+
+    // Condiciones
+    d.h1("Condiciones");
+    tCondiciones(vence).forEach(function(c){
+      d.vinieta(c, {color: GRIS, size: 10});
+    });
+
+    d.espacio(240);
+    d.parrafo("Desarrollos AP · Diseño y producción de cursos universitarios virtuales",
+              {size: 8, color: GRIS, align: "center", bordeInferior: false});
+
+    return d.blob({titulo: "Propuesta " + (($("qNum").value || "").trim()),
+                   autor: "Desarrollos AP"});
+  }
+
+  function nombreArchivo(ext){
     var n = ($("qNum").value || "cotizacion").trim().replace(/[^\w\-]+/g, "_");
     var c = ($("qCurso").value || "").trim()
       .replace(/[^\w\s\-]+/g, "").replace(/\s+/g, "_").slice(0, 40);
-    return "Cotizacion_" + n + (c ? "_" + c : "") + ".pdf";
+    return "Cotizacion_" + n + (c ? "_" + c : "") + "." + (ext || "pdf");
   }
 
   function mensajePdf(texto, clase){
@@ -1394,46 +1870,54 @@ var PDFMini = (function(){
     m.className = "estado-msj" + (clase ? " " + clase : "");
   }
 
-  $("btnPdf").addEventListener("click", function(){
+  function descargar(formato){
     if(!ultimo || !ultimo.t.subtotal){
       mensajePdf("Agregue al menos un componente antes de generar la cotización.", "err");
       return;
     }
-    var btn = this;
-    btn.disabled = true;
-    mensajePdf("Generando…");
+    var esWord = formato === "word";
+    var etiqueta = esWord ? "Word" : "PDF";
+    var botones = [$("btnPdf"), $("btnWord")];
+    function habilitar(){ botones.forEach(function(b){ if(b) b.disabled = false; }); }
+    botones.forEach(function(b){ if(b) b.disabled = true; });
+    mensajePdf("Generando " + etiqueta + "…");
+
     var blob;
     try {
-      blob = construirPdf();
+      blob = esWord ? construirDocx() : construirPdf();
     } catch(e){
-      btn.disabled = false;
-      mensajePdf("No se pudo generar el PDF: " + e.message, "err");
+      habilitar();
+      mensajePdf("No se pudo generar el " + etiqueta + ": " + e.message, "err");
       return;
     }
-    var archivo = nombreArchivo();
+    var archivo = nombreArchivo(esWord ? "docx" : "pdf");
+    var listo = "Cotización descargada en " + etiqueta + ".";
 
     if(descargas){
       descargas.save({filename: archivo, data: blob}).then(function(){
-        mensajePdf("Cotización descargada.", "bien");
+        mensajePdf(listo, "bien");
       }, function(err){
         var c = err && err.code;
         if(c === "declined") mensajePdf("Descarga cancelada.");
         else if(c === "rate_limited") mensajePdf("Espere un momento e inténtelo de nuevo.", "err");
         else mensajePdf("No se pudo guardar el archivo en esta vista.", "err");
-      }).then(function(){ btn.disabled = false; }, function(){ btn.disabled = false; });
+      }).then(habilitar, habilitar);
     } else if(!hayClaude){
       var url = URL.createObjectURL(blob);
       var a = document.createElement("a");
       a.href = url; a.download = archivo;
       document.body.appendChild(a); a.click(); a.remove();
       setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
-      mensajePdf("Cotización descargada.", "bien");
-      btn.disabled = false;
+      mensajePdf(listo, "bien");
+      habilitar();
     } else {
       mensajePdf("La descarga no está disponible en esta vista.", "err");
-      btn.disabled = false;
+      habilitar();
     }
-  });
+  }
+
+  $("btnPdf").addEventListener("click", function(){ descargar("pdf"); });
+  $("btnWord").addEventListener("click", function(){ descargar("word"); });
 
   /* ---------- vista ---------- */
   function fijarVista(interna){
